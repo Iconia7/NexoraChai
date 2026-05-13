@@ -126,7 +126,7 @@ export default function OnboardingSetup() {
                   <div>
                     <label className="text-[10px] font-black text-brand-muted uppercase tracking-widest mb-2 block ml-1">Unique Username</label>
                     <div className="flex items-center gap-2 bg-[#F9FAFB] border border-black/10 rounded-2xl px-4 py-4">
-                      <span className="text-brand-muted font-bold text-sm">chai.nexora.co.ke/</span>
+                      <span className="text-brand-muted font-bold text-sm">chai.nexoracreatives.co.ke/</span>
                       <input
                         placeholder="username"
                         value={username}
