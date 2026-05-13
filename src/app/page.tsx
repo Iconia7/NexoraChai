@@ -13,7 +13,7 @@ export default function Landing() {
   return (
     <div className="min-h-screen bg-brand-beige-light text-foreground overflow-x-hidden selection:bg-brand-primary/10 pt-24">
       <PublicNavbar />
-      
+
       <Script id="structured-data" type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",
@@ -33,10 +33,10 @@ export default function Landing() {
       <section className="relative min-h-[90vh] flex items-center pt-24 pb-32 px-6 overflow-hidden">
         {/* Background Image & Overlay */}
         <div className="absolute inset-0 z-0">
-          <Image 
-            src="/hero-bg.png" 
-            alt="Hero Background" 
-            fill 
+          <Image
+            src="/hero-bg.png"
+            alt="Hero Background"
+            fill
             priority
             className="object-cover"
           />
@@ -68,7 +68,7 @@ export default function Landing() {
             className="flex flex-col md:flex-row items-center justify-center gap-0 max-w-xl mx-auto mb-16 px-4 md:px-0"
           >
             <div className="flex-1 w-full bg-white/10 backdrop-blur-md border border-white/20 rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none px-4 md:px-6 py-4 flex items-center gap-1 md:gap-2 text-white/60 font-bold text-sm md:text-lg">
-              <span className="shrink-0">chai.nexora.../</span>
+              <span className="shrink-0">chai.nexoracreatives.co.ke/</span>
               <input
                 type="text"
                 placeholder="username"

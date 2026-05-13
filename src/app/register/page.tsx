@@ -92,7 +92,7 @@ export default function Register() {
             <div className="bg-[#F9FAFB] p-6 rounded-[2.5rem] border border-black/[0.03] mb-8">
               <label className="text-xs font-black text-brand-muted uppercase tracking-widest mb-3 block ml-1">Your Creator Handle</label>
               <div className="flex items-center gap-2 bg-white border border-black/10 rounded-2xl px-4 py-3">
-                <span className="text-brand-muted font-bold text-sm">chai.nexoracreatives.co.ke/</span>
+                <span className="text-brand-muted font-bold text-sm">chai.nexora.co.ke/</span>
                 <input
                   type="text"
                   placeholder="username"
