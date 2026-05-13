@@ -139,8 +139,9 @@ export default function SettingsPage() {
             });
             setQrCode(res.data.qrCodeUrl);
             setTwoFactorStep('setup');
-        } catch (err) {
-            addToast("Failed to initiate 2FA setup", "error");
+        } catch (err: any) {
+            console.error('2FA Init failed:', err);
+            addToast(err.response?.data?.error || "Failed to initiate 2FA setup", "error");
         } finally {
             setSetupLoading(false);
         }
