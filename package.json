@@ -9,15 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "axios": "latest",
-    "clsx": "latest",
-    "framer-motion": "latest",
-    "lucide-react": "latest",
+    "axios": "^1.16.0",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "framer-motion": "^12.38.0",
+    "lucide-react": "^1.14.0",
     "next": "16.2.6",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "tailwind-merge": "latest",
-    "zustand": "latest"
+    "tailwind-merge": "^3.6.0",
+    "zustand": "^5.0.13"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

@@ -16,6 +16,8 @@ export const usePaystack = () => {
     email, 
     amount, 
     reference, 
+    accessCode,
+    currency,
     subaccount,
     onSuccess, 
     onClose 
@@ -24,17 +26,25 @@ export const usePaystack = () => {
     email: string;
     amount: number;
     reference: string;
+    accessCode?: string;
+    currency?: string;
     subaccount?: string;
     onSuccess: (response: any) => void;
     onClose: () => void;
   }) => {
+    const config = accessCode 
+      ? { key, access_code: accessCode, email, amount, currency: currency || 'KES' }
+      : {
+          key,
+          email,
+          amount,
+          currency: currency || 'KES',
+          ref: reference,
+          ...(subaccount ? { subaccount, bearer: 'subaccount' } : {}),
+        };
+
     const handler = window.PaystackPop.setup({
-      key,
-      email,
-      amount,
-      ref: reference,
-      subaccount,
-      bearer: 'subaccount',
+      ...config,
       onClose: () => {
         onClose();
       },

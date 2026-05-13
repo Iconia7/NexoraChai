@@ -2,8 +2,9 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { User, Phone, AtSign, CheckCircle, ArrowRight } from 'lucide-react';
+import { Camera, CheckCircle2, ArrowRight, ChevronRight } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import axios from 'axios';
 import { useAuthStore } from '@/lib/store';
 
@@ -36,96 +37,127 @@ export default function OnboardingSetup() {
   };
 
   return (
-    <div className="min-h-screen bg-[#050A15] flex items-center justify-center px-6">
-      <div className="max-w-xl w-full">
-        {step === 1 && (
-          <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}>
-            <h1 className="text-4xl font-black mb-8">Personalize your page</h1>
-            <div className="glass-card p-10 rounded-[2.5rem] space-y-6">
-              <div className="space-y-2">
-                <label className="text-sm font-bold text-slate-400">Display Name</label>
-                <div className="relative">
-                  <User className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" size={20} />
-                  <input 
-                    placeholder="e.g. Newton Nderitu"
-                    value={displayName}
-                    onChange={(e) => setDisplayName(e.target.value)}
-                    className="w-full glass py-4 pl-12 pr-6 rounded-2xl focus:outline-none focus:ring-2 focus:ring-accent/50 font-bold"
-                  />
-                </div>
-              </div>
-              <div className="space-y-2">
-                <label className="text-sm font-bold text-slate-400">Unique Username</label>
-                <div className="relative">
-                  <AtSign className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" size={20} />
-                  <input 
-                    placeholder="e.g. newton"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value.toLowerCase())}
-                    className="w-full glass py-4 pl-12 pr-6 rounded-2xl focus:outline-none focus:ring-2 focus:ring-accent/50 font-bold"
-                  />
-                </div>
-              </div>
-              <button 
-                onClick={() => setStep(2)}
-                className="w-full bg-accent text-black py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3"
-              >
-                Next Step <ArrowRight size={20} />
-              </button>
-            </div>
-          </motion.div>
-        )}
+    <div className="min-h-screen bg-brand-beige-light font-sans">
+      {/* Header */}
+      <header className="h-20 bg-white border-b border-black/5 flex items-center justify-between px-8 sticky top-0 z-50">
+        <div className="flex items-center gap-3">
+            <Image src="/logo.png" alt="Nexora Chai" width={24} height={24} />
+            <span className="font-bold tracking-tight">Nexora Chai</span>
+        </div>
 
-        {step === 2 && (
-          <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}>
-            <h1 className="text-4xl font-black mb-8">Payout Details</h1>
-            <div className="glass-card p-10 rounded-[2.5rem] space-y-6">
-              <p className="text-slate-400 mb-6">Enter your M-Pesa number. We use this to create your Paystack Subaccount for automatic payouts.</p>
-              <div className="space-y-2">
-                <label className="text-sm font-bold text-slate-400">M-Pesa Number</label>
-                <div className="relative">
-                  <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" size={20} />
-                  <input 
-                    placeholder="e.g. 254712345678"
-                    value={mpesaNumber}
-                    onChange={(e) => setMpesaNumber(e.target.value)}
-                    className="w-full glass py-4 pl-12 pr-6 rounded-2xl focus:outline-none focus:ring-2 focus:ring-accent/50 font-bold"
-                  />
+        <nav className="hidden md:flex items-center gap-4 text-[10px] font-black uppercase tracking-widest text-brand-muted">
+            <span className={step === 1 ? 'text-brand-primary' : ''}>1. Profile</span>
+            <ChevronRight size={12} />
+            <span className={step === 2 ? 'text-brand-primary' : ''}>2. Money</span>
+            <ChevronRight size={12} />
+            <span className={step === 3 ? 'text-brand-primary' : ''}>3. Verify</span>
+        </nav>
+
+        <button className="text-[10px] font-black uppercase tracking-widest text-brand-muted hover:text-brand-primary">Save & Exit</button>
+      </header>
+
+      <main className="max-w-7xl mx-auto px-6 py-20 flex justify-center">
+        <div className="max-w-2xl w-full">
+          {step === 1 && (
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
+              <div className="bg-white p-12 rounded-[3rem] card-shadow border border-black/[0.02] text-center">
+                <h1 className="text-3xl font-black mb-3 tracking-tight">Set up your creator profile</h1>
+                <p className="text-brand-muted font-medium mb-12">Let your supporters know who they are tipping.</p>
+                
+                <div className="flex justify-center mb-12">
+                   <div className="w-32 h-32 rounded-full border-2 border-dashed border-brand-primary/30 bg-brand-primary/5 flex flex-col items-center justify-center gap-2 cursor-pointer hover:bg-brand-primary/10 transition-colors group">
+                      <Camera size={32} className="text-brand-primary" />
+                      <span className="text-[10px] font-black uppercase tracking-widest text-brand-primary">Upload</span>
+                   </div>
+                </div>
+
+                <div className="space-y-6 text-left max-w-md mx-auto">
+                   <div>
+                      <label className="text-[10px] font-black text-brand-muted uppercase tracking-widest mb-2 block ml-1">Display Name</label>
+                      <input 
+                        placeholder="e.g. Wanjiku's Kitchen"
+                        value={displayName}
+                        onChange={(e) => setDisplayName(e.target.value)}
+                        className="input-base text-lg font-medium py-4"
+                      />
+                   </div>
+                   <div>
+                      <label className="text-[10px] font-black text-brand-muted uppercase tracking-widest mb-2 block ml-1">Unique Username</label>
+                      <div className="flex items-center gap-2 bg-[#F9FAFB] border border-black/10 rounded-2xl px-4 py-4">
+                        <span className="text-brand-muted font-bold text-sm">chai.nexora.co.ke/</span>
+                        <input 
+                            placeholder="username"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value.toLowerCase())}
+                            className="flex-1 bg-transparent border-none focus:outline-none font-bold text-sm"
+                        />
+                      </div>
+                   </div>
+                   <div>
+                      <label className="text-[10px] font-black text-brand-muted uppercase tracking-widest mb-2 block ml-1">Short Bio</label>
+                      <textarea 
+                        placeholder="I create awesome content about..."
+                        value={bio}
+                        onChange={(e) => setBio(e.target.value)}
+                        className="input-base text-lg font-medium py-4 min-h-[140px] resize-none"
+                      />
+                   </div>
+
+                   <button 
+                    onClick={() => setStep(2)}
+                    className="w-full btn-primary py-5 text-lg font-black bg-[#914D00] shadow-xl shadow-brand-primary/20 flex items-center justify-center gap-3 mt-8"
+                   >
+                    Continue to Payment Info <ArrowRight size={20} />
+                   </button>
                 </div>
               </div>
-              <div className="space-y-2">
-                <label className="text-sm font-bold text-slate-400">Short Bio</label>
-                <textarea 
-                  placeholder="What are you creating?"
-                  value={bio}
-                  onChange={(e) => setBio(e.target.value)}
-                  className="w-full glass py-4 px-6 rounded-2xl focus:outline-none focus:ring-2 focus:ring-accent/50 font-medium min-h-[120px]"
-                />
-              </div>
-              <div className="flex gap-4">
-                <button onClick={() => setStep(1)} className="flex-1 glass py-5 rounded-2xl font-bold">Back</button>
-                <button 
-                  onClick={handleFinish}
-                  disabled={loading}
-                  className="flex-[2] bg-accent text-black py-5 rounded-2xl font-black text-lg disabled:opacity-50"
-                >
-                  {loading ? "Finishing..." : "Complete Setup"}
-                </button>
-              </div>
-            </div>
-          </motion.div>
-        )}
+            </motion.div>
+          )}
 
-        {step === 3 && (
-          <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="text-center">
-            <div className="w-24 h-24 bg-accent rounded-full flex items-center justify-center text-black mx-auto mb-8 shadow-[0_0_50px_rgba(16,185,129,0.4)]">
-              <CheckCircle size={48} />
-            </div>
-            <h1 className="text-4xl font-black mb-4">You're all set!</h1>
-            <p className="text-slate-400">Redirecting to your dashboard...</p>
-          </motion.div>
-        )}
-      </div>
+          {step === 2 && (
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
+              <div className="bg-white p-12 rounded-[3rem] card-shadow border border-black/[0.02] text-center">
+                <h1 className="text-3xl font-black mb-3 tracking-tight">Payout Details</h1>
+                <p className="text-brand-muted font-medium mb-12">Enter your M-Pesa number for automatic payouts.</p>
+
+                <div className="space-y-6 text-left max-w-md mx-auto">
+                   <div>
+                      <label className="text-[10px] font-black text-brand-muted uppercase tracking-widest mb-2 block ml-1">M-Pesa Number</label>
+                      <input 
+                        placeholder="e.g. 254712345678"
+                        value={mpesaNumber}
+                        onChange={(e) => setMpesaNumber(e.target.value)}
+                        className="input-base text-lg font-medium py-4"
+                      />
+                      <p className="text-[10px] text-brand-muted mt-3 font-bold">We use this to create your Paystack Subaccount.</p>
+                   </div>
+
+                   <div className="flex gap-4 pt-8">
+                     <button onClick={() => setStep(1)} className="flex-1 border border-black/10 py-5 rounded-2xl font-bold hover:bg-black/[0.02] transition-colors">Back</button>
+                     <button 
+                        onClick={handleFinish}
+                        disabled={loading}
+                        className="flex-[2] btn-primary py-5 text-lg font-black bg-[#914D00] shadow-xl shadow-brand-primary/20 disabled:opacity-50"
+                     >
+                        {loading ? "Finishing..." : "Complete Setup"}
+                     </button>
+                   </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {step === 3 && (
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="text-center">
+              <div className="w-32 h-32 bg-brand-secondary rounded-full flex items-center justify-center text-white mx-auto mb-12 shadow-2xl">
+                <CheckCircle2 size={64} />
+              </div>
+              <h1 className="text-4xl font-black mb-4 tracking-tight">You're all set!</h1>
+              <p className="text-brand-muted font-medium">Redirecting to your dashboard...</p>
+            </motion.div>
+          )}
+        </div>
+      </main>
     </div>
   );
 }

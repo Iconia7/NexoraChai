@@ -2,111 +2,171 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Lock, ArrowRight, UserPlus, Github } from 'lucide-react';
+import { Mail, Lock, CheckCircle2, ArrowRight, Eye, EyeOff } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/lib/store';
+import { useToastStore } from '@/lib/toastStore';
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:4000';
 
 export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const setAuth = useAuthStore((state) => state.setAuth);
+  const addToast = useToastStore((state) => state.addToast);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post(`${BACKEND_URL}/api/auth/register`, { email, password });
-      setAuth(res.data.user, res.data.token);
-      router.push('/dashboard/setup'); // Send to onboarding setup
+      const res = await axios.post(`${BACKEND_URL}/api/auth/register`, { 
+        email, 
+        password, 
+        phoneNumber,
+        username 
+      });
+      addToast('Verification code sent to your phone!', 'success');
+      router.push(`/verify?email=${encodeURIComponent(email)}`);
     } catch (err: any) {
-      alert(err.response?.data?.error || 'Registration failed');
+      addToast(err.response?.data?.error || 'Registration failed', 'error');
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-[#050A15] flex items-center justify-center px-6 relative overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-lg h-[600px] bg-accent/10 rounded-full blur-[120px] pointer-events-none" />
-      
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="w-full max-w-md relative z-10"
-      >
-        <div className="text-center mb-10">
-          <Link href="/" className="inline-block mb-8">
-            <div className="w-16 h-16 bg-accent rounded-2xl flex items-center justify-center text-black font-black text-3xl shadow-2xl shadow-accent/20">N</div>
-          </Link>
-          <h1 className="text-3xl font-black mb-3">Create your account</h1>
-          <p className="text-slate-400">Join the Nexora Chai creator network.</p>
+    <div className="min-h-screen flex bg-white font-sans">
+      {/* Left Panel - Decorative */}
+      <div className="hidden lg:flex lg:w-1/2 bg-[#F3E5D8] p-12 flex-col justify-between relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-full h-full opacity-10">
+          <div className="absolute -top-20 -right-20 w-96 h-96 bg-brand-primary rounded-full blur-[120px]" />
         </div>
 
-        <div className="glass-card p-10 rounded-[2.5rem]">
+        <div className="relative z-10">
+          <div className="flex items-center gap-3 mb-20">
+            <Image src="/logo.png" alt="Nexora Chai" width={32} height={32} />
+            <span className="font-bold text-xl tracking-tight">Nexora Chai</span>
+          </div>
+
+          <div className="max-w-md">
+            <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center text-brand-secondary mb-12 shadow-xl">
+              <CheckCircle2 size={48} strokeWidth={1.5} />
+            </div>
+            <h2 className="text-4xl font-black mb-8 leading-tight tracking-tight">
+              "Joining Nexora Chai is the smartest financial decision I made this year."
+            </h2>
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-lg">
+                <Image src="/avatar-2.png" alt="Amina Kariuki" width={48} height={48} />
+              </div>
+              <div>
+                <p className="font-bold text-sm">Amina Kariuki</p>
+                <p className="text-xs text-brand-muted font-bold">Top Creator, Nairobi</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="relative z-10 text-[10px] font-black text-brand-muted uppercase tracking-widest opacity-50">
+          Securely powered by ParsePesa Infrastructure.
+        </div>
+      </div>
+
+      {/* Right Panel - Form */}
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
+        <div className="max-w-md w-full">
+          <div className="mb-12">
+            <h1 className="text-4xl font-black mb-3 tracking-tight">Claim Your Space</h1>
+            <p className="text-brand-muted font-medium">Your Nexora ID connects you to ParsePesa API, Nexora Menu and Nexora POS too.</p>
+          </div>
+
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="space-y-2">
-              <label className="text-sm font-bold text-slate-400 ml-1">Email Address</label>
-              <div className="relative">
-                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" size={20} />
-                <input 
-                  type="email"
-                  required
-                  placeholder="name@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full glass py-4 pl-12 pr-6 rounded-2xl focus:outline-none focus:ring-2 focus:ring-accent/50 font-medium transition-all"
+            <div className="bg-[#F9FAFB] p-6 rounded-[2.5rem] border border-black/[0.03] mb-8">
+              <label className="text-xs font-black text-brand-muted uppercase tracking-widest mb-3 block ml-1">Your Creator Handle</label>
+              <div className="flex items-center gap-2 bg-white border border-black/10 rounded-2xl px-4 py-3">
+                <span className="text-brand-muted font-bold text-sm">chai.nexoracreatives.co.ke/</span>
+                <input
+                  type="text"
+                  placeholder="username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value.toLowerCase())}
+                  className="flex-1 bg-transparent border-none focus:outline-none font-bold text-sm"
                 />
+              </div>
+              <div className="flex items-center gap-1.5 mt-3 ml-1 text-[10px] font-black text-brand-secondary uppercase tracking-wider">
+                <CheckCircle2 size={12} /> Handle is available
               </div>
             </div>
 
-            <div className="space-y-2">
-              <label className="text-sm font-bold text-slate-400 ml-1">Password</label>
-              <div className="relative">
-                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" size={20} />
-                <input 
-                  type="password"
-                  required
-                  placeholder="••••••••"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full glass py-4 pl-12 pr-6 rounded-2xl focus:outline-none focus:ring-2 focus:ring-accent/50 font-medium transition-all"
-                />
-              </div>
+            <div>
+              <label className="text-xs font-black text-brand-muted uppercase tracking-widest mb-2 block ml-1">Phone Number (M-Pesa)</label>
+              <input
+                type="tel"
+                required
+                placeholder="+254 700 000 000"
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+                className="input-base text-lg font-medium py-4"
+              />
             </div>
 
-            <button 
+            <div>
+              <label className="text-xs font-black text-brand-muted uppercase tracking-widest mb-2 block ml-1">Email Address</label>
+              <input
+                type="email"
+                required
+                placeholder="email@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="input-base text-lg font-medium py-4"
+              />
+            </div>
+
+            <div className="relative">
+              <label className="text-xs font-black text-brand-muted uppercase tracking-widest mb-2 block ml-1">Password</label>
+              <input
+                type={showPassword ? "text" : "password"}
+                required
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="input-base text-lg font-medium py-4 pr-12"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-4 top-[46px] text-brand-muted"
+              >
+                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
+            </div>
+
+            <button
               disabled={loading}
-              className="w-full bg-accent text-black py-4 rounded-2xl font-black text-lg flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-[0.98] transition-transform shadow-xl shadow-accent/20 disabled:opacity-50"
+              className="w-full btn-primary py-5 text-lg font-black bg-[#914D00] shadow-xl shadow-brand-primary/20 flex items-center justify-center gap-3 disabled:opacity-50"
             >
-              {loading ? "Creating..." : "Start Building"} <ArrowRight size={20} />
+              {loading ? "Creating..." : "Create My Creator Account"} <ArrowRight size={20} />
             </button>
           </form>
 
-          <div className="relative my-8 text-center">
-            <span className="bg-[#0D1525] px-4 text-xs font-bold text-slate-600 uppercase tracking-widest relative z-10">Or continue with</span>
-            <div className="absolute top-1/2 left-0 w-full h-[1px] bg-white/5" />
-          </div>
+          <p className="text-center mt-12 text-brand-muted font-bold text-sm">
+            Already have an account? <Link href="/login" className="text-brand-primary hover:underline">Log in here</Link>
+          </p>
 
-          <div className="grid grid-cols-2 gap-4">
-            <button className="glass py-4 rounded-2xl flex items-center justify-center gap-3 font-bold hover:bg-white/5 transition-colors">
-              <Github size={20} /> Github
-            </button>
-            <button className="glass py-4 rounded-2xl flex items-center justify-center gap-3 font-bold hover:bg-white/5 transition-colors">
-              <div className="w-5 h-5 bg-white rounded-full flex items-center justify-center text-[10px] text-black">G</div> Google
-            </button>
+          <div className="mt-12 text-center text-[10px] text-brand-muted leading-relaxed font-bold">
+            By registering, you agree to the <Link href="#" className="underline">Terms of Service</Link> and<br />
+            <Link href="#" className="underline">Privacy Policy</Link>.
           </div>
         </div>
-
-        <p className="text-center mt-10 text-slate-400 font-medium">
-          Already have an account? <Link href="/login" className="text-accent hover:underline">Login here</Link>
-        </p>
-      </motion.div>
+      </div>
     </div>
   );
 }

@@ -3,23 +3,37 @@
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Coffee, Heart, Zap, ExternalLink } from 'lucide-react';
+import { Coffee, Heart, Zap, Globe, Shield, Sparkles } from 'lucide-react';
 import axios from 'axios';
+import Image from 'next/image';
+import Link from 'next/link';
+import CheckoutModal from '@/components/CheckoutModal';
+import PublicNavbar from '@/components/PublicNavbar';
+import PublicFooter from '@/components/PublicFooter';
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:4000';
 
 export default function CreatorPage() {
   const { username } = useParams();
   const [creator, setCreator] = useState<any>(null);
-  const [amount, setAmount] = useState(100);
+  const [multiplier, setMultiplier] = useState(1);
+  const [customAmount, setCustomAmount] = useState('');
+  const [fanName, setFanName] = useState('');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const basePrice = 100;
+  const finalAmount = customAmount ? Number(customAmount) : basePrice * multiplier;
 
   useEffect(() => {
     const fetchCreator = async () => {
       try {
         const res = await axios.get(`${BACKEND_URL}/api/creators/${username}`);
         setCreator(res.data);
+        
+        // Increment views
+        axios.post(`${BACKEND_URL}/api/creators/${username}/views`).catch(() => {});
       } catch (err) {
         console.error('Creator not found');
       } finally {
@@ -29,144 +43,192 @@ export default function CreatorPage() {
     fetchCreator();
   }, [username]);
 
-  const handleSupport = async () => {
-    // This will eventually open the Paystack modal
-    alert(`Supporting ${creator.displayName} with KES ${amount}`);
+  const handleSupportClick = () => {
+    if (finalAmount < 50) {
+        alert("Minimum support is KES 50");
+        return;
+    }
+    setIsModalOpen(true);
   };
 
-  if (loading) return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
-  if (!creator) return <div className="min-h-screen flex items-center justify-center">Creator not found</div>;
+  if (loading) return (
+    <div className="min-h-screen flex flex-col items-center justify-center bg-brand-beige-light">
+      <motion.div 
+        animate={{ rotate: 360 }}
+        transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+        className="text-brand-primary mb-4"
+      >
+        <Coffee size={40} />
+      </motion.div>
+      <p className="font-black uppercase tracking-widest text-brand-muted text-xs">Loading Creator Profile...</p>
+    </div>
+  );
+
+  if (!creator) return (
+    <div className="min-h-screen flex flex-col items-center justify-center bg-brand-beige-light px-6 text-center">
+       <div className="w-20 h-20 bg-red-50 text-red-500 rounded-3xl flex items-center justify-center mb-6">
+          <Shield size={40} />
+       </div>
+       <h1 className="text-3xl font-black mb-2">Creator not found</h1>
+       <p className="text-brand-muted font-medium mb-8">The page you're looking for doesn't exist or has been moved.</p>
+       <Link href="/" className="btn-primary px-8 py-4 bg-[#914D00] text-sm uppercase tracking-widest font-black">Go Home</Link>
+    </div>
+  );
 
   return (
-    <div className="min-h-screen bg-background text-foreground selection:bg-accent selection:text-accent-foreground overflow-x-hidden">
-      {/* Background Blobs */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-accent/20 rounded-full blur-[120px] animate-pulse-slow" />
-        <div className="absolute top-[40%] -right-[10%] w-[30%] h-[30%] bg-blue-500/10 rounded-full blur-[100px] animate-pulse-slow" style={{ animationDelay: '2s' }} />
-      </div>
+    <div className="min-h-screen bg-brand-beige-light text-foreground font-sans selection:bg-brand-primary/10">
+      <PublicNavbar />
 
-      <main className="relative z-10 max-w-2xl mx-auto px-6 py-20">
-        {/* Profile Header */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-12"
-        >
-          <div className="relative inline-block mb-6">
-            <div className="w-24 h-24 rounded-3xl overflow-hidden glass-card p-1">
-              <img 
-                src={creator.avatarUrl || `https://api.dicebear.com/7.x/avataaars/svg?seed=${username}`} 
-                alt={creator.displayName}
-                className="w-full h-full object-cover rounded-2xl"
-              />
-            </div>
-            <div className="absolute -bottom-2 -right-2 bg-accent text-accent-foreground p-1.5 rounded-xl shadow-lg">
-              <Zap size={16} fill="currentColor" />
-            </div>
-          </div>
-          
-          <h1 className="text-3xl font-bold mb-2 tracking-tight">{creator.displayName}</h1>
-          <p className="text-muted-foreground mb-6">@{creator.username}</p>
-          <p className="text-lg leading-relaxed text-slate-300 max-w-lg mx-auto">
-            {creator.bio || "Supporting the next generation of African creators."}
-          </p>
-        </motion.div>
+      <CheckoutModal 
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        creator={creator}
+        amount={finalAmount}
+        message={message}
+        fanName={fanName}
+      />
 
-        {/* Support Card */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.1 }}
-          className="glass-card rounded-[2.5rem] p-8 mb-12"
-        >
-          <div className="flex items-center gap-4 mb-8">
-            <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center text-accent">
-              <Coffee size={24} />
-            </div>
-            <h2 className="text-xl font-bold">Buy {creator.displayName} a Chai</h2>
-          </div>
-
-          <div className="grid grid-cols-3 gap-3 mb-6">
-            {[100, 500, 1000].map((val) => (
-              <button
-                key={val}
-                onClick={() => setAmount(val)}
-                className={`py-4 rounded-2xl font-bold transition-all ${
-                  amount === val 
-                    ? 'bg-accent text-accent-foreground shadow-[0_0_20px_rgba(16,185,129,0.4)]' 
-                    : 'glass hover:bg-white/5'
-                }`}
-              >
-                KES {val}
-              </button>
-            ))}
-          </div>
-
-          <div className="relative mb-6">
-            <input 
-              type="number"
-              placeholder="Other amount"
-              value={amount}
-              onChange={(e) => setAmount(Number(e.target.value))}
-              className="w-full glass rounded-2xl py-4 px-6 focus:outline-none focus:ring-2 focus:ring-accent/50 font-bold"
-            />
-          </div>
-
-          <textarea
-            placeholder="Say something nice (optional)..."
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            className="w-full glass rounded-2xl py-4 px-6 focus:outline-none focus:ring-2 focus:ring-accent/50 min-h-[120px] mb-8 resize-none"
+      <main className="pb-32">
+        {/* Hero Banner */}
+        <div className="relative h-[300px] md:h-[400px] w-full overflow-hidden">
+          <Image 
+            src="/profile-banner.png" 
+            alt="Profile Banner" 
+            fill 
+            sizes="100vw"
+            className="object-cover"
+            priority
           />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-brand-beige-light/80" />
+        </div>
 
-          <button 
-            onClick={handleSupport}
-            className="w-full bg-accent text-accent-foreground py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-[0.98] transition-transform shadow-xl shadow-accent/20"
-          >
-            <Heart size={20} fill="currentColor" />
-            Support KES {amount.toLocaleString()}
-          </button>
-          
-          <p className="text-center mt-6 text-xs text-muted-foreground uppercase tracking-widest font-bold">
-            ⚡ Powered by ParsePesa API
-          </p>
-        </motion.div>
-
-        {/* Supporters List */}
-        <div className="space-y-4">
-          <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground px-2">Recent Supporters</h3>
-          {creator.transactions && creator.transactions.length > 0 ? (
-            creator.transactions.map((t: any) => (
+        <div className="max-w-xl mx-auto px-6">
+           {/* Profile Header */}
+           <div className="relative -mt-24 flex flex-col items-center text-center mb-16">
               <motion.div 
-                key={t.id}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                className="glass p-5 rounded-2xl flex items-start gap-4"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                className="w-32 h-32 md:w-44 md:h-44 rounded-full border-[6px] md:border-[8px] border-white bg-white shadow-2xl overflow-hidden relative mb-4 md:mb-6"
               >
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent/20 to-blue-500/20 flex items-center justify-center font-bold text-accent">
-                  {t.fanName?.[0] || 'F'}
-                </div>
-                <div>
-                  <p className="font-bold">{t.fanName || 'A Fan'} bought a chai</p>
-                  {t.fanMessage && <p className="text-slate-400 text-sm mt-1">{t.fanMessage}</p>}
-                </div>
+                 <Image 
+                    src={creator.avatarUrl || `https://api.dicebear.com/7.x/avataaars/svg?seed=${username}`} 
+                    alt={creator.displayName}
+                    fill
+                    unoptimized
+                    sizes="(max-width: 768px) 128px, 176px"
+                    className="object-cover"
+                 />
               </motion.div>
-            ))
-          ) : (
-            <p className="text-center py-8 text-muted-foreground italic">Be the first to support!</p>
-          )}
+              
+              <div className="flex items-center gap-2 mb-2">
+                <h1 className="text-4xl font-black tracking-tight">{creator.displayName}</h1>
+                <Sparkles size={20} className="text-brand-primary" />
+              </div>
+              
+              <p className="text-brand-primary font-black text-sm mb-6 tracking-wider bg-brand-primary/5 px-4 py-1.5 rounded-full uppercase">@{creator.username}</p>
+              
+              <div className="max-w-md">
+                 <p className="text-brand-muted font-bold text-xs uppercase tracking-widest mb-3">{creator.category || 'Creator'}</p>
+                 <p className="text-brand-muted font-medium text-lg leading-relaxed">
+                    {creator.bio || `Supporting ${creator.displayName}'s creative journey on Nexora Chai.`}
+                 </p>
+              </div>
+           </div>
+
+           {/* Support Card */}
+           <motion.div 
+             initial={{ y: 20, opacity: 0 }}
+             animate={{ y: 0, opacity: 1 }}
+             transition={{ delay: 0.2 }}
+             className="bg-white p-6 md:p-12 rounded-[2.5rem] md:rounded-[3.5rem] card-shadow border border-black/[0.02]"
+           >
+              <div className="flex flex-col items-center text-center mb-10">
+                 <div className="w-16 h-16 bg-brand-beige-light rounded-[1.5rem] flex items-center justify-center text-brand-primary mb-6">
+                    <Coffee size={32} />
+                 </div>
+                 <h2 className="text-2xl font-black tracking-tight mb-2">Buy {creator.displayName} a Chai</h2>
+                 <p className="text-sm font-bold text-brand-muted uppercase tracking-widest">Support with M-Pesa or Card</p>
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+                 {[1, 3, 5, 10].map((m) => (
+                    <button
+                        key={m}
+                        onClick={() => {
+                            setMultiplier(m);
+                            setCustomAmount('');
+                        }}
+                        className={`flex flex-col items-center justify-center py-5 rounded-[1.5rem] border-2 transition-all group ${
+                            !customAmount && multiplier === m 
+                                ? 'border-brand-primary bg-brand-primary/5 text-brand-primary shadow-lg shadow-brand-primary/10' 
+                                : 'border-black/[0.05] hover:border-black/10'
+                        }`}
+                    >
+                        <span className="text-sm font-black uppercase tracking-widest group-hover:scale-110 transition-transform">x{m}</span>
+                        <span className="text-[9px] font-black opacity-60 uppercase tracking-tighter">KES {m * basePrice}</span>
+                    </button>
+                 ))}
+              </div>
+
+              <div className="space-y-4 mb-10">
+                 <div className="relative">
+                    <input 
+                        type="number"
+                        placeholder="Custom Amount (KES)"
+                        value={customAmount}
+                        onChange={(e) => {
+                            setCustomAmount(e.target.value);
+                            setMultiplier(0);
+                        }}
+                        className="input-base text-center py-5 text-sm font-bold bg-[#F9FAFB] focus:bg-white"
+                    />
+                    <div className="absolute left-6 top-1/2 -translate-y-1/2 text-brand-muted font-black text-xs">KES</div>
+                 </div>
+                 
+                 <input 
+                    type="text"
+                    placeholder="Your Name (optional)"
+                    value={fanName}
+                    onChange={(e) => setFanName(e.target.value)}
+                    className="input-base text-center py-5 text-sm font-bold bg-[#F9FAFB] focus:bg-white"
+                 />
+                 
+                 <textarea 
+                    placeholder="Say something nice..."
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    className="input-base text-center py-5 text-sm font-medium bg-[#F9FAFB] focus:bg-white min-h-[120px] resize-none"
+                 />
+              </div>
+
+              <button 
+                onClick={handleSupportClick}
+                className="w-full btn-primary py-6 text-lg font-black bg-[#914D00] shadow-2xl shadow-brand-primary/30 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3 group"
+              >
+                Send KES {finalAmount.toLocaleString()} <Heart size={20} className="group-hover:scale-125 transition-transform fill-white" />
+              </button>
+              
+              <div className="mt-8 flex items-center justify-center gap-8 opacity-60 hover:opacity-100 transition-all">
+                <Image src="/mpesa-logo.png" alt="M-Pesa" width={60} height={30} className="object-contain h-6 w-auto" />
+                <Image src="/visa-mastercard.png" alt="Card" width={80} height={30} className="object-contain h-6 w-auto" />
+              </div>
+           </motion.div>
+
+           <div className="mt-12 text-center">
+              <p className="text-[10px] font-black text-brand-muted uppercase tracking-[0.2em] mb-6">Secured by Nexora Cloud</p>
+              <div className="flex items-center justify-center gap-4 text-brand-muted">
+                 <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full text-[9px] font-black uppercase tracking-widest card-shadow">
+                    <Globe size={12} className="text-blue-500" /> Global Payments
+                 </div>
+                 <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full text-[9px] font-black uppercase tracking-widest card-shadow">
+                    <Shield size={12} className="text-green-500" /> SSL Encrypted
+                 </div>
+              </div>
+           </div>
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="relative z-10 py-12 border-t border-glass-border mt-20">
-        <div className="max-w-2xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-muted-foreground text-sm font-medium">© 2026 Nexora Chai · Africa's Creator Economy 🇰🇪</p>
-          <div className="flex gap-6">
-            <a href="#" className="text-muted-foreground hover:text-accent transition-colors"><ExternalLink size={18} /></a>
-          </div>
-        </div>
-      </footer>
+      <PublicFooter />
     </div>
   );
 }
