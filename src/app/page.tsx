@@ -30,12 +30,24 @@ export default function Landing() {
       </Script>
 
       {/* Hero Section */}
-      <section className="relative pt-24 pb-32 px-6">
+      <section className="relative min-h-[90vh] flex items-center pt-24 pb-32 px-6 overflow-hidden">
+        {/* Background Image & Overlay */}
+        <div className="absolute inset-0 z-0">
+          <Image 
+            src="/hero-bg.png" 
+            alt="Hero Background" 
+            fill 
+            priority
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-brand-beige-light" />
+        </div>
+
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight mb-6 md:mb-8 leading-[1.1]"
+            className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight mb-6 md:mb-8 leading-[1.1] text-white"
           >
             Fund your creativity, <span className="text-brand-primary">instantly.</span>
           </motion.h1>
@@ -44,7 +56,7 @@ export default function Landing() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-base md:text-xl text-brand-muted mb-8 md:mb-12 max-w-2xl mx-auto leading-relaxed font-medium"
+            className="text-base md:text-xl text-white/80 mb-8 md:mb-12 max-w-2xl mx-auto leading-relaxed font-medium"
           >
             The premium platform for African creators to receive support directly from their audience. Secure, fast, and built for your growth.
           </motion.p>
@@ -55,21 +67,21 @@ export default function Landing() {
             transition={{ delay: 0.2 }}
             className="flex flex-col md:flex-row items-center justify-center gap-0 max-w-xl mx-auto mb-16 px-4 md:px-0"
           >
-            <div className="flex-1 w-full bg-white border border-black/10 rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none px-4 md:px-6 py-4 flex items-center gap-1 md:gap-2 text-brand-muted font-bold text-sm md:text-lg">
-              <span className="shrink-0">chai.nexoracreatives.co.ke/</span>
+            <div className="flex-1 w-full bg-white/10 backdrop-blur-md border border-white/20 rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none px-4 md:px-6 py-4 flex items-center gap-1 md:gap-2 text-white/60 font-bold text-sm md:text-lg">
+              <span className="shrink-0">chai.nexora.../</span>
               <input
                 type="text"
                 placeholder="username"
-                className="bg-transparent border-none focus:outline-none w-full text-foreground"
+                className="bg-transparent border-none focus:outline-none w-full text-white placeholder:text-white/40"
               />
             </div>
-            <button className="w-full md:w-auto bg-brand-secondary text-white px-8 py-4 rounded-b-2xl md:rounded-r-2xl md:rounded-bl-none font-black text-lg flex items-center justify-center gap-3 hover:bg-brand-secondary-hover transition-colors shadow-xl shadow-brand-secondary/10 whitespace-nowrap">
+            <button className="w-full md:w-auto bg-brand-primary text-white px-8 py-4 rounded-b-2xl md:rounded-r-2xl md:rounded-bl-none font-black text-lg flex items-center justify-center gap-3 hover:bg-brand-primary/90 transition-all shadow-2xl shadow-brand-primary/20 whitespace-nowrap">
               Claim Link <ArrowRight size={20} />
             </button>
           </motion.div>
 
           {/* Trust Badges */}
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 text-brand-muted font-bold text-sm uppercase tracking-widest opacity-60">
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 text-white/60 font-bold text-sm uppercase tracking-widest">
             <div className="flex items-center gap-2">
               <Zap size={18} className="text-brand-primary" /> M-Pesa Supported
             </div>
