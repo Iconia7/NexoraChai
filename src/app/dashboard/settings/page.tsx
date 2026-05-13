@@ -39,6 +39,7 @@ export default function SettingsPage() {
     const [data, setData] = useState<any>(null);
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
+    const [mounted, setMounted] = useState(false);
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     // Modals
@@ -78,6 +79,11 @@ export default function SettingsPage() {
     ];
 
     useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    useEffect(() => {
+        if (!mounted) return;
         if (!token) {
             router.push('/login');
             return;

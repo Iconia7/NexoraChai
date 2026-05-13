@@ -31,11 +31,18 @@ export default function Dashboard() {
     const { user, token } = useAuthStore();
     const addToast = useToastStore((state) => state.addToast);
     const router = useRouter();
+    const [mounted, setMounted] = useState(false);
     const [data, setData] = useState<any>(null);
     const [loading, setLoading] = useState(true);
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    useEffect(() => {
+        if (!mounted) return;
+
         if (!token) {
             router.push('/login');
             return;

@@ -18,7 +18,23 @@ export default function OnboardingSetup() {
   const [displayName, setDisplayName] = useState('');
   const [mpesaNumber, setMpesaNumber] = useState('');
   const [bio, setBio] = useState('');
+  const [mounted, setMounted] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const { token } = useAuthStore();
+  const router = useRouter();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+    if (!token) {
+      router.push('/login');
+      return;
+    }
+  }, [token, router, mounted]);
 
   // Debounced username check
   useEffect(() => {
@@ -41,9 +57,6 @@ export default function OnboardingSetup() {
 
     return () => clearTimeout(timer);
   }, [username]);
-
-  const { token } = useAuthStore();
-  const router = useRouter();
 
   const handleFinish = async () => {
     if (!isAvailable) {
