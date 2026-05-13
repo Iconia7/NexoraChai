@@ -47,8 +47,12 @@ export default function Dashboard() {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setData(res.data);
-            } catch (err) {
-                console.error('Dashboard fetch failed');
+            } catch (err: any) {
+                if (err.response?.status === 404) {
+                    router.push('/dashboard/setup');
+                } else {
+                    console.error('Dashboard fetch failed');
+                }
             } finally {
                 setLoading(false);
             }
