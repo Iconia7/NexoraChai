@@ -18,7 +18,8 @@ import {
     ArrowUpRight,
     ChevronRight,
     X,
-    Phone
+    Phone,
+    Link
 } from 'lucide-react';
 import axios from 'axios';
 import { useAuthStore } from '@/lib/store';
@@ -57,7 +58,7 @@ export default function SettingsPage() {
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [twoFactor, setTwoFactor] = useState(false);
-    
+
     // 2FA Setup State
     const [show2FAModal, setShow2FAModal] = useState(false);
     const [twoFactorStep, setTwoFactorStep] = useState<'info' | 'setup' | 'verify' | 'disable'>('info');
@@ -401,9 +402,12 @@ export default function SettingsPage() {
                                         <p className="text-[10px] font-bold text-brand-muted uppercase mb-4 leading-loose">
                                             ID: {data.profile.paystackSubaccountCode || 'NOT CONFIGURED'}
                                         </p>
-                                        <button className="text-brand-primary text-[10px] font-black uppercase tracking-widest hover:underline flex items-center gap-2">
+                                        <Link
+                                            href="/dashboard/setup"
+                                            className="text-brand-primary text-[10px] font-black uppercase tracking-widest hover:underline flex items-center gap-2"
+                                        >
                                             {data.profile.paystackSubaccountCode ? 'Re-sync Subaccount' : 'Connect Account'} <ChevronRight size={12} />
-                                        </button>
+                                        </Link>
                                     </div>
                                 </div>
                             </section>
@@ -489,7 +493,7 @@ export default function SettingsPage() {
                                         <div>
                                             <h3 className="text-2xl font-black tracking-tight mb-2">Scan QR Code</h3>
                                             <p className="text-brand-muted font-medium text-sm mb-8">Scan this code with Google Authenticator or Authy.</p>
-                                            
+
                                             <div className="bg-white p-4 rounded-3xl border border-black/5 shadow-inner mb-8 flex justify-center">
                                                 {qrCode && <img src={qrCode} alt="2FA QR Code" className="w-48 h-48" />}
                                             </div>
@@ -511,7 +515,7 @@ export default function SettingsPage() {
                                             <p className="text-brand-muted font-medium text-sm mb-8">
                                                 Enter the 6-digit code from your app.
                                             </p>
-                                            
+
                                             <input
                                                 type="text"
                                                 maxLength={6}

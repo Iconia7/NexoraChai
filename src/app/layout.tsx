@@ -52,8 +52,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={outfit.className}>
       <head>
-        <Script 
-          src="https://js.paystack.co/v1/inline.js" 
+        <Script
+          src="https://js.paystack.co/v1/inline.js"
           strategy="beforeInteractive"
         />
         <link rel="canonical" href="https://chai.nexoracreatives.co.ke" />

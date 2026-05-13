@@ -10,23 +10,23 @@ export default function PublicNavbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="h-20 md:h-24 bg-white/5 backdrop-blur-xl border-b border-white/10 fixed top-0 left-0 w-full z-[100]">
+    <nav className="h-20 md:h-24 bg-white/80 backdrop-blur-xl border-b border-black/5 fixed top-0 left-0 w-full z-[100]">
       <div className="max-w-7xl mx-auto px-4 md:px-6 h-full flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 md:gap-3 text-white">
+        <Link href="/" className="flex items-center gap-2 md:gap-3 text-[#0C0C0C]">
           <Image src="/logo.png" alt="Nexora Chai" width={32} height={32} className="rounded-xl md:w-10 md:h-10" />
           <span className="font-bold text-lg md:text-xl tracking-tight">Nexora Chai</span>
         </Link>
         
         {/* Desktop Links */}
-        <div className="hidden lg:flex items-center gap-8 text-sm font-bold text-white/70">
-          <Link href="/explore" className="hover:text-white transition-colors">Explore</Link>
-          <Link href="/creators" className="hover:text-white transition-colors">Creators</Link>
-          <Link href="/about" className="hover:text-white transition-colors">About</Link>
+        <div className="hidden lg:flex items-center gap-8 text-sm font-bold text-brand-muted">
+          <Link href="/explore" className="hover:text-brand-primary transition-colors">Explore</Link>
+          <Link href="/creators" className="hover:text-brand-primary transition-colors">Creators</Link>
+          <Link href="/about" className="hover:text-brand-primary transition-colors">About</Link>
         </div>
 
         {/* Desktop CTA */}
         <div className="hidden md:flex items-center gap-4 lg:gap-6">
-          <Link href="/login" className="text-sm font-bold text-white hover:text-brand-primary transition-colors">Login</Link>
+          <Link href="/login" className="text-sm font-bold text-[#0C0C0C] hover:text-brand-primary transition-colors">Login</Link>
           <Link href="/register" className="btn-primary px-6 py-3 shadow-xl shadow-brand-primary/10 bg-[#914D00] text-white">Claim My Page</Link>
         </div>
 

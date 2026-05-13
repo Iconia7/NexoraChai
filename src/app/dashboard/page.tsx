@@ -47,7 +47,12 @@ export default function Dashboard() {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setData(res.data);
+                // If profile exists but Paystack subaccount is missing, redirect to setup
+                if (!res.data.profile?.paystackSubaccountCode) {
+                    router.push('/dashboard/setup');
+                }
             } catch (err: any) {
+                // If profile doesn't exist, redirect to setup
                 if (err.response?.status === 404) {
                     router.push('/dashboard/setup');
                 } else {

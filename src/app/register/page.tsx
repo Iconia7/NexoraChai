@@ -15,7 +15,6 @@ const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:400
 export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [username, setUsername] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -27,11 +26,10 @@ export default function Register() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post(`${BACKEND_URL}/api/auth/register`, { 
-        email, 
-        password, 
-        phoneNumber,
-        username 
+      const res = await axios.post(`${BACKEND_URL}/api/auth/register`, {
+        email,
+        password,
+        phoneNumber
       });
       addToast('Verification code sent to your phone!', 'success');
       router.push(`/verify?email=${encodeURIComponent(email)}`);
@@ -51,8 +49,8 @@ export default function Register() {
         </div>
 
         <div className="relative z-10">
-          <div className="flex items-center gap-3 mb-20">
-            <Image src="/logo.png" alt="Nexora Chai" width={32} height={32} />
+          <div className="flex items-center gap-3 mb-20 text-[#0C0C0C]">
+            <Image src="/logo.png" alt="Nexora Chai" width={40} height={40} className="rounded-xl shadow-lg" />
             <span className="font-bold text-xl tracking-tight">Nexora Chai</span>
           </div>
 
@@ -60,7 +58,7 @@ export default function Register() {
             <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center text-brand-secondary mb-12 shadow-xl">
               <CheckCircle2 size={48} strokeWidth={1.5} />
             </div>
-            <h2 className="text-4xl font-black mb-8 leading-tight tracking-tight">
+            <h2 className="text-4xl font-black mb-8 leading-tight tracking-tight text-[#0C0C0C]">
               "Joining Nexora Chai is the smartest financial decision I made this year."
             </h2>
             <div className="flex items-center gap-4">
@@ -68,20 +66,20 @@ export default function Register() {
                 <Image src="/avatar-2.png" alt="Amina Kariuki" width={48} height={48} />
               </div>
               <div>
-                <p className="font-bold text-sm">Amina Kariuki</p>
-                <p className="text-xs text-brand-muted font-bold">Top Creator, Nairobi</p>
+                <p className="font-bold text-sm text-[#0C0C0C]">Amina Kariuki</p>
+                <p className="text-xs text-brand-muted font-bold uppercase tracking-wider">Top Creator, Nairobi</p>
               </div>
             </div>
           </div>
         </div>
 
         <div className="relative z-10 text-[10px] font-black text-brand-muted uppercase tracking-widest opacity-50">
-          Securely powered by ParsePesa Infrastructure.
+          Securely powered by Nexora Creative Solutions Infrastructure.
         </div>
       </div>
 
       {/* Right Panel - Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-brand-beige-light md:bg-white">
         <div className="max-w-md w-full">
           <div className="mb-12">
             <h1 className="text-4xl font-black mb-3 tracking-tight">Claim Your Space</h1>
@@ -89,23 +87,6 @@ export default function Register() {
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="bg-[#F9FAFB] p-6 rounded-[2.5rem] border border-black/[0.03] mb-8">
-              <label className="text-xs font-black text-brand-muted uppercase tracking-widest mb-3 block ml-1">Your Creator Handle</label>
-              <div className="flex items-center gap-2 bg-white border border-black/10 rounded-2xl px-4 py-3">
-                <span className="text-brand-muted font-bold text-sm">chai.nexora.co.ke/</span>
-                <input
-                  type="text"
-                  placeholder="username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value.toLowerCase())}
-                  className="flex-1 bg-transparent border-none focus:outline-none font-bold text-sm"
-                />
-              </div>
-              <div className="flex items-center gap-1.5 mt-3 ml-1 text-[10px] font-black text-brand-secondary uppercase tracking-wider">
-                <CheckCircle2 size={12} /> Handle is available
-              </div>
-            </div>
-
             <div>
               <label className="text-xs font-black text-brand-muted uppercase tracking-widest mb-2 block ml-1">Phone Number (M-Pesa)</label>
               <input
@@ -162,8 +143,8 @@ export default function Register() {
           </p>
 
           <div className="mt-12 text-center text-[10px] text-brand-muted leading-relaxed font-bold">
-            By registering, you agree to the <Link href="#" className="underline">Terms of Service</Link> and<br />
-            <Link href="#" className="underline">Privacy Policy</Link>.
+            By registering, you agree to the <Link href="/terms" className="underline">Terms of Service</Link> and<br />
+            <Link href="/privacy" className="underline">Privacy Policy</Link>.
           </div>
         </div>
       </div>

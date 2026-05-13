@@ -79,7 +79,10 @@ export default function Login() {
       <div className="hidden lg:flex lg:w-1/2 bg-brand-beige p-12 items-center justify-center">
         <div className="max-w-md w-full">
           <div className="mb-12">
-            <h2 className="text-brand-primary font-black text-2xl tracking-tight mb-8">Nexora Chai</h2>
+            <div className="flex items-center gap-3 mb-8">
+              <Image src="/logo.png" alt="Nexora Chai Logo" width={40} height={40} className="rounded-xl shadow-lg" />
+              <h2 className="text-brand-primary font-black text-2xl tracking-tight">Nexora Chai</h2>
+            </div>
             <div className="relative aspect-square rounded-[3rem] overflow-hidden card-shadow mb-12">
               <Image
                 src="/login-visual.png"
@@ -89,11 +92,6 @@ export default function Login() {
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-24 h-24 bg-white/20 backdrop-blur-xl rounded-full border border-white/30 flex items-center justify-center">
-                  <Image src="/logo.png" alt="Logo" width={48} height={48} />
-                </div>
-              </div>
             </div>
           </div>
 
