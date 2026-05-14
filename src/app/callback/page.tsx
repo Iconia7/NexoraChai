@@ -1,15 +1,14 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import axios from 'axios';
 import { useAuthStore } from '@/lib/store';
 import { useToastStore } from '@/lib/toastStore';
-import { Loader2 } from 'lucide-react';
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:4000';
 
-export default function Callback() {
+function CallbackContent() {
     const searchParams = useSearchParams();
     const router = useRouter();
     const setAuth = useAuthStore((state) => state.setAuth);
@@ -82,5 +81,20 @@ export default function Callback() {
                 <p className="text-brand-muted font-bold animate-pulse">Establishing secure Nexora handshake...</p>
             </div>
         </div>
+    );
+}
+
+export default function Callback() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen flex flex-col items-center justify-center bg-brand-beige space-y-6">
+                <div className="relative w-20 h-20">
+                    <div className="absolute inset-0 border-8 border-brand-primary/10 rounded-full" />
+                    <div className="absolute inset-0 border-8 border-brand-primary rounded-full border-t-transparent animate-spin" />
+                </div>
+            </div>
+        }>
+            <CallbackContent />
+        </Suspense>
     );
 }
