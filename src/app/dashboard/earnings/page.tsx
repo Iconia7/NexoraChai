@@ -31,12 +31,18 @@ export default function EarningsPage() {
     const { user, token } = useAuthStore();
     const router = useRouter();
     const addToast = useToastStore((state) => state.addToast);
+    const [mounted, setMounted] = useState(false);
     const [data, setData] = useState<any>(null);
     const [loading, setLoading] = useState(true);
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [isWithdrawModalOpen, setIsWithdrawModalOpen] = useState(false);
 
     useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    useEffect(() => {
+        if (!mounted) return;
         if (!token) {
             router.push('/login');
             return;
@@ -55,7 +61,7 @@ export default function EarningsPage() {
             }
         };
         fetchData();
-    }, [token, router]);
+    }, [token, router, mounted]);
 
     const refreshData = async () => {
         try {

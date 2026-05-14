@@ -112,7 +112,7 @@ export default function SettingsPage() {
             }
         };
         fetchData();
-    }, [token, router]);
+    }, [token, router, mounted]);
 
     const handleRefreshAvatar = () => {
         const newSeed = Math.random().toString(36).substring(7);

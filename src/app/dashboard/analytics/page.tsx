@@ -24,12 +24,18 @@ export default function AnalyticsPage() {
     const { user, token } = useAuthStore();
     const addToast = useToastStore((state) => state.addToast);
     const router = useRouter();
+    const [mounted, setMounted] = useState(false);
     const [data, setData] = useState<any>(null);
     const [loading, setLoading] = useState(true);
     const [range, setRange] = useState('30');
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    useEffect(() => {
+        if (!mounted) return;
         if (!token) {
             router.push('/login');
             return;
@@ -49,7 +55,7 @@ export default function AnalyticsPage() {
             }
         };
         fetchData();
-    }, [token, router, range]);
+    }, [token, router, range, mounted]);
 
     if (loading && !data) return <div className="min-h-screen flex items-center justify-center bg-brand-beige-light">Loading Analytics...</div>;
     if (!data) return <div className="min-h-screen flex items-center justify-center bg-brand-beige-light text-brand-muted font-bold">Error loading analytics</div>;
