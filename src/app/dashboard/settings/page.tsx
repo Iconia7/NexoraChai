@@ -66,6 +66,7 @@ export default function SettingsPage() {
     const [qrCode, setQrCode] = useState('');
     const [twoFactorCode, setTwoFactorCode] = useState('');
     const [setupLoading, setSetupLoading] = useState(false);
+    const [uploadingAvatar, setUploadingAvatar] = useState(false);
 
     const categories = [
         'Digital Artist',
@@ -116,6 +117,31 @@ export default function SettingsPage() {
     const handleRefreshAvatar = () => {
         const newSeed = Math.random().toString(36).substring(7);
         setAvatarUrl(`https://api.dicebear.com/7.x/avataaars/svg?seed=${newSeed}`);
+    };
+
+    const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        setUploadingAvatar(true);
+        const formData = new FormData();
+        formData.append('avatar', file);
+
+        try {
+            const res = await axios.post(`${BACKEND_URL}/api/creators/upload-avatar`, formData, {
+                headers: { 
+                    'Content-Type': 'multipart/form-data',
+                    Authorization: `Bearer ${token}` 
+                }
+            });
+            setAvatarUrl(res.data.avatarUrl);
+            addToast("Avatar uploaded!", "success");
+        } catch (err) {
+            console.error('Upload failed');
+            addToast("Failed to upload avatar", "error");
+        } finally {
+            setUploadingAvatar(false);
+        }
     };
 
     const handleSaveProfile = async (e: React.FormEvent) => {
@@ -275,27 +301,48 @@ export default function SettingsPage() {
                                 <form onSubmit={handleSaveProfile} className="space-y-8">
                                     <div className="flex items-center gap-8 mb-10">
                                         <div className="relative group">
-                                            <div className="w-24 h-24 rounded-full overflow-hidden bg-brand-beige ring-4 ring-white shadow-xl">
-                                                <Image src={avatarUrl} alt="Avatar" width={96} height={96} unoptimized />
+                                            <div className="w-24 h-24 rounded-full overflow-hidden bg-brand-beige ring-4 ring-white shadow-xl relative">
+                                                {avatarUrl && <Image src={avatarUrl} alt="Avatar" width={96} height={96} unoptimized className="object-cover" />}
+                                                {uploadingAvatar && (
+                                                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+                                                        <RefreshCcw className="animate-spin text-white" size={24} />
+                                                    </div>
+                                                )}
                                             </div>
                                             <button
                                                 type="button"
-                                                onClick={handleRefreshAvatar}
-                                                className="absolute inset-0 bg-black/60 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                                                onClick={() => document.getElementById('avatar-upload')?.click()}
+                                                className="absolute bottom-0 right-0 w-8 h-8 bg-brand-primary text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
                                             >
-                                                <RefreshCcw size={24} />
+                                                <Camera size={16} />
                                             </button>
+                                            <input 
+                                                id="avatar-upload"
+                                                type="file"
+                                                className="hidden"
+                                                accept="image/*"
+                                                onChange={handleImageUpload}
+                                            />
                                         </div>
                                         <div>
                                             <h3 className="font-bold text-lg mb-1">Profile Photo</h3>
-                                            <p className="text-[10px] text-brand-muted font-black uppercase tracking-widest mb-3">AI-Style Avatar Generator</p>
-                                            <button
-                                                type="button"
-                                                onClick={handleRefreshAvatar}
-                                                className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-brand-primary bg-brand-primary/5 px-4 py-2 rounded-full hover:bg-brand-primary/10 transition-colors"
-                                            >
-                                                <Sparkles size={12} /> Generate New Look
-                                            </button>
+                                            <p className="text-[10px] text-brand-muted font-black uppercase tracking-widest mb-3">Custom Upload or Generated</p>
+                                            <div className="flex items-center gap-3">
+                                                <button
+                                                    type="button"
+                                                    onClick={() => document.getElementById('avatar-upload')?.click()}
+                                                    className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-brand-primary bg-brand-primary/5 px-4 py-2 rounded-full hover:bg-brand-primary/10 transition-colors"
+                                                >
+                                                    <Camera size={12} /> Upload New
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    onClick={handleRefreshAvatar}
+                                                    className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-brand-muted bg-black/5 px-4 py-2 rounded-full hover:bg-black/10 transition-colors"
+                                                >
+                                                    <RefreshCcw size={12} /> Shuffle
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
 

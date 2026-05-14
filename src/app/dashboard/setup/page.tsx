@@ -19,6 +19,8 @@ export default function OnboardingSetup() {
   const [mpesaNumber, setMpesaNumber] = useState('');
   const [bio, setBio] = useState('');
   const [mounted, setMounted] = useState(false);
+  const [avatarUrl, setAvatarUrl] = useState('');
+  const [uploading, setUploading] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const { token } = useAuthStore();
@@ -58,6 +60,29 @@ export default function OnboardingSetup() {
     return () => clearTimeout(timer);
   }, [username]);
 
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    const formData = new FormData();
+    formData.append('avatar', file);
+
+    try {
+      const res = await axios.post(`${BACKEND_URL}/api/creators/upload-avatar`, formData, {
+        headers: { 
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}` 
+        }
+      });
+      setAvatarUrl(res.data.avatarUrl);
+    } catch (err) {
+      console.error('Upload failed');
+    } finally {
+      setUploading(false);
+    }
+  };
+
   const handleFinish = async () => {
     if (!isAvailable) {
       alert('Please choose an available username');
@@ -66,7 +91,7 @@ export default function OnboardingSetup() {
     setLoading(true);
     try {
       await axios.post(`${BACKEND_URL}/api/creators/setup`,
-        { username, displayName, bio, mpesaNumber },
+        { username, displayName, bio, mpesaNumber, avatarUrl },
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setStep(3);
@@ -107,10 +132,26 @@ export default function OnboardingSetup() {
                 <p className="text-brand-muted font-medium mb-12">Let your supporters know who they are tipping.</p>
 
                 <div className="flex justify-center mb-12">
-                  <div className="w-32 h-32 rounded-full border-2 border-dashed border-brand-primary/30 bg-brand-primary/5 flex flex-col items-center justify-center gap-2 cursor-pointer hover:bg-brand-primary/10 transition-colors group">
-                    <Camera size={32} className="text-brand-primary" />
-                    <span className="text-[10px] font-black uppercase tracking-widest text-brand-primary">Upload</span>
+                  <div 
+                    onClick={() => document.getElementById('avatar-input')?.click()}
+                    className="w-32 h-32 rounded-full border-2 border-dashed border-brand-primary/30 bg-brand-primary/5 flex flex-col items-center justify-center gap-2 cursor-pointer hover:bg-brand-primary/10 transition-colors group overflow-hidden relative"
+                  >
+                    {avatarUrl ? (
+                      <Image src={avatarUrl} alt="Preview" fill className="object-cover" />
+                    ) : (
+                      <>
+                        <Camera size={32} className="text-brand-primary" />
+                        <span className="text-[10px] font-black uppercase tracking-widest text-brand-primary">{uploading ? 'Uploading...' : 'Upload'}</span>
+                      </>
+                    )}
                   </div>
+                  <input 
+                    id="avatar-input"
+                    type="file" 
+                    className="hidden" 
+                    accept="image/*"
+                    onChange={handleImageUpload}
+                  />
                 </div>
 
                 <div className="space-y-6 text-left max-w-md mx-auto">
@@ -126,7 +167,7 @@ export default function OnboardingSetup() {
                   <div>
                     <label className="text-[10px] font-black text-brand-muted uppercase tracking-widest mb-2 block ml-1">Unique Username</label>
                     <div className="flex items-center gap-2 bg-[#F9FAFB] border border-black/10 rounded-2xl px-4 py-4">
-                      <span className="text-brand-muted font-bold text-sm">chai.nexoracreatives.co.ke/</span>
+                      <span className="text-brand-muted font-bold text-sm">chai.nexora.co.ke/</span>
                       <input
                         placeholder="username"
                         value={username}
