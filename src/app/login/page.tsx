@@ -55,6 +55,18 @@ export default function Login() {
     }
   };
 
+  const handleNexoraLogin = () => {
+    const clientId = process.env.NEXT_PUBLIC_NEXORA_CLIENT_ID;
+    const authUrl = process.env.NEXT_PUBLIC_NEXORA_ID_URL;
+    const redirectUri = encodeURIComponent(`${window.location.origin}/callback`);
+    const state = Math.random().toString(36).substring(7);
+    
+    // Save state to verify it on callback
+    localStorage.setItem('nexora_auth_state', state);
+
+    window.location.href = `${authUrl}/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=openid%20profile%20email&state=${state}`;
+  };
+
   const handle2FAVerify = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -126,7 +138,10 @@ export default function Login() {
 
           {!requires2FA ? (
               <>
-                <button className="w-full border border-black/10 py-4 rounded-2xl flex items-center justify-center gap-3 font-bold hover:bg-black/[0.02] transition-colors mb-8">
+                <button 
+                    onClick={handleNexoraLogin}
+                    className="w-full border border-black/10 py-4 rounded-2xl flex items-center justify-center gap-3 font-bold hover:bg-black/[0.02] transition-colors mb-8"
+                >
                     <Zap size={20} className="text-brand-primary fill-brand-primary" /> Sign in with Nexora ID
                 </button>
 
