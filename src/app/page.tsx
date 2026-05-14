@@ -1,8 +1,9 @@
 'use client';
 
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Shield, Zap, Globe, ArrowRight } from 'lucide-react';
+import { Shield, Zap, Globe, ArrowRight, Terminal, CheckCircle2 } from 'lucide-react';
 import Image from 'next/image';
 import Script from 'next/script';
 
@@ -10,6 +11,8 @@ import PublicNavbar from '@/components/PublicNavbar';
 import PublicFooter from '@/components/PublicFooter';
 
 export default function Landing() {
+  const [devTab, setDevTab] = useState<'react' | 'flutter' | 'script'>('react');
+
   return (
     <div className="min-h-screen bg-brand-beige-light text-foreground overflow-x-hidden selection:bg-brand-primary/10 pt-24">
       <PublicNavbar />
@@ -130,6 +133,105 @@ export default function Landing() {
               <p className="text-brand-muted text-sm md:text-base leading-relaxed font-medium">{feature.desc}</p>
             </motion.div>
           ))}
+        </div>
+      </section>
+
+      {/* Developer Hub Section */}
+      <section className="bg-zinc-950 py-32 px-6 overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-primary/10 border border-brand-primary/20 text-brand-primary text-xs font-black uppercase tracking-widest mb-6">
+                <Terminal size={14} /> Developer Hub
+              </div>
+              <h2 className="text-4xl md:text-5xl font-black text-white mb-6 leading-tight">
+                Built for <span className="text-brand-primary">Builders.</span>
+              </h2>
+              <p className="text-zinc-400 text-lg mb-8 leading-relaxed max-w-xl">
+                Integrate Nexora Chai directly into your apps and websites. Whether you're building a React dashboard, a Flutter mobile app, or a simple blog, our SDKs make M-Pesa monetization a breeze.
+              </p>
+              
+              <div className="flex flex-col gap-6">
+                 {[
+                   { title: "One-line Integration", desc: "Copy-paste a single script tag and you're live." },
+                   { title: "Native Mobile Checkout", desc: "No redirects. Secure in-app payments for your fans." },
+                   { title: "Webhooks & Events", desc: "Listen for payments and trigger custom app logic." }
+                 ].map((item, i) => (
+                   <div key={i} className="flex gap-4">
+                     <div className="w-6 h-6 rounded-full bg-brand-primary/20 flex items-center justify-center shrink-0">
+                        <CheckCircle2 size={14} className="text-brand-primary" />
+                     </div>
+                     <div>
+                       <h4 className="text-white font-bold text-sm mb-1">{item.title}</h4>
+                       <p className="text-zinc-500 text-sm">{item.desc}</p>
+                     </div>
+                   </div>
+                 ))}
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className="absolute -inset-4 bg-brand-primary/20 blur-3xl rounded-full opacity-50" />
+              <div className="relative bg-zinc-900/50 backdrop-blur-xl border border-white/5 rounded-3xl overflow-hidden shadow-2xl">
+                {/* Code Tabs */}
+                <div className="flex border-b border-white/5">
+                  {['react', 'flutter', 'script'].map((tab) => (
+                    <button
+                      key={tab}
+                      onClick={() => setDevTab(tab as any)}
+                      className={`px-6 py-4 text-xs font-black uppercase tracking-widest transition-all ${
+                        devTab === tab ? 'text-brand-primary bg-white/5' : 'text-zinc-500 hover:text-white'
+                      }`}
+                    >
+                      {tab}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Code Window */}
+                <div className="p-6 font-mono text-sm leading-relaxed overflow-x-auto">
+                  {devTab === 'react' && (
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                      <p className="text-zinc-500 mb-2">// 1. Install SDK</p>
+                      <p className="text-brand-primary mb-4">npm install @nexora/chai-react</p>
+                      <p className="text-zinc-500 mb-2">// 2. Drop in the button</p>
+                      <p className="text-blue-400">import <span className="text-purple-400">{'{ ChaiButton }'}</span> from <span className="text-orange-400">'@nexora/chai-react'</span>;</p>
+                      <br />
+                      <p className="text-blue-400">{'<'}<span className="text-yellow-400">ChaiButton</span></p>
+                      <p className="ml-4 text-zinc-300">username=<span className="text-orange-400">"nexora"</span></p>
+                      <p className="ml-4 text-zinc-300">amount={<span className="text-purple-400">100</span>}</p>
+                      <p className="ml-4 text-zinc-300">onSuccess={<span className="text-purple-400">() ={'>'} congratulate()</span>}</p>
+                      <p className="text-blue-400">{'/>'}</p>
+                    </motion.div>
+                  )}
+                  {devTab === 'flutter' && (
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                      <p className="text-zinc-500 mb-2">// 1. Add to pubspec.yaml</p>
+                      <p className="text-brand-primary mb-4">nexora_chai_flutter: ^1.0.0</p>
+                      <p className="text-zinc-500 mb-2">// 2. Launch checkout</p>
+                      <p className="text-blue-400">showDialog(</p>
+                      <p className="ml-4 text-zinc-300">context: context,</p>
+                      <p className="ml-4 text-zinc-300">builder: (context) ={'>'} <span className="text-yellow-400">ChaiCheckoutView</span>(</p>
+                      <p className="ml-8 text-zinc-300">username: <span className="text-orange-400">'nexora'</span>,</p>
+                      <p className="ml-8 text-zinc-300">onCompleted: () ={'>'} print(<span className="text-orange-400">'Success!'</span>),</p>
+                      <p className="ml-4 text-zinc-300">),</p>
+                      <p className="text-blue-400">);</p>
+                    </motion.div>
+                  )}
+                  {devTab === 'script' && (
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                      <p className="text-zinc-500 mb-2">// Paste in your HTML head</p>
+                      <p className="text-blue-400">{'<'}<span className="text-yellow-400">script</span></p>
+                      <p className="ml-4 text-zinc-300">src=<span className="text-orange-400">"https://chai.nexoracreatives.co.ke/widget.js"</span></p>
+                      <p className="ml-4 text-zinc-300">data-username=<span className="text-orange-400">"nexora"</span></p>
+                      <p className="ml-4 text-zinc-300">data-color=<span className="text-orange-400">"#914D00"</span></p>
+                      <p className="text-blue-400">{'></'}<span className="text-yellow-400">script</span>{'>'}</p>
+                    </motion.div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
