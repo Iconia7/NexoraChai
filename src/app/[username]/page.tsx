@@ -46,10 +46,6 @@ export default function CreatorPage() {
   }, [username]);
 
   const handleSupportClick = () => {
-    if (finalAmount < 50) {
-        addToast("Minimum support is KES 50", "error");
-        return;
-    }
     setIsModalOpen(true);
   };
 
