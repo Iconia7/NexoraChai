@@ -23,7 +23,7 @@ export default function PublicFooter() {
                 <div>
                     <h4 className="font-black uppercase tracking-widest text-[10px] text-brand-muted mb-6">Product</h4>
                     <ul className="space-y-4 text-sm font-bold">
-                        <li><Link href="/#explore" className="hover:text-brand-primary transition-colors">Explore</Link></li>
+                        <li><Link href="/explore" className="hover:text-brand-primary transition-colors">Explore</Link></li>
                         <li><Link href="/pricing" className="hover:text-brand-primary transition-colors">Pricing</Link></li>
                         <li><Link href="/about" className="hover:text-brand-primary transition-colors">About</Link></li>
                     </ul>
