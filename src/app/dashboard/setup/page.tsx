@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import axios from 'axios';
 import { useAuthStore } from '@/lib/store';
+import { useToastStore } from '@/lib/toastStore';
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:4000';
 
@@ -25,6 +26,7 @@ export default function OnboardingSetup() {
 
   const { token } = useAuthStore();
   const router = useRouter();
+  const addToast = useToastStore((state) => state.addToast);
 
   useEffect(() => {
     setMounted(true);
@@ -85,7 +87,7 @@ export default function OnboardingSetup() {
 
   const handleFinish = async () => {
     if (!isAvailable) {
-      alert('Please choose an available username');
+      addToast('Please choose an available username', 'error');
       return;
     }
     setLoading(true);
@@ -97,7 +99,7 @@ export default function OnboardingSetup() {
       setStep(3);
       setTimeout(() => router.push('/dashboard'), 2000);
     } catch (err: any) {
-      alert(err.response?.data?.error || 'Setup failed');
+      addToast(err.response?.data?.error || 'Setup failed', 'error');
     } finally {
       setLoading(false);
     }

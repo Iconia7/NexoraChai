@@ -10,6 +10,7 @@ import Link from 'next/link';
 import CheckoutModal from '@/components/CheckoutModal';
 import PublicNavbar from '@/components/PublicNavbar';
 import PublicFooter from '@/components/PublicFooter';
+import { useToastStore } from '@/lib/toastStore';
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:4000';
 
@@ -22,6 +23,7 @@ export default function CreatorPage() {
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const addToast = useToastStore((state) => state.addToast);
 
   const basePrice = 100;
   const finalAmount = customAmount ? Number(customAmount) : basePrice * multiplier;
@@ -45,7 +47,7 @@ export default function CreatorPage() {
 
   const handleSupportClick = () => {
     if (finalAmount < 50) {
-        alert("Minimum support is KES 50");
+        addToast("Minimum support is KES 50", "error");
         return;
     }
     setIsModalOpen(true);
