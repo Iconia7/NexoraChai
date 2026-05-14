@@ -37,6 +37,21 @@ export default function EmbedCheckout() {
   const handleClose = () => {
     // Tell the parent window (the blog/website) to close the iframe
     window.parent.postMessage('close-chai-widget', '*');
+    
+    // Tell the Flutter App (if running inside one)
+    if ((window as any).NexoraChai) {
+      (window as any).NexoraChai.postMessage('close-chai-widget');
+    }
+  };
+
+  const handleSuccess = () => {
+    // Tell the parent window (the blog/website) that payment succeeded
+    window.parent.postMessage('payment-success', '*');
+
+    // Tell the Flutter App (if running inside one)
+    if ((window as any).NexoraChai) {
+        (window as any).NexoraChai.postMessage('payment-success');
+    }
   };
 
   if (loading) return (
@@ -52,6 +67,7 @@ export default function EmbedCheckout() {
       <CheckoutModal 
         isOpen={isModalOpen}
         onClose={handleClose}
+        onSuccess={handleSuccess}
         creator={creator}
         amount={amount}
         message={message}

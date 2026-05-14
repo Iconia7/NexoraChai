@@ -20,9 +20,10 @@ interface CheckoutModalProps {
     amount: number;
     message: string;
     fanName?: string;
+    onSuccess?: () => void;
 }
 
-export default function CheckoutModal({ isOpen, onClose, creator, amount, message, fanName }: CheckoutModalProps) {
+export default function CheckoutModal({ isOpen, onClose, creator, amount, message, fanName, onSuccess }: CheckoutModalProps) {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [email, setEmail] = useState('');
     const [loading, setLoading] = useState(false);
@@ -46,6 +47,7 @@ export default function CheckoutModal({ isOpen, onClose, creator, amount, messag
                 if (res.data.status === 'COMPLETED') {
                     clearInterval(interval);
                     setStep('success');
+                    if (onSuccess) onSuccess();
                     setTimeout(() => handleClose(), 5000);
                 } else if (res.data.status === 'FAILED') {
                     clearInterval(interval);
