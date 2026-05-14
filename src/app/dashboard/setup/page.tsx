@@ -70,9 +70,9 @@ export default function OnboardingSetup() {
 
     try {
       const res = await axios.post(`${BACKEND_URL}/api/creators/upload-avatar`, formData, {
-        headers: { 
+        headers: {
           'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${token}` 
+          Authorization: `Bearer ${token}`
         }
       });
       setAvatarUrl(res.data.avatarUrl);
@@ -132,7 +132,7 @@ export default function OnboardingSetup() {
                 <p className="text-brand-muted font-medium mb-12">Let your supporters know who they are tipping.</p>
 
                 <div className="flex justify-center mb-12">
-                  <div 
+                  <div
                     onClick={() => document.getElementById('avatar-input')?.click()}
                     className="w-32 h-32 rounded-full border-2 border-dashed border-brand-primary/30 bg-brand-primary/5 flex flex-col items-center justify-center gap-2 cursor-pointer hover:bg-brand-primary/10 transition-colors group overflow-hidden relative"
                   >
@@ -145,10 +145,10 @@ export default function OnboardingSetup() {
                       </>
                     )}
                   </div>
-                  <input 
+                  <input
                     id="avatar-input"
-                    type="file" 
-                    className="hidden" 
+                    type="file"
+                    className="hidden"
                     accept="image/*"
                     onChange={handleImageUpload}
                   />
@@ -167,7 +167,7 @@ export default function OnboardingSetup() {
                   <div>
                     <label className="text-[10px] font-black text-brand-muted uppercase tracking-widest mb-2 block ml-1">Unique Username</label>
                     <div className="flex items-center gap-2 bg-[#F9FAFB] border border-black/10 rounded-2xl px-4 py-4">
-                      <span className="text-brand-muted font-bold text-sm">chai.nexora.co.ke/</span>
+                      <span className="text-brand-muted font-bold text-sm">chai.nexoracreatives.co.ke/</span>
                       <input
                         placeholder="username"
                         value={username}
