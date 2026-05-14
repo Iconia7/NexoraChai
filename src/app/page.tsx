@@ -193,9 +193,9 @@ export default function Landing() {
                   {devTab === 'react' && (
                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                       <p className="text-zinc-500 mb-2">// 1. Install SDK</p>
-                      <p className="text-brand-primary mb-4">npm install @nexora/chai-react</p>
+                      <p className="text-brand-primary mb-4">npm install nexora-chai-react</p>
                       <p className="text-zinc-500 mb-2">// 2. Drop in the button</p>
-                      <p className="text-blue-400">import <span className="text-purple-400">{'{ ChaiButton }'}</span> from <span className="text-orange-400">'@nexora/chai-react'</span>;</p>
+                      <p className="text-blue-400">import <span className="text-purple-400">{'{ ChaiButton }'}</span> from <span className="text-orange-400">'nexora-chai-react'</span>;</p>
                       <br />
                       <p className="text-blue-400">{'<'}<span className="text-yellow-400">ChaiButton</span></p>
                       <p className="ml-4 text-zinc-300">username=<span className="text-orange-400">"nexora"</span></p>
