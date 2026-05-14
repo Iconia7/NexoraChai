@@ -70,7 +70,7 @@ export default function Dashboard() {
             }
         };
         fetchDashboard();
-    }, [token, router]);
+    }, [token, router, mounted]);
 
     if (loading) return <div className="min-h-screen flex items-center justify-center bg-brand-beige-light">Loading Dashboard...</div>;
     if (!data) return <div className="min-h-screen flex items-center justify-center bg-brand-beige-light text-brand-muted font-bold">Error loading dashboard</div>;
