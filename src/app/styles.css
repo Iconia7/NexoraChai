@@ -28,21 +28,22 @@
   --font-sans: 'Outfit', 'Inter', sans-serif;
 }
 
+/* Global: Hide all scrollbars while keeping functionality */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Opera */
+}
+
 html, body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  
-  /* Hide scrollbar for IE, Edge and Firefox */
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
 }
 
 /* Responsive Font Sizes */
