@@ -268,7 +268,7 @@ export default function SettingsPage() {
     if (!data) return <div className="min-h-screen flex items-center justify-center bg-brand-beige-light text-brand-muted font-bold">Error loading settings</div>;
 
     return (
-        <div className="min-h-screen bg-brand-beige-light flex font-sans">
+        <div className="h-screen bg-brand-beige-light flex font-sans overflow-hidden">
             <DashboardSidebar
                 displayName={displayName}
                 username={username}

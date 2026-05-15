@@ -61,7 +61,7 @@ export default function AnalyticsPage() {
     if (!data) return <div className="min-h-screen flex items-center justify-center bg-brand-beige-light text-brand-muted font-bold">Error loading analytics</div>;
 
     return (
-        <div className="min-h-screen bg-brand-beige-light flex font-sans">
+        <div className="h-screen bg-brand-beige-light flex font-sans overflow-hidden">
             <DashboardSidebar
                 displayName={data.profile.displayName}
                 username={data.profile.username}
