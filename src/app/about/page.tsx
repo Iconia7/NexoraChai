@@ -26,7 +26,7 @@ export default function AboutPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
             >
-                <h1 className="text-5xl md:text-7xl font-black mb-8 tracking-tight leading-[1.1]">
+                <h1 className="text-5xl md:text-7xl font-bold mb-8 tracking-tight leading-[1.1]">
                     Empowering the <span className="text-brand-primary">African Creative</span> Economy.
                 </h1>
                 <p className="text-xl text-brand-muted font-medium max-w-2xl mx-auto leading-relaxed">
@@ -40,8 +40,8 @@ export default function AboutPage() {
             <div className="max-w-7xl mx-auto px-8 grid grid-cols-2 lg:grid-cols-4 gap-12">
                 {stats.map((stat, i) => (
                     <div key={i} className="text-center">
-                        <p className="text-4xl font-black text-brand-primary mb-2">{stat.value}</p>
-                        <p className="text-xs font-black uppercase tracking-widest text-brand-muted">{stat.label}</p>
+                        <p className="text-4xl font-bold text-brand-primary mb-2">{stat.value}</p>
+                        <p className="text-xs font-bold uppercase tracking-widest text-brand-muted">{stat.label}</p>
                     </div>
                 ))}
             </div>
@@ -50,7 +50,7 @@ export default function AboutPage() {
         {/* Values */}
         <section className="py-32 px-8 max-w-7xl mx-auto">
             <div className="text-center mb-20">
-                <h2 className="text-4xl font-black tracking-tight mb-4">Our Core Values</h2>
+                <h2 className="text-4xl font-bold tracking-tight mb-4">Our Core Values</h2>
                 <div className="w-20 h-1.5 bg-brand-primary mx-auto rounded-full" />
             </div>
 
@@ -64,7 +64,7 @@ export default function AboutPage() {
                         <div className="w-14 h-14 bg-brand-beige-light text-brand-primary rounded-2xl flex items-center justify-center mb-8">
                             <v.icon size={28} />
                         </div>
-                        <h3 className="text-2xl font-black mb-4 tracking-tight">{v.title}</h3>
+                        <h3 className="text-2xl font-bold mb-4 tracking-tight">{v.title}</h3>
                         <p className="text-brand-muted font-medium leading-relaxed">{v.desc}</p>
                     </div>
                 ))}
@@ -74,7 +74,7 @@ export default function AboutPage() {
         {/* Mission */}
         <section className="py-32 bg-[#F3E5D8] relative overflow-hidden">
             <div className="max-w-4xl mx-auto px-8 text-center relative z-10">
-                <h2 className="text-4xl md:text-5xl font-black mb-8 tracking-tight leading-tight">
+                <h2 className="text-4xl md:text-5xl font-bold mb-8 tracking-tight leading-tight">
                     "We don't just process payments. We fuel dreams, one Chai at a time."
                 </h2>
                 <div className="flex items-center justify-center gap-4">
@@ -82,8 +82,8 @@ export default function AboutPage() {
                         <Image src="/avatar-1.png" alt="Newton" width={64} height={64} />
                     </div>
                     <div className="text-left">
-                        <p className="font-black text-lg">Newton Nderitu</p>
-                        <p className="text-xs font-black uppercase tracking-widest text-brand-muted">Founder, Nexora Chai</p>
+                        <p className="font-bold text-lg">Newton Nderitu</p>
+                        <p className="text-xs font-bold uppercase tracking-widest text-brand-muted">Founder, Nexora Chai</p>
                     </div>
                 </div>
             </div>

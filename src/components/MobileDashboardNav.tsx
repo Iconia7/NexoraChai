@@ -13,7 +13,7 @@ export default function MobileDashboardNav({ onOpenSidebar }: MobileDashboardNav
     <div className="lg:hidden h-16 bg-white border-b border-black/5 flex items-center justify-between px-6 sticky top-0 z-[80] backdrop-blur-md bg-white/90">
       <Link href="/dashboard" className="flex items-center gap-2">
         <Image src="/logo.png" alt="Nexora Chai" width={28} height={28} className="rounded-lg" />
-        <span className="font-black text-sm tracking-tight">Nexora Chai</span>
+        <span className="font-bold text-sm tracking-tight">Nexora Chai</span>
       </Link>
 
       <button 

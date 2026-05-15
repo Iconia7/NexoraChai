@@ -40,7 +40,7 @@ export default function HelpPage() {
 
       <main className="py-24 px-8 max-w-5xl mx-auto">
         <div className="text-center mb-16">
-          <h1 className="text-5xl font-black mb-6 tracking-tight">How can we <span className="text-brand-primary">help?</span></h1>
+          <h1 className="text-5xl font-bold mb-6 tracking-tight">How can we <span className="text-brand-primary">help?</span></h1>
           <div className="relative max-w-xl mx-auto">
             <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-brand-muted" size={20} />
             <input
@@ -58,7 +58,7 @@ export default function HelpPage() {
                 <div className="w-10 h-10 bg-brand-primary/10 text-brand-primary rounded-xl flex items-center justify-center">
                   <cat.icon size={20} />
                 </div>
-                <h2 className="text-2xl font-black tracking-tight uppercase">{cat.category}</h2>
+                <h2 className="text-2xl font-bold tracking-tight uppercase">{cat.category}</h2>
               </div>
 
               <div className="space-y-4">
@@ -79,7 +79,7 @@ export default function HelpPage() {
         </div>
 
         <div className="mt-24 p-12 bg-white rounded-[3rem] card-shadow border border-black/[0.02] text-center">
-          <h3 className="text-xl font-black mb-4 tracking-tight">Couldn't find what you need?</h3>
+          <h3 className="text-xl font-bold mb-4 tracking-tight">Couldn't find what you need?</h3>
           <p className="text-brand-muted font-medium mb-8">Our support team is available 24/7 to help you with anything.</p>
           <Link href="/contact" className="btn-primary px-8 py-4 bg-brand-secondary">Contact Support</Link>
         </div>

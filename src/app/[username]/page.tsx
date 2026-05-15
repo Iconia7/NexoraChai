@@ -58,7 +58,7 @@ export default function CreatorPage() {
       >
         <Coffee size={40} />
       </motion.div>
-      <p className="font-black uppercase tracking-widest text-brand-muted text-xs">Loading Creator Profile...</p>
+      <p className="font-bold uppercase tracking-widest text-brand-muted text-xs">Loading Creator Profile...</p>
     </div>
   );
 
@@ -67,9 +67,9 @@ export default function CreatorPage() {
        <div className="w-20 h-20 bg-red-50 text-red-500 rounded-3xl flex items-center justify-center mb-6">
           <Shield size={40} />
        </div>
-       <h1 className="text-3xl font-black mb-2">Creator not found</h1>
+       <h1 className="text-3xl font-bold mb-2">Creator not found</h1>
        <p className="text-brand-muted font-medium mb-8">The page you're looking for doesn't exist or has been moved.</p>
-       <Link href="/" className="btn-primary px-8 py-4 bg-[#914D00] text-sm uppercase tracking-widest font-black">Go Home</Link>
+       <Link href="/" className="btn-primary px-8 py-4 bg-[#914D00] text-sm uppercase tracking-widest font-bold">Go Home</Link>
     </div>
   );
 
@@ -119,11 +119,11 @@ export default function CreatorPage() {
               </motion.div>
               
               <div className="flex items-center gap-2 mb-2">
-                <h1 className="text-4xl font-black tracking-tight">{creator.displayName}</h1>
+                <h1 className="text-4xl font-bold tracking-tight">{creator.displayName}</h1>
                 <Sparkles size={20} className="text-brand-primary" />
               </div>
               
-              <p className="text-brand-primary font-black text-sm mb-6 tracking-wider bg-brand-primary/5 px-4 py-1.5 rounded-full uppercase">@{creator.username}</p>
+              <p className="text-brand-primary font-bold text-sm mb-6 tracking-wider bg-brand-primary/5 px-4 py-1.5 rounded-full uppercase">@{creator.username}</p>
               
               <div className="max-w-md">
                  <p className="text-brand-muted font-bold text-xs uppercase tracking-widest mb-3">{creator.category || 'Creator'}</p>
@@ -144,7 +144,7 @@ export default function CreatorPage() {
                  <div className="w-16 h-16 bg-brand-beige-light rounded-[1.5rem] flex items-center justify-center text-brand-primary mb-6">
                     <Coffee size={32} />
                  </div>
-                 <h2 className="text-2xl font-black tracking-tight mb-2">Buy {creator.displayName} a Chai</h2>
+                 <h2 className="text-2xl font-bold tracking-tight mb-2">Buy {creator.displayName} a Chai</h2>
                  <p className="text-sm font-bold text-brand-muted uppercase tracking-widest">Support with M-Pesa or Card</p>
               </div>
 
@@ -162,8 +162,8 @@ export default function CreatorPage() {
                                 : 'border-black/[0.05] hover:border-black/10'
                         }`}
                     >
-                        <span className="text-sm font-black uppercase tracking-widest group-hover:scale-110 transition-transform">x{m}</span>
-                        <span className="text-[9px] font-black opacity-60 uppercase tracking-tighter">KES {m * basePrice}</span>
+                        <span className="text-sm font-bold uppercase tracking-widest group-hover:scale-110 transition-transform">x{m}</span>
+                        <span className="text-[9px] font-bold opacity-60 uppercase tracking-tighter">KES {m * basePrice}</span>
                     </button>
                  ))}
               </div>
@@ -180,7 +180,7 @@ export default function CreatorPage() {
                         }}
                         className="input-base text-center py-5 text-sm font-bold bg-[#F9FAFB] focus:bg-white"
                     />
-                    <div className="absolute left-6 top-1/2 -translate-y-1/2 text-brand-muted font-black text-xs">KES</div>
+                    <div className="absolute left-6 top-1/2 -translate-y-1/2 text-brand-muted font-bold text-xs">KES</div>
                  </div>
                  
                  <input 
@@ -201,7 +201,7 @@ export default function CreatorPage() {
 
               <button 
                 onClick={handleSupportClick}
-                className="w-full btn-primary py-6 text-lg font-black bg-[#914D00] shadow-2xl shadow-brand-primary/30 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3 group"
+                className="w-full btn-primary py-6 text-lg font-bold bg-[#914D00] shadow-2xl shadow-brand-primary/30 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-3 group"
               >
                 Send KES {finalAmount.toLocaleString()} <Heart size={20} className="group-hover:scale-125 transition-transform fill-white" />
               </button>
@@ -213,12 +213,12 @@ export default function CreatorPage() {
            </motion.div>
 
            <div className="mt-12 text-center">
-              <p className="text-[10px] font-black text-brand-muted uppercase tracking-[0.2em] mb-6">Secured by Nexora Cloud</p>
+              <p className="text-[10px] font-bold text-brand-muted uppercase tracking-[0.2em] mb-6">Secured by Nexora Cloud</p>
               <div className="flex items-center justify-center gap-4 text-brand-muted">
-                 <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full text-[9px] font-black uppercase tracking-widest card-shadow">
+                 <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full text-[9px] font-bold uppercase tracking-widest card-shadow">
                     <Globe size={12} className="text-blue-500" /> Global Payments
                  </div>
-                 <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full text-[9px] font-black uppercase tracking-widest card-shadow">
+                 <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full text-[9px] font-bold uppercase tracking-widest card-shadow">
                     <Shield size={12} className="text-green-500" /> SSL Encrypted
                  </div>
               </div>

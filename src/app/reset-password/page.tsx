@@ -29,9 +29,9 @@ function ResetPasswordContent() {
         <div className="w-20 h-20 bg-red-50 text-red-400 rounded-3xl flex items-center justify-center mx-auto mb-6">
             <Lock size={40} />
         </div>
-        <h1 className="text-3xl font-black mb-4 tracking-tight">Invalid Link</h1>
+        <h1 className="text-3xl font-bold mb-4 tracking-tight">Invalid Link</h1>
         <p className="text-brand-muted font-medium mb-10 leading-relaxed">This password reset link is invalid or has expired. Please request a new one.</p>
-        <Link href="/forgot-password" className="w-full bg-black text-white py-5 rounded-2xl font-black text-xs uppercase tracking-widest block hover:scale-[1.02] transition-transform">Request New Link</Link>
+        <Link href="/forgot-password" className="w-full bg-black text-white py-5 rounded-2xl font-bold text-xs uppercase tracking-widest block hover:scale-[1.02] transition-transform">Request New Link</Link>
       </div>
     );
   }
@@ -67,13 +67,13 @@ function ResetPasswordContent() {
           className="w-full"
         >
           <div className="mb-10">
-            <h1 className="text-4xl font-black mb-3 tracking-tight">Set New Password</h1>
+            <h1 className="text-4xl font-bold mb-3 tracking-tight">Set New Password</h1>
             <p className="text-brand-muted font-medium">Choose a strong password to secure your account.</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="relative">
-              <label className="text-xs font-black text-brand-muted uppercase tracking-widest mb-2 block ml-1">New Password</label>
+              <label className="text-xs font-bold text-brand-muted uppercase tracking-widest mb-2 block ml-1">New Password</label>
               <input 
                 type={showPassword ? "text" : "password"}
                 required
@@ -92,7 +92,7 @@ function ResetPasswordContent() {
             </div>
 
             <div>
-              <label className="text-xs font-black text-brand-muted uppercase tracking-widest mb-2 block ml-1">Confirm Password</label>
+              <label className="text-xs font-bold text-brand-muted uppercase tracking-widest mb-2 block ml-1">Confirm Password</label>
               <input 
                 type={showPassword ? "text" : "password"}
                 required
@@ -105,7 +105,7 @@ function ResetPasswordContent() {
 
             <button 
               disabled={loading}
-              className="w-full btn-primary py-5 text-lg font-black bg-[#914D00] shadow-xl shadow-brand-primary/20 disabled:opacity-50 flex items-center justify-center gap-2 transition-all hover:scale-[1.02]"
+              className="w-full btn-primary py-5 text-lg font-bold bg-[#914D00] shadow-xl shadow-brand-primary/20 disabled:opacity-50 flex items-center justify-center gap-2 transition-all hover:scale-[1.02]"
             >
               {loading ? <Loader2 size={20} className="animate-spin" /> : "Update Password"}
             </button>
@@ -121,7 +121,7 @@ function ResetPasswordContent() {
           <div className="w-24 h-24 bg-brand-secondary/10 text-brand-secondary rounded-full flex items-center justify-center mx-auto mb-8">
             <CheckCircle2 size={48} />
           </div>
-          <h2 className="text-3xl font-black mb-4 tracking-tight">Success!</h2>
+          <h2 className="text-3xl font-bold mb-4 tracking-tight">Success!</h2>
           <p className="text-brand-muted font-medium mb-10 leading-relaxed">Your password has been updated. Redirecting you to login...</p>
           <div className="w-full h-1.5 bg-black/5 rounded-full overflow-hidden">
             <motion.div 
@@ -156,7 +156,7 @@ export default function ResetPassword() {
                         <div className="w-24 h-24 bg-white/10 backdrop-blur-xl rounded-full flex items-center justify-center text-white mb-12 border border-white/20">
                             <KeyRound size={48} strokeWidth={1.5} />
                         </div>
-                        <h2 className="text-4xl font-black mb-8 leading-tight tracking-tight text-white">
+                        <h2 className="text-4xl font-bold mb-8 leading-tight tracking-tight text-white">
                             Lock back in. <br /><span className="text-brand-primary">Secure your creator portal.</span>
                         </h2>
                         <div className="bg-white/5 backdrop-blur-md p-8 rounded-[2.5rem] border border-white/10">
@@ -167,13 +167,13 @@ export default function ResetPassword() {
                                 <div className="w-10 h-10 rounded-xl bg-brand-secondary/20 flex items-center justify-center text-brand-secondary">
                                     <ShieldCheck size={20} />
                                 </div>
-                                <span className="text-white text-xs font-black uppercase tracking-widest">End-to-End Encrypted</span>
+                                <span className="text-white text-xs font-bold uppercase tracking-widest">End-to-End Encrypted</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div className="relative z-10 text-[10px] font-black text-white/30 uppercase tracking-widest">
+                <div className="relative z-10 text-[10px] font-bold text-white/30 uppercase tracking-widest">
                     Authentication Infrastructure by ParsePesa API.
                 </div>
             </div>
@@ -181,7 +181,7 @@ export default function ResetPassword() {
             {/* Right Panel - Form */}
             <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
                 <div className="max-w-md w-full">
-                    <Suspense fallback={<div className="font-black uppercase tracking-widest text-brand-muted">Loading...</div>}>
+                    <Suspense fallback={<div className="font-bold uppercase tracking-widest text-brand-muted">Loading...</div>}>
                         <ResetPasswordContent />
                     </Suspense>
                 </div>

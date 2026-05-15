@@ -114,7 +114,7 @@ export default function OnboardingSetup() {
           <span className="font-bold tracking-tight">Nexora Chai</span>
         </div>
 
-        <nav className="hidden md:flex items-center gap-4 text-[10px] font-black uppercase tracking-widest text-brand-muted">
+        <nav className="hidden md:flex items-center gap-4 text-[10px] font-bold uppercase tracking-widest text-brand-muted">
           <span className={step === 1 ? 'text-brand-primary' : ''}>1. Profile</span>
           <ChevronRight size={12} />
           <span className={step === 2 ? 'text-brand-primary' : ''}>2. Money</span>
@@ -122,7 +122,7 @@ export default function OnboardingSetup() {
           <span className={step === 3 ? 'text-brand-primary' : ''}>3. Verify</span>
         </nav>
 
-        <button className="text-[10px] font-black uppercase tracking-widest text-brand-muted hover:text-brand-primary">Save & Exit</button>
+        <button className="text-[10px] font-bold uppercase tracking-widest text-brand-muted hover:text-brand-primary">Save & Exit</button>
       </header>
 
       <main className="max-w-7xl mx-auto px-6 py-20 flex justify-center">
@@ -130,7 +130,7 @@ export default function OnboardingSetup() {
           {step === 1 && (
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
               <div className="bg-white p-12 rounded-[3rem] card-shadow border border-black/[0.02] text-center">
-                <h1 className="text-3xl font-black mb-3 tracking-tight">Set up your creator profile</h1>
+                <h1 className="text-3xl font-bold mb-3 tracking-tight">Set up your creator profile</h1>
                 <p className="text-brand-muted font-medium mb-12">Let your supporters know who they are tipping.</p>
 
                 <div className="flex justify-center mb-12">
@@ -143,7 +143,7 @@ export default function OnboardingSetup() {
                     ) : (
                       <>
                         <Camera size={32} className="text-brand-primary" />
-                        <span className="text-[10px] font-black uppercase tracking-widest text-brand-primary">{uploading ? 'Uploading...' : 'Upload'}</span>
+                        <span className="text-[10px] font-bold uppercase tracking-widest text-brand-primary">{uploading ? 'Uploading...' : 'Upload'}</span>
                       </>
                     )}
                   </div>
@@ -158,7 +158,7 @@ export default function OnboardingSetup() {
 
                 <div className="space-y-6 text-left max-w-md mx-auto">
                   <div>
-                    <label className="text-[10px] font-black text-brand-muted uppercase tracking-widest mb-2 block ml-1">Display Name</label>
+                    <label className="text-[10px] font-bold text-brand-muted uppercase tracking-widest mb-2 block ml-1">Display Name</label>
                     <input
                       placeholder="e.g. Wanjiku's Kitchen"
                       value={displayName}
@@ -167,7 +167,7 @@ export default function OnboardingSetup() {
                     />
                   </div>
                   <div>
-                    <label className="text-[10px] font-black text-brand-muted uppercase tracking-widest mb-2 block ml-1">Unique Username</label>
+                    <label className="text-[10px] font-bold text-brand-muted uppercase tracking-widest mb-2 block ml-1">Unique Username</label>
                     <div className="flex items-center gap-2 bg-[#F9FAFB] border border-black/10 rounded-2xl px-4 py-4">
                       <span className="text-brand-muted font-bold text-sm">chai.nexoracreatives.co.ke/</span>
                       <input
@@ -178,7 +178,7 @@ export default function OnboardingSetup() {
                       />
                     </div>
                     {username.length >= 3 && (
-                      <div className="mt-2 ml-1 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest">
+                      <div className="mt-2 ml-1 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest">
                         {checking ? (
                           <span className="text-brand-muted">Checking...</span>
                         ) : isAvailable ? (
@@ -190,7 +190,7 @@ export default function OnboardingSetup() {
                     )}
                   </div>
                   <div>
-                    <label className="text-[10px] font-black text-brand-muted uppercase tracking-widest mb-2 block ml-1">Short Bio</label>
+                    <label className="text-[10px] font-bold text-brand-muted uppercase tracking-widest mb-2 block ml-1">Short Bio</label>
                     <textarea
                       placeholder="I create awesome content about..."
                       value={bio}
@@ -201,7 +201,7 @@ export default function OnboardingSetup() {
 
                   <button
                     onClick={() => setStep(2)}
-                    className="w-full btn-primary py-5 text-lg font-black bg-[#914D00] shadow-xl shadow-brand-primary/20 flex items-center justify-center gap-3 mt-8"
+                    className="w-full btn-primary py-5 text-lg font-bold bg-[#914D00] shadow-xl shadow-brand-primary/20 flex items-center justify-center gap-3 mt-8"
                   >
                     Continue to Payment Info <ArrowRight size={20} />
                   </button>
@@ -213,12 +213,12 @@ export default function OnboardingSetup() {
           {step === 2 && (
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
               <div className="bg-white p-12 rounded-[3rem] card-shadow border border-black/[0.02] text-center">
-                <h1 className="text-3xl font-black mb-3 tracking-tight">Payout Details</h1>
+                <h1 className="text-3xl font-bold mb-3 tracking-tight">Payout Details</h1>
                 <p className="text-brand-muted font-medium mb-12">Enter your M-Pesa number for automatic payouts.</p>
 
                 <div className="space-y-6 text-left max-w-md mx-auto">
                   <div>
-                    <label className="text-[10px] font-black text-brand-muted uppercase tracking-widest mb-2 block ml-1">M-Pesa Number</label>
+                    <label className="text-[10px] font-bold text-brand-muted uppercase tracking-widest mb-2 block ml-1">M-Pesa Number</label>
                     <input
                       placeholder="e.g. 254712345678"
                       value={mpesaNumber}
@@ -233,7 +233,7 @@ export default function OnboardingSetup() {
                     <button
                       onClick={handleFinish}
                       disabled={loading}
-                      className="flex-[2] btn-primary py-5 text-lg font-black bg-[#914D00] shadow-xl shadow-brand-primary/20 disabled:opacity-50"
+                      className="flex-[2] btn-primary py-5 text-lg font-bold bg-[#914D00] shadow-xl shadow-brand-primary/20 disabled:opacity-50"
                     >
                       {loading ? "Finishing..." : "Complete Setup"}
                     </button>
@@ -248,7 +248,7 @@ export default function OnboardingSetup() {
               <div className="w-32 h-32 bg-brand-secondary rounded-full flex items-center justify-center text-white mx-auto mb-12 shadow-2xl">
                 <CheckCircle2 size={64} />
               </div>
-              <h1 className="text-4xl font-black mb-4 tracking-tight">You're all set!</h1>
+              <h1 className="text-4xl font-bold mb-4 tracking-tight">You're all set!</h1>
               <p className="text-brand-muted font-medium">Redirecting to your dashboard...</p>
             </motion.div>
           )}

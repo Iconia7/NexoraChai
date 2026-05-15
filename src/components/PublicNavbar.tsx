@@ -48,7 +48,7 @@ export default function PublicNavbar() {
             exit={{ opacity: 0, y: -20 }}
             className="lg:hidden absolute top-full left-0 w-full bg-white border-b border-black/5 p-6 space-y-6 shadow-2xl"
           >
-            <div className="flex flex-col gap-4 text-lg font-black text-brand-muted">
+            <div className="flex flex-col gap-4 text-lg font-bold text-brand-muted">
               <Link href="/explore" onClick={() => setIsOpen(false)} className="hover:text-brand-primary transition-colors">Explore</Link>
               <Link href="/creators" onClick={() => setIsOpen(false)} className="hover:text-brand-primary transition-colors">Creators</Link>
               <Link href="/about" onClick={() => setIsOpen(false)} className="hover:text-brand-primary transition-colors">About</Link>
@@ -57,8 +57,8 @@ export default function PublicNavbar() {
             <hr className="border-black/5" />
             
             <div className="flex flex-col gap-4">
-              <Link href="/login" onClick={() => setIsOpen(false)} className="w-full text-center py-4 rounded-2xl border border-black/10 font-black text-sm uppercase tracking-widest">Login</Link>
-              <Link href="/register" onClick={() => setIsOpen(false)} className="w-full text-center py-4 rounded-2xl bg-brand-primary text-white font-black text-sm uppercase tracking-widest bg-[#914D00]">Claim My Page</Link>
+              <Link href="/login" onClick={() => setIsOpen(false)} className="w-full text-center py-4 rounded-2xl border border-black/10 font-bold text-sm uppercase tracking-widest">Login</Link>
+              <Link href="/register" onClick={() => setIsOpen(false)} className="w-full text-center py-4 rounded-2xl bg-brand-primary text-white font-bold text-sm uppercase tracking-widest bg-[#914D00]">Claim My Page</Link>
             </div>
           </motion.div>
         )}

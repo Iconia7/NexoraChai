@@ -93,7 +93,7 @@ export default function Login() {
           <div className="mb-12">
             <div className="flex items-center gap-3 mb-8">
               <Image src="/logo.png" alt="Nexora Chai Logo" width={40} height={40} className="rounded-xl shadow-lg" />
-              <h2 className="text-brand-primary font-black text-2xl tracking-tight">Nexora Chai</h2>
+              <h2 className="text-brand-primary font-bold text-2xl tracking-tight">Nexora Chai</h2>
             </div>
             <div className="relative aspect-square rounded-[3rem] overflow-hidden card-shadow mb-12">
               <Image
@@ -128,7 +128,7 @@ export default function Login() {
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
         <div className="max-w-md w-full">
           <div className="mb-12">
-            <h1 className="text-4xl font-black mb-3 tracking-tight">
+            <h1 className="text-4xl font-bold mb-3 tracking-tight">
                 {requires2FA ? 'Verification' : 'Welcome Back'}
             </h1>
             <p className="text-brand-muted font-medium">
@@ -146,13 +146,13 @@ export default function Login() {
                 </button>
 
                 <div className="relative mb-8 text-center">
-                    <span className="bg-white px-4 text-[10px] font-black text-brand-muted uppercase tracking-[0.2em] relative z-10">Or continue with email</span>
+                    <span className="bg-white px-4 text-[10px] font-bold text-brand-muted uppercase tracking-[0.2em] relative z-10">Or continue with email</span>
                     <div className="absolute top-1/2 left-0 w-full h-[1px] bg-black/5" />
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
-                    <label className="text-xs font-black text-brand-muted uppercase tracking-widest mb-2 block ml-1">Email Address</label>
+                    <label className="text-xs font-bold text-brand-muted uppercase tracking-widest mb-2 block ml-1">Email Address</label>
                     <input
                         type="email"
                         required
@@ -164,7 +164,7 @@ export default function Login() {
                     </div>
 
                     <div className="relative">
-                    <label className="text-xs font-black text-brand-muted uppercase tracking-widest mb-2 block ml-1">Password</label>
+                    <label className="text-xs font-bold text-brand-muted uppercase tracking-widest mb-2 block ml-1">Password</label>
                     <input
                         type={showPassword ? "text" : "password"}
                         required
@@ -197,7 +197,7 @@ export default function Login() {
 
                     <button
                     disabled={loading}
-                    className="w-full btn-primary py-5 text-lg font-black bg-[#914D00] shadow-xl shadow-brand-primary/20 disabled:opacity-50"
+                    className="w-full btn-primary py-5 text-lg font-bold bg-[#914D00] shadow-xl shadow-brand-primary/20 disabled:opacity-50"
                     >
                     {loading ? "Logging in..." : "Log In"}
                     </button>
@@ -219,12 +219,12 @@ export default function Login() {
                       placeholder="000000"
                       value={twoFactorCode}
                       onChange={(e) => setTwoFactorCode(e.target.value)}
-                      className="w-full text-center text-5xl font-black tracking-[0.5em] py-6 border-2 border-black/5 rounded-3xl outline-none focus:border-brand-primary transition-colors"
+                      className="w-full text-center text-5xl font-bold tracking-[0.5em] py-6 border-2 border-black/5 rounded-3xl outline-none focus:border-brand-primary transition-colors"
                   />
 
                   <button
                     disabled={loading || twoFactorCode.length !== 6}
-                    className="w-full btn-primary py-5 text-lg font-black bg-[#914D00] shadow-xl shadow-brand-primary/20 disabled:opacity-50"
+                    className="w-full btn-primary py-5 text-lg font-bold bg-[#914D00] shadow-xl shadow-brand-primary/20 disabled:opacity-50"
                   >
                     {loading ? "Verifying..." : "Verify & Login"}
                   </button>

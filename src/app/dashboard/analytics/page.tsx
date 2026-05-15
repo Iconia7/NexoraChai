@@ -77,7 +77,7 @@ export default function AnalyticsPage() {
 
                     <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10">
                         <div>
-                            <h1 className="text-2xl md:text-3xl font-black tracking-tight mb-2">Analytics</h1>
+                            <h1 className="text-2xl md:text-3xl font-bold tracking-tight mb-2">Analytics</h1>
                             <p className="text-brand-muted font-medium text-sm md:text-base">Insights into your creator growth and earnings.</p>
                         </div>
                         <div className="flex gap-3 md:gap-4 w-full md:w-auto">
@@ -86,7 +86,7 @@ export default function AnalyticsPage() {
                                 <select
                                     value={range}
                                     onChange={(e) => setRange(e.target.value)}
-                                    className="appearance-none bg-white pl-10 pr-10 py-3 rounded-2xl border border-black/5 text-xs font-black uppercase tracking-widest card-shadow hover:scale-[1.02] transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-primary/20"
+                                    className="appearance-none bg-white pl-10 pr-10 py-3 rounded-2xl border border-black/5 text-xs font-bold uppercase tracking-widest card-shadow hover:scale-[1.02] transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-primary/20"
                                 >
                                     <option value="7">Last 7 Days</option>
                                     <option value="30">Last 30 Days</option>
@@ -124,10 +124,10 @@ export default function AnalyticsPage() {
                                     <div className={`w-12 h-12 rounded-2xl bg-brand-beige-light flex items-center justify-center ${stat.color}`}>
                                         <stat.icon size={24} />
                                     </div>
-                                    <span className="text-xs font-black text-green-500 bg-green-500/10 px-3 py-1 rounded-full">{stat.delta}</span>
+                                    <span className="text-xs font-bold text-green-500 bg-green-500/10 px-3 py-1 rounded-full">{stat.delta}</span>
                                 </div>
-                                <p className="text-[10px] font-black text-brand-muted uppercase tracking-widest mb-2">{stat.label}</p>
-                                <h2 className="text-4xl font-black tracking-tight">{stat.value}</h2>
+                                <p className="text-[10px] font-bold text-brand-muted uppercase tracking-widest mb-2">{stat.label}</p>
+                                <h2 className="text-4xl font-bold tracking-tight">{stat.value}</h2>
                             </motion.div>
                         ))}
                     </div>
@@ -136,7 +136,7 @@ export default function AnalyticsPage() {
                     <div className="bg-[#0C0C0C] rounded-[3rem] p-10 text-white shadow-2xl mb-12 overflow-hidden relative">
                         <div className="flex justify-between items-center mb-12 relative z-10">
                             <div>
-                                <h3 className="text-lg md:text-xl font-black tracking-tight">Support Growth</h3>
+                                <h3 className="text-lg md:text-xl font-bold tracking-tight">Support Growth</h3>
                                 <p className="text-white/40 text-[10px] font-bold uppercase tracking-widest">Monthly performance</p>
                             </div>
                         </div>
@@ -161,11 +161,11 @@ export default function AnalyticsPage() {
                                                 animate={{ height: `${Math.max(h, 2)}%` }}
                                                 className="w-full bg-gradient-to-t from-brand-primary/20 to-brand-primary rounded-t-xl relative group"
                                             >
-                                                <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-white text-black px-2 py-1 rounded-md text-[10px] font-black opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-xl z-20">
+                                                <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-white text-black px-2 py-1 rounded-md text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-xl z-20">
                                                     KES {val.toLocaleString()}
                                                 </div>
                                             </motion.div>
-                                            <span className="text-[10px] font-black text-white/20">{monthLabels[i]}</span>
+                                            <span className="text-[10px] font-bold text-white/20">{monthLabels[i]}</span>
                                         </div>
                                     );
                                 });
@@ -179,18 +179,18 @@ export default function AnalyticsPage() {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         {/* Top Supporters */}
                         <div className="bg-white p-8 rounded-[2.5rem] card-shadow border border-black/[0.02]">
-                            <h3 className="text-lg font-black tracking-tight mb-8">Top Supporters</h3>
+                            <h3 className="text-lg font-bold tracking-tight mb-8">Top Supporters</h3>
                             <div className="space-y-6">
                                 {(data.topSupporters || []).map((s: any, i: number) => (
                                     <div key={i} className="flex items-center justify-between">
                                         <div className="flex items-center gap-4">
-                                            <div className="w-10 h-10 rounded-full bg-brand-beige-light flex items-center justify-center font-black text-brand-primary uppercase">{s.name[0]}</div>
+                                            <div className="w-10 h-10 rounded-full bg-brand-beige-light flex items-center justify-center font-bold text-brand-primary uppercase">{s.name[0]}</div>
                                             <div>
                                                 <p className="font-bold text-sm tracking-tight">{s.name}</p>
-                                                <p className="text-[10px] text-brand-muted font-black uppercase tracking-widest">{s.chais} Chais bought</p>
+                                                <p className="text-[10px] text-brand-muted font-bold uppercase tracking-widest">{s.chais} Chais bought</p>
                                             </div>
                                         </div>
-                                        <p className="font-black text-brand-secondary text-sm">{s.value}</p>
+                                        <p className="font-bold text-brand-secondary text-sm">{s.value}</p>
                                     </div>
                                 ))}
                                 {(!data.topSupporters || data.topSupporters.length === 0) && (
@@ -201,13 +201,13 @@ export default function AnalyticsPage() {
 
                         {/* Support Sources */}
                         <div className="bg-white p-8 rounded-[2.5rem] card-shadow border border-black/[0.02]">
-                            <h3 className="text-lg font-black tracking-tight mb-8">Support Sources</h3>
+                            <h3 className="text-lg font-bold tracking-tight mb-8">Support Sources</h3>
                             <div className="space-y-6">
                                 {(data.supportSources || []).map((source: any, i: number) => (
                                     <div key={i}>
                                         <div className="flex justify-between items-center mb-2">
                                             <span className="text-sm font-bold tracking-tight">{source.label}</span>
-                                            <span className="text-xs font-black">{source.percentage}%</span>
+                                            <span className="text-xs font-bold">{source.percentage}%</span>
                                         </div>
                                         <div className="h-2 w-full bg-black/5 rounded-full overflow-hidden">
                                             <motion.div

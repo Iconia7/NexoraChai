@@ -180,7 +180,7 @@ export default function CheckoutModal({ isOpen, onClose, creator, amount, messag
                                 <div className="flex items-center justify-between mb-6 md:mb-8 sticky top-0 bg-white z-10 py-2">
                                     <div className="flex items-center gap-2 text-brand-primary">
                                         <Lock className="w-3.5 h-3.5 md:w-4 md:h-4" />
-                                        <span className="text-[9px] md:text-[10px] font-black uppercase tracking-widest">Secure Checkout</span>
+                                        <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest">Secure Checkout</span>
                                     </div>
                                     <button 
                                         onClick={handleClose}
@@ -198,28 +198,28 @@ export default function CheckoutModal({ isOpen, onClose, creator, amount, messag
                                     </div>
                                     
                                     <div className="p-4 bg-black/[0.02] rounded-2xl space-y-2 border border-black/[0.03]">
-                                        <div className="flex justify-between text-[10px] font-black uppercase tracking-widest text-brand-muted/60">
+                                        <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest text-brand-muted/60">
                                             <span>M-Pesa Fee (2%)</span>
                                             <span>+ KES {mpesaFee.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
                                         </div>
-                                        <div className="flex justify-between text-[10px] font-black uppercase tracking-widest text-brand-primary/60">
+                                        <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest text-brand-primary/60">
                                             <span>Card Fee (5%)</span>
                                             <span>+ KES {cardFee.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
                                         </div>
                                     </div>
                                     
                                     <div className="pt-4 border-t border-black/[0.03] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
-                                        <span className="font-black uppercase tracking-widest text-[10px] text-brand-muted">Final Total</span>
+                                        <span className="font-bold uppercase tracking-widest text-[10px] text-brand-muted">Final Total</span>
                                         <div className="text-left sm:text-right w-full sm:w-auto">
                                             <div className="text-xs font-bold text-[#00A65A]">M-Pesa: KES {mpesaTotal.toLocaleString()}</div>
-                                            <div className="text-base md:text-lg font-black text-brand-primary">Card: KES {cardTotal.toLocaleString()}</div>
+                                            <div className="text-base md:text-lg font-bold text-brand-primary">Card: KES {cardTotal.toLocaleString()}</div>
                                         </div>
                                     </div>
                                 </div>
 
                                 {/* Shared Email Input */}
                                 <div className="mb-6">
-                                    <label className="text-[10px] font-black text-brand-muted uppercase tracking-widest mb-3 block ml-1">Receipt Email</label>
+                                    <label className="text-[10px] font-bold text-brand-muted uppercase tracking-widest mb-3 block ml-1">Receipt Email</label>
                                     <div className="flex items-center bg-[#F9FAFB] border border-black/5 rounded-2xl overflow-hidden px-4">
                                         <Mail size={16} className="text-brand-muted" />
                                         <input 
@@ -234,7 +234,7 @@ export default function CheckoutModal({ isOpen, onClose, creator, amount, messag
 
                                 {/* M-Pesa Number Confirmation */}
                                 <div className="mb-8">
-                                    <label className="text-[10px] font-black text-brand-muted uppercase tracking-widest mb-3 block ml-1">M-Pesa Number</label>
+                                    <label className="text-[10px] font-bold text-brand-muted uppercase tracking-widest mb-3 block ml-1">M-Pesa Number</label>
                                     <div className="flex items-center bg-[#F9FAFB] border border-black/5 rounded-2xl overflow-hidden">
                                         <div className="pl-4 pr-2 flex items-center gap-2 border-r border-black/5">
                                             <span className="text-xl">🇰🇪</span>
@@ -254,28 +254,28 @@ export default function CheckoutModal({ isOpen, onClose, creator, amount, messag
                                     <button 
                                         onClick={handleMpesaPay}
                                         disabled={loading}
-                                        className="w-full bg-[#00A65A] text-white py-4 rounded-2xl font-black text-sm flex items-center justify-center gap-2 hover:bg-[#008F4D] transition-colors shadow-lg shadow-[#00A65A]/20 disabled:opacity-50"
+                                        className="w-full bg-[#00A65A] text-white py-4 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 hover:bg-[#008F4D] transition-colors shadow-lg shadow-[#00A65A]/20 disabled:opacity-50"
                                     >
                                         {loading ? <Loader2 size={18} className="animate-spin" /> : <Zap size={16} className="fill-white" />}
                                         Support with M-Pesa
                                     </button>
 
                                     <div className="relative py-4 text-center">
-                                        <span className="bg-white px-4 text-[8px] font-black text-brand-muted uppercase tracking-[0.2em] relative z-10">Or</span>
+                                        <span className="bg-white px-4 text-[8px] font-bold text-brand-muted uppercase tracking-[0.2em] relative z-10">Or</span>
                                         <div className="absolute top-1/2 left-0 w-full h-[1px] bg-black/5" />
                                     </div>
 
                                     <button 
                                         onClick={handleCardPay}
                                         disabled={loading}
-                                        className="w-full border border-black/10 py-4 rounded-2xl font-black text-sm flex items-center justify-center gap-2 hover:bg-black/[0.02] transition-colors disabled:opacity-50"
+                                        className="w-full border border-black/10 py-4 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 hover:bg-black/[0.02] transition-colors disabled:opacity-50"
                                     >
                                         <CreditCard size={18} />
                                         Buy with Card
                                     </button>
                                 </div>
 
-                                <div className="mt-8 flex items-center justify-center gap-2 text-[8px] font-black text-brand-muted uppercase tracking-widest opacity-40">
+                                <div className="mt-8 flex items-center justify-center gap-2 text-[8px] font-bold text-brand-muted uppercase tracking-widest opacity-40">
                                    <Shield size={10} /> Secured by Nexora Trust
                                 </div>
                             </>
@@ -285,7 +285,7 @@ export default function CheckoutModal({ isOpen, onClose, creator, amount, messag
                                     <div className="absolute inset-0 border-4 border-brand-primary/20 border-t-brand-primary rounded-full animate-spin" />
                                     <Zap size={32} className="text-brand-primary animate-pulse" />
                                 </div>
-                                <h2 className="text-2xl font-black mb-4 tracking-tight">Processing...</h2>
+                                <h2 className="text-2xl font-bold mb-4 tracking-tight">Processing...</h2>
                                 <p className="text-brand-muted font-medium text-sm leading-relaxed px-4">
                                     Please follow the prompt on your phone or check your card window. We're waiting for confirmation.
                                 </p>
@@ -295,11 +295,11 @@ export default function CheckoutModal({ isOpen, onClose, creator, amount, messag
                                 <div className="w-20 h-20 bg-[#00E676]/10 text-[#00E676] rounded-full flex items-center justify-center mx-auto mb-6">
                                     <CheckCircle2 size={40} />
                                 </div>
-                                <h2 className="text-2xl font-black mb-4 tracking-tight text-[#00A65A]">Support Successful!</h2>
+                                <h2 className="text-2xl font-bold mb-4 tracking-tight text-[#00A65A]">Support Successful!</h2>
                                 <p className="text-brand-muted font-medium text-sm mb-10 leading-relaxed px-4">
                                     Thank you! Your support has been verified and added to the creator's wallet.
                                 </p>
-                                <p className="text-[10px] font-black text-brand-muted uppercase tracking-widest opacity-40">
+                                <p className="text-[10px] font-bold text-brand-muted uppercase tracking-widest opacity-40">
                                     Closing automatically in 5s...
                                 </p>
                             </div>
@@ -308,13 +308,13 @@ export default function CheckoutModal({ isOpen, onClose, creator, amount, messag
                                 <div className="w-20 h-20 bg-red-50 text-red-500 rounded-full flex items-center justify-center mx-auto mb-6">
                                     <X size={40} />
                                 </div>
-                                <h2 className="text-2xl font-black mb-4 tracking-tight text-red-600">Payment Failed</h2>
+                                <h2 className="text-2xl font-bold mb-4 tracking-tight text-red-600">Payment Failed</h2>
                                 <p className="text-brand-muted font-medium text-sm mb-10 leading-relaxed px-4">
                                     {errorMsg || "Something went wrong with your transaction. Please try again."}
                                 </p>
                                 <button 
                                     onClick={() => setStep('checkout')}
-                                    className="w-full btn-primary py-4 text-sm font-black bg-black text-white rounded-2xl"
+                                    className="w-full btn-primary py-4 text-sm font-bold bg-black text-white rounded-2xl"
                                 >
                                     Try Again
                                 </button>

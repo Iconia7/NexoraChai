@@ -32,7 +32,7 @@ export default function ContactPage() {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                     >
-                        <h1 className="text-5xl md:text-6xl font-black mb-8 tracking-tight leading-tight">
+                        <h1 className="text-5xl md:text-6xl font-bold mb-8 tracking-tight leading-tight">
                             Let's talk about your <span className="text-brand-primary">creative future.</span>
                         </h1>
                         <p className="text-xl text-brand-muted font-medium mb-12 leading-relaxed">
@@ -50,7 +50,7 @@ export default function ContactPage() {
                                         <item.icon size={20} />
                                     </div>
                                     <div>
-                                        <p className="text-[10px] font-black uppercase tracking-widest text-brand-muted mb-1">{item.label}</p>
+                                        <p className="text-[10px] font-bold uppercase tracking-widest text-brand-muted mb-1">{item.label}</p>
                                         <p className="text-lg font-bold">{item.value}</p>
                                     </div>
                                 </div>
@@ -67,17 +67,17 @@ export default function ContactPage() {
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
-                                    <label className="text-[10px] font-black text-brand-muted uppercase tracking-widest mb-2 block ml-1">Full Name</label>
+                                    <label className="text-[10px] font-bold text-brand-muted uppercase tracking-widest mb-2 block ml-1">Full Name</label>
                                     <input required type="text" placeholder="John Doe" className="input-base py-4" />
                                 </div>
                                 <div>
-                                    <label className="text-[10px] font-black text-brand-muted uppercase tracking-widest mb-2 block ml-1">Email Address</label>
+                                    <label className="text-[10px] font-bold text-brand-muted uppercase tracking-widest mb-2 block ml-1">Email Address</label>
                                     <input required type="email" placeholder="john@example.com" className="input-base py-4" />
                                 </div>
                             </div>
 
                             <div>
-                                <label className="text-[10px] font-black text-brand-muted uppercase tracking-widest mb-2 block ml-1">Subject</label>
+                                <label className="text-[10px] font-bold text-brand-muted uppercase tracking-widest mb-2 block ml-1">Subject</label>
                                 <select className="input-base py-4 appearance-none">
                                     <option>General Inquiry</option>
                                     <option>Technical Support</option>
@@ -87,13 +87,13 @@ export default function ContactPage() {
                             </div>
 
                             <div>
-                                <label className="text-[10px] font-black text-brand-muted uppercase tracking-widest mb-2 block ml-1">Message</label>
+                                <label className="text-[10px] font-bold text-brand-muted uppercase tracking-widest mb-2 block ml-1">Message</label>
                                 <textarea required placeholder="How can we help?" rows={5} className="input-base py-4 resize-none" />
                             </div>
 
                             <button
                                 disabled={loading}
-                                className="w-full btn-primary py-5 text-lg font-black bg-[#914D00] flex items-center justify-center gap-3 disabled:opacity-50"
+                                className="w-full btn-primary py-5 text-lg font-bold bg-[#914D00] flex items-center justify-center gap-3 disabled:opacity-50"
                             >
                                 {loading ? "Sending..." : "Send Message"} <Send size={20} />
                             </button>

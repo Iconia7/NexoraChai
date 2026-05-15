@@ -16,12 +16,12 @@ export default function PublicFooter() {
                         The premium platform for African creators to receive support directly from their audience. Secure, fast, and built for your growth.
                     </p>
                     <div className="flex gap-4">
-                        <Link href="/terms" className="text-xs font-black uppercase tracking-widest text-brand-muted hover:text-brand-primary transition-colors">Terms</Link>
-                        <Link href="/privacy" className="text-xs font-black uppercase tracking-widest text-brand-muted hover:text-brand-primary transition-colors">Privacy</Link>
+                        <Link href="/terms" className="text-xs font-bold uppercase tracking-widest text-brand-muted hover:text-brand-primary transition-colors">Terms</Link>
+                        <Link href="/privacy" className="text-xs font-bold uppercase tracking-widest text-brand-muted hover:text-brand-primary transition-colors">Privacy</Link>
                     </div>
                 </div>
                 <div>
-                    <h4 className="font-black uppercase tracking-widest text-[10px] text-brand-muted mb-6">Product</h4>
+                    <h4 className="font-bold uppercase tracking-widest text-[10px] text-brand-muted mb-6">Product</h4>
                     <ul className="space-y-4 text-sm font-bold">
                         <li><Link href="/explore" className="hover:text-brand-primary transition-colors">Explore</Link></li>
                         <li><Link href="/pricing" className="hover:text-brand-primary transition-colors">Pricing</Link></li>
@@ -29,7 +29,7 @@ export default function PublicFooter() {
                     </ul>
                 </div>
                 <div>
-                    <h4 className="font-black uppercase tracking-widest text-[10px] text-brand-muted mb-6">Support</h4>
+                    <h4 className="font-bold uppercase tracking-widest text-[10px] text-brand-muted mb-6">Support</h4>
                     <ul className="space-y-4 text-sm font-bold">
                         <li><Link href="/help" className="hover:text-brand-primary transition-colors">Help Center</Link></li>
                         <li><Link href="/contact" className="hover:text-brand-primary transition-colors">Contact</Link></li>
@@ -38,7 +38,7 @@ export default function PublicFooter() {
                 </div>
             </div>
             <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-black/[0.03] text-center">
-                <p className="text-[10px] font-black uppercase tracking-widest text-brand-muted opacity-50">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-brand-muted opacity-50">
                     © 2026 Nexora Chai. Premium Financial Trust for African Creators. Powered by Nexora Creative Solutions.
                 </p>
             </div>

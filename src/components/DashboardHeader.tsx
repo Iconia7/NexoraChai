@@ -58,7 +58,7 @@ export default function DashboardHeader() {
       </div>
 
       <div className="flex items-center justify-between w-full md:w-auto order-1 md:order-2">
-        <h2 className="text-xl font-black md:hidden">Overview</h2>
+        <h2 className="text-xl font-bold md:hidden">Overview</h2>
         <div className="flex items-center gap-4">
           <button className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center text-brand-muted border border-black/[0.03] card-shadow hover:bg-black/[0.01] transition-colors relative group">
             <Bell size={20} />
@@ -69,8 +69,8 @@ export default function DashboardHeader() {
             {/* Tooltip mockup - Hidden on very small screens or adjusted */}
             <div className="absolute top-full right-0 mt-4 w-80 bg-white rounded-[2rem] shadow-2xl border border-black/5 p-6 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all translate-y-2 group-hover:translate-y-0 z-50 hidden md:block">
               <div className="flex items-center justify-between mb-4">
-                <p className="text-[10px] font-black text-brand-muted uppercase tracking-widest">Notifications</p>
-                {unreadCount > 0 && <span className="px-2 py-0.5 bg-red-50 text-red-500 text-[9px] font-black rounded-full">{unreadCount} New</span>}
+                <p className="text-[10px] font-bold text-brand-muted uppercase tracking-widest">Notifications</p>
+                {unreadCount > 0 && <span className="px-2 py-0.5 bg-red-50 text-red-500 text-[9px] font-bold rounded-full">{unreadCount} New</span>}
               </div>
               
               <div className="space-y-4 max-h-[300px] overflow-y-auto no-scrollbar">
@@ -79,7 +79,7 @@ export default function DashboardHeader() {
                     <div key={n.id} className={`flex gap-3 items-start group/item p-2 rounded-xl transition-colors ${n.isRead ? 'opacity-60' : 'bg-brand-beige-light/30'}`}>
                       <div className={`w-2 h-2 rounded-full mt-1.5 shrink-0 ${n.isRead ? 'bg-black/10' : 'bg-brand-primary'}`} />
                       <div className="flex-1 text-left">
-                        <p className="text-xs font-black leading-tight mb-1 text-foreground">{n.title}</p>
+                        <p className="text-xs font-bold leading-tight mb-1 text-foreground">{n.title}</p>
                         <p className="text-[10px] font-medium leading-relaxed text-brand-muted line-clamp-2">{n.message}</p>
                         <p className="text-[9px] font-bold text-black/20 mt-1 uppercase tracking-tighter">
                           {formatDistanceToNow(new Date(n.createdAt), { addSuffix: true })}
@@ -106,7 +106,7 @@ export default function DashboardHeader() {
               </div>
               
               {notifications.length > 0 && (
-                <button className="w-full mt-4 pt-4 border-t border-black/5 text-[10px] font-black text-brand-primary uppercase tracking-widest hover:text-brand-secondary transition-colors text-center">
+                <button className="w-full mt-4 pt-4 border-t border-black/5 text-[10px] font-bold text-brand-primary uppercase tracking-widest hover:text-brand-secondary transition-colors text-center">
                   View All Notifications
                 </button>
               )}

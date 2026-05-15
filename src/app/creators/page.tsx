@@ -52,7 +52,7 @@ export default function CreatorsPage() {
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="flex items-center gap-2 text-brand-primary text-xs font-black uppercase tracking-[0.2em] mb-4"
+              className="flex items-center gap-2 text-brand-primary text-xs font-bold uppercase tracking-[0.2em] mb-4"
             >
               <TrendingUp size={14} /> Trending Now
             </motion.div>
@@ -60,7 +60,7 @@ export default function CreatorsPage() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-5xl md:text-7xl font-black tracking-tight"
+              className="text-5xl md:text-7xl font-bold tracking-tight"
             >
               Meet Our <span className="text-brand-primary italic">Stars</span>
             </motion.h1>
@@ -82,7 +82,7 @@ export default function CreatorsPage() {
                     {topCreator.avatarUrl ? (
                       <img src={topCreator.avatarUrl} alt={topCreator.displayName} className="w-full h-full object-cover" />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center text-6xl font-black text-brand-primary">
+                      <div className="w-full h-full flex items-center justify-center text-6xl font-bold text-brand-primary">
                         {topCreator.displayName[0]}
                       </div>
                     )}
@@ -92,24 +92,24 @@ export default function CreatorsPage() {
                   </div>
 
                   <div className="flex-1 text-center lg:text-left relative z-10">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-primary/10 text-brand-primary rounded-full text-[10px] font-black uppercase tracking-widest mb-6">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-primary/10 text-brand-primary rounded-full text-[10px] font-bold uppercase tracking-widest mb-6">
                       <Sparkles size={12} /> Featured Creator
                     </div>
-                    <h2 className="text-4xl md:text-5xl font-black mb-6 tracking-tight">{topCreator.displayName}</h2>
+                    <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">{topCreator.displayName}</h2>
                     <p className="text-brand-muted text-lg font-medium mb-10 leading-relaxed max-w-2xl">
                       {topCreator.bio || "This featured creator is leading the way on Nexora. Join their journey and support their incredible work today."}
                     </p>
                     <div className="flex flex-wrap items-center justify-center lg:justify-start gap-8">
                        <div className="flex flex-col">
-                          <span className="text-[10px] font-black text-brand-muted uppercase tracking-widest mb-1 opacity-60">Total Views</span>
-                          <span className="text-2xl font-black">{topCreator.views.toLocaleString()}</span>
+                          <span className="text-[10px] font-bold text-brand-muted uppercase tracking-widest mb-1 opacity-60">Total Views</span>
+                          <span className="text-2xl font-bold">{topCreator.views.toLocaleString()}</span>
                        </div>
                        <div className="flex flex-col">
-                          <span className="text-[10px] font-black text-brand-muted uppercase tracking-widest mb-1 opacity-60">Category</span>
-                          <span className="text-2xl font-black text-brand-primary">{topCreator.category || 'Creative'}</span>
+                          <span className="text-[10px] font-bold text-brand-muted uppercase tracking-widest mb-1 opacity-60">Category</span>
+                          <span className="text-2xl font-bold text-brand-primary">{topCreator.category || 'Creative'}</span>
                        </div>
                        <div className="h-12 w-[1px] bg-black/5 hidden md:block" />
-                       <div className="btn-primary py-4 px-8 bg-black text-white hover:bg-brand-primary transition-all text-xs font-black uppercase tracking-widest flex items-center gap-2 rounded-2xl">
+                       <div className="btn-primary py-4 px-8 bg-black text-white hover:bg-brand-primary transition-all text-xs font-bold uppercase tracking-widest flex items-center gap-2 rounded-2xl">
                           Support Now <ArrowRight size={16} />
                        </div>
                     </div>
@@ -138,16 +138,16 @@ export default function CreatorsPage() {
                       {creator.avatarUrl ? (
                          <img src={creator.avatarUrl} alt={creator.displayName} className="w-full h-full object-cover" />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center text-2xl font-black text-brand-primary">
+                        <div className="w-full h-full flex items-center justify-center text-2xl font-bold text-brand-primary">
                           {creator.displayName[0]}
                         </div>
                       )}
                     </div>
-                    <h4 className="font-black text-lg tracking-tight mb-1 group-hover:text-brand-primary transition-colors">{creator.displayName}</h4>
-                    <p className="text-brand-muted text-[10px] font-black uppercase tracking-widest mb-4">@{creator.username}</p>
+                    <h4 className="font-bold text-lg tracking-tight mb-1 group-hover:text-brand-primary transition-colors">{creator.displayName}</h4>
+                    <p className="text-brand-muted text-[10px] font-bold uppercase tracking-widest mb-4">@{creator.username}</p>
                     
                     <div className="mt-auto pt-4 border-t border-black/[0.02] w-full flex items-center justify-between text-brand-muted">
-                       <div className="flex items-center gap-1 text-[9px] font-black uppercase tracking-widest">
+                       <div className="flex items-center gap-1 text-[9px] font-bold uppercase tracking-widest">
                           <Users size={12} /> {creator.views}
                        </div>
                        <Zap size={14} className="group-hover:text-brand-primary group-hover:fill-brand-primary transition-all" />
@@ -169,15 +169,15 @@ export default function CreatorsPage() {
                 <div className="w-20 h-20 bg-brand-primary/10 rounded-full flex items-center justify-center mx-auto mb-8 text-brand-primary animate-bounce">
                    <Zap size={32} fill="currentColor" />
                 </div>
-                <h2 className="text-4xl md:text-6xl font-black mb-8">Want to see yourself <span className="text-brand-primary underline decoration-brand-beige underline-offset-8">here?</span></h2>
+                <h2 className="text-4xl md:text-6xl font-bold mb-8">Want to see yourself <span className="text-brand-primary underline decoration-brand-beige underline-offset-8">here?</span></h2>
                 <p className="text-brand-muted text-xl font-medium mb-12">
                    Start your Nexora Chai page today and join the elite community of Kenyan creators earning their worth.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                   <Link href="/register" className="w-full sm:w-auto btn-primary py-6 px-12 bg-brand-primary text-white text-sm font-black uppercase tracking-[0.2em] rounded-2xl shadow-2xl shadow-brand-primary/20 hover:scale-105 active:scale-95 transition-all">
+                   <Link href="/register" className="w-full sm:w-auto btn-primary py-6 px-12 bg-brand-primary text-white text-sm font-bold uppercase tracking-[0.2em] rounded-2xl shadow-2xl shadow-brand-primary/20 hover:scale-105 active:scale-95 transition-all">
                       Become a Creator
                    </Link>
-                   <Link href="/about" className="w-full sm:w-auto px-12 py-6 bg-white border border-black/5 text-sm font-black uppercase tracking-[0.2em] rounded-2xl hover:bg-black/[0.02] transition-all">
+                   <Link href="/about" className="w-full sm:w-auto px-12 py-6 bg-white border border-black/5 text-sm font-bold uppercase tracking-[0.2em] rounded-2xl hover:bg-black/[0.02] transition-all">
                       Learn More
                    </Link>
                 </div>

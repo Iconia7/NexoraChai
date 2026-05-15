@@ -13,7 +13,7 @@ export default function PricingPage() {
 
       <main className="py-24 px-8 max-w-7xl mx-auto">
         <div className="text-center mb-20">
-            <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight">Transparent <span className="text-brand-primary">Pricing.</span></h1>
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">Transparent <span className="text-brand-primary">Pricing.</span></h1>
             <p className="text-xl text-brand-muted font-medium max-w-2xl mx-auto leading-relaxed">
                 We only win when you win. No monthly fees, no hidden charges. Just simple, artisanal finance.
             </p>
@@ -26,12 +26,12 @@ export default function PricingPage() {
                 className="bg-white rounded-[4rem] card-shadow border-4 border-brand-primary/10 overflow-hidden"
             >
                 <div className="p-12 md:p-20 text-center">
-                    <div className="inline-flex items-center gap-2 bg-brand-primary/10 text-brand-primary px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest mb-8">
+                    <div className="inline-flex items-center gap-2 bg-brand-primary/10 text-brand-primary px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest mb-8">
                         <Star size={12} className="fill-brand-primary" /> Most Popular
                     </div>
-                    <h2 className="text-3xl font-black mb-2 uppercase tracking-tighter">Creator Pro</h2>
+                    <h2 className="text-3xl font-bold mb-2 uppercase tracking-tighter">Creator Pro</h2>
                     <div className="flex items-center justify-center gap-1 mb-8">
-                        <span className="text-6xl font-black text-brand-primary">2%</span>
+                        <span className="text-6xl font-bold text-brand-primary">2%</span>
                         <span className="text-brand-muted font-bold">per transaction</span>
                     </div>
 
@@ -55,7 +55,7 @@ export default function PricingPage() {
                         ))}
                     </div>
 
-                    <Link href="/register" className="btn-primary py-6 px-12 text-xl font-black bg-[#914D00] shadow-2xl shadow-brand-primary/20 inline-flex items-center gap-3">
+                    <Link href="/register" className="btn-primary py-6 px-12 text-xl font-bold bg-[#914D00] shadow-2xl shadow-brand-primary/20 inline-flex items-center gap-3">
                         Start Creating Now <Zap size={24} />
                     </Link>
                 </div>
@@ -70,11 +70,11 @@ export default function PricingPage() {
 
         {/* Enterprise */}
         <div className="mt-24 text-center">
-            <h3 className="text-2xl font-black mb-4 tracking-tight">Large scale creator?</h3>
+            <h3 className="text-2xl font-bold mb-4 tracking-tight">Large scale creator?</h3>
             <p className="text-brand-muted font-medium mb-8 leading-relaxed max-w-xl mx-auto">
                 If you process over KES 1M per month, we offer custom enterprise rates and dedicated account management.
             </p>
-            <Link href="/contact" className="text-brand-primary font-black uppercase tracking-widest text-xs hover:underline">Talk to our Sales Team</Link>
+            <Link href="/contact" className="text-brand-primary font-bold uppercase tracking-widest text-xs hover:underline">Talk to our Sales Team</Link>
         </div>
       </main>
 

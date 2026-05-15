@@ -58,7 +58,7 @@ export default function Register() {
             <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center text-brand-secondary mb-12 shadow-xl">
               <CheckCircle2 size={48} strokeWidth={1.5} />
             </div>
-            <h2 className="text-4xl font-black mb-8 leading-tight tracking-tight text-[#0C0C0C]">
+            <h2 className="text-4xl font-bold mb-8 leading-tight tracking-tight text-[#0C0C0C]">
               "Joining Nexora Chai is the smartest financial decision I made this year."
             </h2>
             <div className="flex items-center gap-4">
@@ -73,7 +73,7 @@ export default function Register() {
           </div>
         </div>
 
-        <div className="relative z-10 text-[10px] font-black text-brand-muted uppercase tracking-widest opacity-50">
+        <div className="relative z-10 text-[10px] font-bold text-brand-muted uppercase tracking-widest opacity-50">
           Securely powered by Nexora Creative Solutions Infrastructure.
         </div>
       </div>
@@ -82,13 +82,13 @@ export default function Register() {
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-brand-beige-light md:bg-white">
         <div className="max-w-md w-full">
           <div className="mb-12">
-            <h1 className="text-4xl font-black mb-3 tracking-tight">Claim Your Space</h1>
+            <h1 className="text-4xl font-bold mb-3 tracking-tight">Claim Your Space</h1>
             <p className="text-brand-muted font-medium">Your Nexora ID connects you to ParsePesa API, Nexora Menu and Nexora POS too.</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="text-xs font-black text-brand-muted uppercase tracking-widest mb-2 block ml-1">Phone Number (M-Pesa)</label>
+              <label className="text-xs font-bold text-brand-muted uppercase tracking-widest mb-2 block ml-1">Phone Number (M-Pesa)</label>
               <input
                 type="tel"
                 required
@@ -100,7 +100,7 @@ export default function Register() {
             </div>
 
             <div>
-              <label className="text-xs font-black text-brand-muted uppercase tracking-widest mb-2 block ml-1">Email Address</label>
+              <label className="text-xs font-bold text-brand-muted uppercase tracking-widest mb-2 block ml-1">Email Address</label>
               <input
                 type="email"
                 required
@@ -112,7 +112,7 @@ export default function Register() {
             </div>
 
             <div className="relative">
-              <label className="text-xs font-black text-brand-muted uppercase tracking-widest mb-2 block ml-1">Password</label>
+              <label className="text-xs font-bold text-brand-muted uppercase tracking-widest mb-2 block ml-1">Password</label>
               <input
                 type={showPassword ? "text" : "password"}
                 required
@@ -132,7 +132,7 @@ export default function Register() {
 
             <button
               disabled={loading}
-              className="w-full btn-primary py-5 text-lg font-black bg-[#914D00] shadow-xl shadow-brand-primary/20 flex items-center justify-center gap-3 disabled:opacity-50"
+              className="w-full btn-primary py-5 text-lg font-bold bg-[#914D00] shadow-xl shadow-brand-primary/20 flex items-center justify-center gap-3 disabled:opacity-50"
             >
               {loading ? "Creating..." : "Create My Creator Account"} <ArrowRight size={20} />
             </button>

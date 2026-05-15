@@ -97,7 +97,7 @@ export default function Dashboard() {
                         <div className="lg:col-span-2 bg-[#0C0C0C] rounded-[2.5rem] p-8 text-white relative overflow-hidden flex flex-col justify-between min-h-[280px] shadow-2xl">
                             <div className="relative z-10">
                                 <p className="text-white/60 text-[10px] md:text-xs font-bold uppercase tracking-widest mb-2 md:mb-4">Available M-Pesa Balance</p>
-                                <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight mb-4">KES {(data.wallet?.balance || 0).toLocaleString()}.00</h1>
+                                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">KES {(data.wallet?.balance || 0).toLocaleString()}.00</h1>
                                 <div className="flex items-center gap-2 text-brand-secondary font-bold text-xs md:text-sm">
                                     <TrendingUp size={16} />
                                     <span>Total Earnings: KES {(data.totalEarnings || 0).toLocaleString()}</span>
@@ -105,7 +105,7 @@ export default function Dashboard() {
                             </div>
 
                             <div className="relative z-10 flex justify-start">
-                                <Link href="/dashboard/earnings" className="bg-[#00E676] text-black px-6 py-4 rounded-xl font-black text-xs uppercase tracking-widest flex items-center gap-2 hover:bg-[#00C853] transition-colors shadow-lg shadow-[#00E676]/20">
+                                <Link href="/dashboard/earnings" className="bg-[#00E676] text-black px-6 py-4 rounded-xl font-bold text-xs uppercase tracking-widest flex items-center gap-2 hover:bg-[#00C853] transition-colors shadow-lg shadow-[#00E676]/20">
                                     <Wallet size={16} /> Withdraw to M-Pesa
                                 </Link>
                             </div>
@@ -128,7 +128,7 @@ export default function Dashboard() {
                                     <p className="text-[10px] font-bold text-brand-muted uppercase">Via Paystack</p>
                                 </div>
                             </div>
-                            <h2 className="text-4xl font-black tracking-tight mb-8">KES {(data.paystackTotal || 0).toLocaleString()}.00</h2>
+                            <h2 className="text-4xl font-bold tracking-tight mb-8">KES {(data.paystackTotal || 0).toLocaleString()}.00</h2>
                             <Link href="/dashboard/earnings" className="w-full border border-black/10 py-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 hover:bg-black/[0.02] transition-colors mt-auto">
                                 Manage Payouts <ArrowRight size={16} />
                             </Link>
@@ -139,8 +139,8 @@ export default function Dashboard() {
                         {/* Recent Support */}
                         <div className="lg:col-span-2 bg-white rounded-[2.5rem] p-8 card-shadow border border-black/[0.02]">
                             <div className="flex items-center justify-between mb-8">
-                                <h2 className="text-xl font-black tracking-tight">Recent Support</h2>
-                                <Link href="/dashboard/earnings" className="text-brand-primary text-xs font-black uppercase tracking-widest hover:underline">View All</Link>
+                                <h2 className="text-xl font-bold tracking-tight">Recent Support</h2>
+                                <Link href="/dashboard/earnings" className="text-brand-primary text-xs font-bold uppercase tracking-widest hover:underline">View All</Link>
                             </div>
                             <div className="space-y-6">
                                 {data.transactions
@@ -149,16 +149,16 @@ export default function Dashboard() {
                                     .map((t: any) => (
                                         <div key={t.id} className="flex items-center justify-between p-2">
                                             <div className="flex items-center gap-4">
-                                                <div className="w-12 h-12 rounded-full overflow-hidden bg-brand-beige-light flex items-center justify-center font-black text-brand-primary uppercase">
+                                                <div className="w-12 h-12 rounded-full overflow-hidden bg-brand-beige-light flex items-center justify-center font-bold text-brand-primary uppercase">
                                                     {t.fanName?.[0] || 'A'}
                                                 </div>
                                                 <div>
                                                     <p className="font-bold text-sm tracking-tight">{t.fanName || 'A Supporter'} ☕</p>
-                                                    <p className="text-[10px] font-black text-brand-muted uppercase tracking-widest">Buy me a Chai</p>
+                                                    <p className="text-[10px] font-bold text-brand-muted uppercase tracking-widest">Buy me a Chai</p>
                                                 </div>
                                             </div>
                                             <div className="text-right shrink-0 ml-4">
-                                                <p className="font-black text-brand-secondary text-sm md:text-base">KES {t.netAmount.toLocaleString()}</p>
+                                                <p className="font-bold text-brand-secondary text-sm md:text-base">KES {t.netAmount.toLocaleString()}</p>
                                                 <p className="text-[10px] font-bold text-brand-muted opacity-50 uppercase tracking-widest">
                                                     {new Date(t.createdAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })} • {new Date(t.createdAt).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}
                                                 </p>
@@ -174,7 +174,7 @@ export default function Dashboard() {
                         {/* Referral/Action Card */}
                         <div className="bg-brand-primary rounded-[2.5rem] p-8 text-white card-shadow flex flex-col justify-between bg-[#914D00] min-h-[450px]">
                             <div>
-                                <h3 className="text-xl font-black tracking-tight mb-4">Share your page</h3>
+                                <h3 className="text-xl font-bold tracking-tight mb-4">Share your page</h3>
                                 <p className="text-white/80 text-sm leading-relaxed mb-8">Let your fans know they can support your work directly via M-Pesa.</p>
 
                                 <div className="bg-black/20 rounded-xl p-4 flex items-center justify-between border border-white/10 mb-8">
@@ -211,7 +211,7 @@ export default function Dashboard() {
                                     link.click();
                                     addToast("Downloading QR Code...", "info");
                                 }}
-                                className="w-full bg-white text-brand-primary py-4 rounded-xl font-black text-xs uppercase tracking-widest hover:scale-[1.02] transition-transform shadow-xl shadow-black/10"
+                                className="w-full bg-white text-brand-primary py-4 rounded-xl font-bold text-xs uppercase tracking-widest hover:scale-[1.02] transition-transform shadow-xl shadow-black/10"
                             >
                                 Get QR Code
                             </button>

@@ -41,7 +41,7 @@ export default function DashboardSidebar({ displayName, username, avatarUrl, isO
           <div className="w-12 h-12 bg-white rounded-2xl shadow-sm border border-black/5 flex items-center justify-center overflow-hidden p-1 group-hover:scale-105 transition-transform">
             <Image src="/logo.png" alt="Logo" width={48} height={48} className="object-contain" />
           </div>
-          <span className="text-[#1A1A1A] font-black text-xl tracking-tight">Nexora Chai</span>
+          <span className="text-[#1A1A1A] font-bold text-xl tracking-tight">Nexora Chai</span>
         </Link>
         {onClose && (
             <button onClick={onClose} className="lg:hidden text-brand-muted hover:text-black">
@@ -56,7 +56,7 @@ export default function DashboardSidebar({ displayName, username, avatarUrl, isO
           </div>
           <div className="overflow-hidden">
               <p className="font-bold text-sm tracking-tight truncate">{displayName}</p>
-              <p className="text-[10px] font-black text-brand-muted uppercase tracking-widest">Premium Tier</p>
+              <p className="text-[10px] font-bold text-brand-muted uppercase tracking-widest">Premium Tier</p>
           </div>
       </div>
 
@@ -83,7 +83,7 @@ export default function DashboardSidebar({ displayName, username, avatarUrl, isO
       <Link 
         href={`/${username}`} 
         target="_blank"
-        className="w-full btn-primary py-4 text-xs font-black uppercase tracking-widest flex items-center justify-center gap-2 bg-[#914D00] shadow-xl shadow-brand-primary/10 hover:scale-[1.02] transition-transform text-white"
+        className="w-full btn-primary py-4 text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 bg-[#914D00] shadow-xl shadow-brand-primary/10 hover:scale-[1.02] transition-transform text-white"
       >
           <Radio size={16} /> Go Live
       </Link>

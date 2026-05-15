@@ -60,7 +60,7 @@ export default function ExplorePage() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-brand-primary/5 rounded-full text-brand-primary text-xs font-black uppercase tracking-widest mb-6"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-brand-primary/5 rounded-full text-brand-primary text-xs font-bold uppercase tracking-widest mb-6"
             >
               <Sparkles size={14} /> Discover Excellence
             </motion.div>
@@ -68,7 +68,7 @@ export default function ExplorePage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-4xl md:text-6xl font-black tracking-tight mb-6"
+              className="text-4xl md:text-6xl font-bold tracking-tight mb-6"
             >
               Explore <span className="text-brand-primary">Creators</span>
             </motion.h1>
@@ -100,7 +100,7 @@ export default function ExplorePage() {
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-6 py-4 rounded-full text-xs font-black uppercase tracking-widest transition-all whitespace-nowrap ${
+                  className={`px-6 py-4 rounded-full text-xs font-bold uppercase tracking-widest transition-all whitespace-nowrap ${
                     selectedCategory === cat 
                     ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/20' 
                     : 'bg-white text-brand-muted border border-black/5 hover:border-brand-primary/20'
@@ -137,13 +137,13 @@ export default function ExplorePage() {
                           {creator.avatarUrl ? (
                             <img src={creator.avatarUrl} alt={creator.displayName} className="w-full h-full object-cover" />
                           ) : (
-                            <div className="w-full h-full flex items-center justify-center text-2xl font-black text-brand-primary">
+                            <div className="w-full h-full flex items-center justify-center text-2xl font-bold text-brand-primary">
                               {creator.displayName[0]}
                             </div>
                           )}
                         </div>
                         <div>
-                          <h3 className="font-black text-xl tracking-tight group-hover:text-brand-primary transition-colors">{creator.displayName}</h3>
+                          <h3 className="font-bold text-xl tracking-tight group-hover:text-brand-primary transition-colors">{creator.displayName}</h3>
                           <p className="text-brand-muted text-sm font-bold">@{creator.username}</p>
                         </div>
                       </div>
@@ -155,7 +155,7 @@ export default function ExplorePage() {
                       <div className="flex items-center justify-between pt-6 border-t border-black/[0.03]">
                         <div className="flex items-center gap-2 text-brand-primary">
                           <TrendingUp size={14} />
-                          <span className="text-[10px] font-black uppercase tracking-widest">{creator.views.toLocaleString()} Views</span>
+                          <span className="text-[10px] font-bold uppercase tracking-widest">{creator.views.toLocaleString()} Views</span>
                         </div>
                         <div className="flex items-center gap-1 text-brand-muted font-bold text-xs">
                           Support <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
@@ -171,7 +171,7 @@ export default function ExplorePage() {
               <div className="w-20 h-20 bg-brand-primary/5 rounded-full flex items-center justify-center mx-auto mb-6 text-brand-primary">
                 <Users size={32} />
               </div>
-              <h3 className="text-2xl font-black mb-2">No creators found</h3>
+              <h3 className="text-2xl font-bold mb-2">No creators found</h3>
               <p className="text-brand-muted font-medium">Try adjusting your search or category filters.</p>
             </div>
           )}
@@ -188,11 +188,11 @@ export default function ExplorePage() {
               <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-secondary/20 blur-[100px]" />
               
               <div className="relative z-10">
-                <h2 className="text-3xl font-black mb-6">Are you a creator?</h2>
+                <h2 className="text-3xl font-bold mb-6">Are you a creator?</h2>
                 <p className="text-white/60 font-medium mb-10 max-w-xl mx-auto">
                   Join the Nexora community and start receiving support from your fans instantly via M-Pesa or Card.
                 </p>
-                <Link href="/register" className="btn-primary py-5 px-10 inline-flex items-center gap-3 bg-brand-primary hover:bg-brand-primary/90 transition-all text-sm font-black uppercase tracking-widest rounded-2xl">
+                <Link href="/register" className="btn-primary py-5 px-10 inline-flex items-center gap-3 bg-brand-primary hover:bg-brand-primary/90 transition-all text-sm font-bold uppercase tracking-widest rounded-2xl">
                   Start My Page <ArrowRight size={18} />
                 </Link>
               </div>

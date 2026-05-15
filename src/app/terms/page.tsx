@@ -34,13 +34,13 @@ export default function TermsPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <h1 className="text-5xl font-black mb-4 tracking-tight">Terms of Service</h1>
+          <h1 className="text-5xl font-bold mb-4 tracking-tight">Terms of Service</h1>
           <p className="text-brand-muted font-bold mb-16 uppercase tracking-widest text-xs">Last Updated: May 2026</p>
 
           <div className="space-y-16">
             {sections.map((section, i) => (
               <div key={i}>
-                <h2 className="text-2xl font-black mb-6 tracking-tight text-brand-primary">{section.title}</h2>
+                <h2 className="text-2xl font-bold mb-6 tracking-tight text-brand-primary">{section.title}</h2>
                 <p className="text-lg text-brand-muted font-medium leading-relaxed">
                   {section.content}
                 </p>
@@ -49,9 +49,9 @@ export default function TermsPage() {
           </div>
 
           <div className="mt-24 p-12 bg-white rounded-[3rem] card-shadow border border-black/[0.02] text-center">
-             <h3 className="text-xl font-black mb-4 tracking-tight">Have questions?</h3>
+             <h3 className="text-xl font-bold mb-4 tracking-tight">Have questions?</h3>
              <p className="text-brand-muted font-medium mb-8">Our legal team is here to help you understand our terms.</p>
-             <Link href="mailto:legal@nexora.co.ke" className="text-brand-primary font-black uppercase tracking-widest text-xs hover:underline">Contact Legal Support</Link>
+             <Link href="mailto:legal@nexora.co.ke" className="text-brand-primary font-bold uppercase tracking-widest text-xs hover:underline">Contact Legal Support</Link>
           </div>
         </motion.div>
       </main>

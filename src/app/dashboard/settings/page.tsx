@@ -264,7 +264,7 @@ export default function SettingsPage() {
         }
     };
 
-    if (loading) return <div className="min-h-screen flex items-center justify-center bg-brand-beige-light font-black uppercase tracking-widest text-brand-muted">Loading Settings...</div>;
+    if (loading) return <div className="min-h-screen flex items-center justify-center bg-brand-beige-light font-bold uppercase tracking-widest text-brand-muted">Loading Settings...</div>;
     if (!data) return <div className="min-h-screen flex items-center justify-center bg-brand-beige-light text-brand-muted font-bold">Error loading settings</div>;
 
     return (
@@ -283,7 +283,7 @@ export default function SettingsPage() {
                     <DashboardHeader />
 
                     <header className="mb-10">
-                        <h1 className="text-3xl font-black tracking-tight mb-2">Settings</h1>
+                        <h1 className="text-3xl font-bold tracking-tight mb-2">Settings</h1>
                         <p className="text-brand-muted font-medium">Manage your creator profile and security preferences.</p>
                     </header>
 
@@ -295,7 +295,7 @@ export default function SettingsPage() {
                                     <div className="w-8 h-8 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary">
                                         <User size={18} />
                                     </div>
-                                    <h2 className="text-xl font-black tracking-tight">Public Profile</h2>
+                                    <h2 className="text-xl font-bold tracking-tight">Public Profile</h2>
                                 </div>
 
                                 <form onSubmit={handleSaveProfile} className="space-y-8">
@@ -326,19 +326,19 @@ export default function SettingsPage() {
                                         </div>
                                         <div>
                                             <h3 className="font-bold text-lg mb-1">Profile Photo</h3>
-                                            <p className="text-[10px] text-brand-muted font-black uppercase tracking-widest mb-3">Custom Upload or Generated</p>
+                                            <p className="text-[10px] text-brand-muted font-bold uppercase tracking-widest mb-3">Custom Upload or Generated</p>
                                             <div className="flex items-center gap-3">
                                                 <button
                                                     type="button"
                                                     onClick={() => document.getElementById('avatar-upload')?.click()}
-                                                    className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-brand-primary bg-brand-primary/5 px-4 py-2 rounded-full hover:bg-brand-primary/10 transition-colors"
+                                                    className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-brand-primary bg-brand-primary/5 px-4 py-2 rounded-full hover:bg-brand-primary/10 transition-colors"
                                                 >
                                                     <Camera size={12} /> Upload New
                                                 </button>
                                                 <button
                                                     type="button"
                                                     onClick={handleRefreshAvatar}
-                                                    className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-brand-muted bg-black/5 px-4 py-2 rounded-full hover:bg-black/10 transition-colors"
+                                                    className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-brand-muted bg-black/5 px-4 py-2 rounded-full hover:bg-black/10 transition-colors"
                                                 >
                                                     <RefreshCcw size={12} /> Shuffle
                                                 </button>
@@ -348,7 +348,7 @@ export default function SettingsPage() {
 
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                         <div>
-                                            <label className="text-[10px] font-black text-brand-muted uppercase tracking-widest mb-3 block ml-1">Display Name</label>
+                                            <label className="text-[10px] font-bold text-brand-muted uppercase tracking-widest mb-3 block ml-1">Display Name</label>
                                             <input
                                                 type="text"
                                                 value={displayName}
@@ -357,7 +357,7 @@ export default function SettingsPage() {
                                             />
                                         </div>
                                         <div>
-                                            <label className="text-[10px] font-black text-brand-muted uppercase tracking-widest mb-3 block ml-1">Creator Category</label>
+                                            <label className="text-[10px] font-bold text-brand-muted uppercase tracking-widest mb-3 block ml-1">Creator Category</label>
                                             <select
                                                 value={category}
                                                 onChange={(e) => setCategory(e.target.value)}
@@ -369,7 +369,7 @@ export default function SettingsPage() {
                                     </div>
 
                                     <div>
-                                        <label className="text-[10px] font-black text-brand-muted uppercase tracking-widest mb-3 block ml-1">Creator Bio</label>
+                                        <label className="text-[10px] font-bold text-brand-muted uppercase tracking-widest mb-3 block ml-1">Creator Bio</label>
                                         <textarea
                                             rows={4}
                                             value={bio}
@@ -386,7 +386,7 @@ export default function SettingsPage() {
                                         <button
                                             type="submit"
                                             disabled={saving}
-                                            className="bg-[#914D00] text-white py-5 px-12 rounded-[2rem] text-sm font-black uppercase tracking-widest flex items-center gap-3 disabled:opacity-50 hover:scale-[1.02] transition-all shadow-xl shadow-brand-primary/20"
+                                            className="bg-[#914D00] text-white py-5 px-12 rounded-[2rem] text-sm font-bold uppercase tracking-widest flex items-center gap-3 disabled:opacity-50 hover:scale-[1.02] transition-all shadow-xl shadow-brand-primary/20"
                                         >
                                             {saving ? "Saving..." : "Save Profile"} <Save size={18} />
                                         </button>
@@ -399,12 +399,12 @@ export default function SettingsPage() {
                                     <div className="w-8 h-8 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary">
                                         <LinkIcon size={18} />
                                     </div>
-                                    <h2 className="text-xl font-black tracking-tight">Social Links</h2>
+                                    <h2 className="text-xl font-bold tracking-tight">Social Links</h2>
                                 </div>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     {['Twitter', 'Instagram', 'YouTube', 'Website'].map((platform) => (
                                         <div key={platform}>
-                                            <label className="text-[10px] font-black text-brand-muted uppercase tracking-widest mb-2 block ml-1">{platform}</label>
+                                            <label className="text-[10px] font-bold text-brand-muted uppercase tracking-widest mb-2 block ml-1">{platform}</label>
                                             <input
                                                 type="text"
                                                 placeholder={`@username`}
@@ -423,7 +423,7 @@ export default function SettingsPage() {
                                     <div className="w-8 h-8 rounded-xl bg-[#00E676]/10 flex items-center justify-center text-[#00C853]">
                                         <CreditCard size={18} />
                                     </div>
-                                    <h2 className="text-lg font-black tracking-tight">Payout Settings</h2>
+                                    <h2 className="text-lg font-bold tracking-tight">Payout Settings</h2>
                                 </div>
 
                                 <div className="space-y-6">
@@ -432,12 +432,12 @@ export default function SettingsPage() {
                                             <p className="font-bold text-sm">M-Pesa Number</p>
                                             <CheckCircle2 size={16} className={mpesaNumber ? "text-green-500" : "text-brand-muted opacity-20"} />
                                         </div>
-                                        <p className="text-lg font-black text-brand-secondary mb-4">
+                                        <p className="text-lg font-bold text-brand-secondary mb-4">
                                             {mpesaNumber || '+254 --- --- ---'}
                                         </p>
                                         <button
                                             onClick={() => setShowPayoutModal(true)}
-                                            className="text-brand-primary text-[10px] font-black uppercase tracking-widest hover:underline flex items-center gap-2"
+                                            className="text-brand-primary text-[10px] font-bold uppercase tracking-widest hover:underline flex items-center gap-2"
                                         >
                                             Update Payout Account <ArrowUpRight size={12} />
                                         </button>
@@ -457,7 +457,7 @@ export default function SettingsPage() {
                                         </p>
                                         <Link
                                             href="/dashboard/setup"
-                                            className="text-brand-primary text-[10px] font-black uppercase tracking-widest hover:underline flex items-center gap-2"
+                                            className="text-brand-primary text-[10px] font-bold uppercase tracking-widest hover:underline flex items-center gap-2"
                                         >
                                             {data.profile.paystackSubaccountCode ? 'Re-sync Subaccount' : 'Connect Account'} <ChevronRight size={12} />
                                         </Link>
@@ -470,7 +470,7 @@ export default function SettingsPage() {
                                     <div className="w-8 h-8 rounded-xl bg-brand-secondary/10 flex items-center justify-center text-brand-secondary">
                                         <Shield size={18} />
                                     </div>
-                                    <h2 className="text-lg font-black tracking-tight">Security</h2>
+                                    <h2 className="text-lg font-bold tracking-tight">Security</h2>
                                 </div>
                                 <div className="space-y-2">
                                     <button
@@ -489,7 +489,7 @@ export default function SettingsPage() {
                                     >
                                         <div>
                                             <p className="font-bold text-sm group-hover:text-brand-primary transition-colors">Two-Factor Auth</p>
-                                            <p className={`text-[10px] font-black uppercase tracking-widest ${twoFactor ? 'text-green-500' : 'text-brand-muted'}`}>
+                                            <p className={`text-[10px] font-bold uppercase tracking-widest ${twoFactor ? 'text-green-500' : 'text-brand-muted'}`}>
                                                 {twoFactor ? 'Securely Enabled' : 'Not Protected'}
                                             </p>
                                         </div>
@@ -528,14 +528,14 @@ export default function SettingsPage() {
                                             <div className="w-20 h-20 bg-brand-primary/10 rounded-full flex items-center justify-center text-brand-primary mx-auto mb-8">
                                                 <Shield size={40} />
                                             </div>
-                                            <h3 className="text-2xl font-black tracking-tight mb-4">Protect Your Account</h3>
+                                            <h3 className="text-2xl font-bold tracking-tight mb-4">Protect Your Account</h3>
                                             <p className="text-brand-muted font-medium text-sm leading-relaxed mb-8">
                                                 Two-factor authentication adds an extra layer of security to your account by requiring a code from your authenticator app.
                                             </p>
                                             <button
                                                 onClick={initiate2FASetup}
                                                 disabled={setupLoading}
-                                                className="w-full bg-[#914D00] text-white py-5 rounded-2xl font-black uppercase tracking-widest shadow-xl shadow-brand-primary/20"
+                                                className="w-full bg-[#914D00] text-white py-5 rounded-2xl font-bold uppercase tracking-widest shadow-xl shadow-brand-primary/20"
                                             >
                                                 {setupLoading ? "Initializing..." : "Get Started"}
                                             </button>
@@ -544,7 +544,7 @@ export default function SettingsPage() {
 
                                     {twoFactorStep === 'setup' && (
                                         <div>
-                                            <h3 className="text-2xl font-black tracking-tight mb-2">Scan QR Code</h3>
+                                            <h3 className="text-2xl font-bold tracking-tight mb-2">Scan QR Code</h3>
                                             <p className="text-brand-muted font-medium text-sm mb-8">Scan this code with Google Authenticator or Authy.</p>
 
                                             <div className="bg-white p-4 rounded-3xl border border-black/5 shadow-inner mb-8 flex justify-center">
@@ -553,7 +553,7 @@ export default function SettingsPage() {
 
                                             <button
                                                 onClick={() => setTwoFactorStep('verify')}
-                                                className="w-full bg-black text-white py-5 rounded-2xl font-black uppercase tracking-widest"
+                                                className="w-full bg-black text-white py-5 rounded-2xl font-bold uppercase tracking-widest"
                                             >
                                                 I've Scanned It
                                             </button>
@@ -562,7 +562,7 @@ export default function SettingsPage() {
 
                                     {(twoFactorStep === 'verify' || twoFactorStep === 'disable') && (
                                         <div>
-                                            <h3 className="text-2xl font-black tracking-tight mb-2">
+                                            <h3 className="text-2xl font-bold tracking-tight mb-2">
                                                 {twoFactorStep === 'verify' ? 'Verify Setup' : 'Disable 2FA'}
                                             </h3>
                                             <p className="text-brand-muted font-medium text-sm mb-8">
@@ -575,13 +575,13 @@ export default function SettingsPage() {
                                                 value={twoFactorCode}
                                                 onChange={(e) => setTwoFactorCode(e.target.value)}
                                                 placeholder="000000"
-                                                className="w-full text-center text-4xl font-black tracking-[0.5em] py-6 border-2 border-black/5 rounded-2xl mb-8 focus:border-brand-primary outline-none transition-colors"
+                                                className="w-full text-center text-4xl font-bold tracking-[0.5em] py-6 border-2 border-black/5 rounded-2xl mb-8 focus:border-brand-primary outline-none transition-colors"
                                             />
 
                                             <button
                                                 onClick={twoFactorStep === 'verify' ? verifyAndEnable2FA : handleDisable2FA}
                                                 disabled={setupLoading || twoFactorCode.length !== 6}
-                                                className={`w-full py-5 rounded-2xl font-black uppercase tracking-widest ${twoFactorStep === 'verify' ? 'bg-[#914D00] text-white shadow-xl shadow-brand-primary/20' : 'bg-red-500 text-white shadow-xl shadow-red-500/20'} disabled:opacity-50`}
+                                                className={`w-full py-5 rounded-2xl font-bold uppercase tracking-widest ${twoFactorStep === 'verify' ? 'bg-[#914D00] text-white shadow-xl shadow-brand-primary/20' : 'bg-red-500 text-white shadow-xl shadow-red-500/20'} disabled:opacity-50`}
                                             >
                                                 {setupLoading ? "Verifying..." : twoFactorStep === 'verify' ? "Verify & Enable" : "Disable 2FA"}
                                             </button>
@@ -615,12 +615,12 @@ export default function SettingsPage() {
                                     <div className="w-16 h-16 bg-brand-primary/10 rounded-[2rem] flex items-center justify-center text-brand-primary mb-8">
                                         <Lock size={32} />
                                     </div>
-                                    <h3 className="text-2xl font-black tracking-tight mb-2">Change Password</h3>
+                                    <h3 className="text-2xl font-bold tracking-tight mb-2">Change Password</h3>
                                     <p className="text-brand-muted font-medium text-sm mb-8">Enter your current password to set a new one.</p>
 
                                     <div className="space-y-6">
                                         <div>
-                                            <label className="text-[10px] font-black text-brand-muted uppercase tracking-widest mb-3 block ml-1">Current Password</label>
+                                            <label className="text-[10px] font-bold text-brand-muted uppercase tracking-widest mb-3 block ml-1">Current Password</label>
                                             <input
                                                 type="password"
                                                 value={currentPassword}
@@ -630,7 +630,7 @@ export default function SettingsPage() {
                                             />
                                         </div>
                                         <div>
-                                            <label className="text-[10px] font-black text-brand-muted uppercase tracking-widest mb-3 block ml-1">New Password</label>
+                                            <label className="text-[10px] font-bold text-brand-muted uppercase tracking-widest mb-3 block ml-1">New Password</label>
                                             <input
                                                 type="password"
                                                 value={newPassword}
@@ -641,7 +641,7 @@ export default function SettingsPage() {
                                         </div>
                                         <button
                                             onClick={handleChangePassword}
-                                            className="w-full bg-[#914D00] text-white py-5 rounded-2xl text-sm font-black uppercase tracking-widest shadow-xl shadow-brand-primary/20 hover:scale-[1.02] transition-all"
+                                            className="w-full bg-[#914D00] text-white py-5 rounded-2xl text-sm font-bold uppercase tracking-widest shadow-xl shadow-brand-primary/20 hover:scale-[1.02] transition-all"
                                         >
                                             Update Password
                                         </button>
@@ -674,12 +674,12 @@ export default function SettingsPage() {
                                     <div className="w-16 h-16 bg-[#00E676]/10 rounded-[2rem] flex items-center justify-center text-[#00C853] mb-8">
                                         <Phone size={32} />
                                     </div>
-                                    <h3 className="text-2xl font-black tracking-tight mb-2">Update Payout Details</h3>
+                                    <h3 className="text-2xl font-bold tracking-tight mb-2">Update Payout Details</h3>
                                     <p className="text-brand-muted font-medium text-sm mb-8">Authorized personnel only. Please verify your identity.</p>
 
                                     <div className="space-y-6">
                                         <div>
-                                            <label className="text-[10px] font-black text-brand-muted uppercase tracking-widest mb-3 block ml-1">New M-Pesa Number</label>
+                                            <label className="text-[10px] font-bold text-brand-muted uppercase tracking-widest mb-3 block ml-1">New M-Pesa Number</label>
                                             <input
                                                 type="text"
                                                 value={newMpesaNumber}
@@ -689,7 +689,7 @@ export default function SettingsPage() {
                                             />
                                         </div>
                                         <div>
-                                            <label className="text-[10px] font-black text-brand-muted uppercase tracking-widest mb-3 block ml-1">Current Password</label>
+                                            <label className="text-[10px] font-bold text-brand-muted uppercase tracking-widest mb-3 block ml-1">Current Password</label>
                                             <input
                                                 type="password"
                                                 value={currentPassword}
@@ -700,7 +700,7 @@ export default function SettingsPage() {
                                         </div>
                                         <button
                                             onClick={handleUpdatePayout}
-                                            className="w-full bg-[#00C853] text-black py-5 rounded-2xl text-sm font-black uppercase tracking-widest shadow-xl shadow-[#00E676]/20 hover:scale-[1.02] transition-all"
+                                            className="w-full bg-[#00C853] text-black py-5 rounded-2xl text-sm font-bold uppercase tracking-widest shadow-xl shadow-[#00E676]/20 hover:scale-[1.02] transition-all"
                                         >
                                             Confirm Payout Number
                                         </button>

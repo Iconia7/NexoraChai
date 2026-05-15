@@ -27,9 +27,9 @@ function VerifyOTPContent() {
   if (!email) {
     return (
       <div className="text-center w-full max-w-sm mx-auto">
-        <h1 className="text-2xl font-black mb-4">Invalid Session</h1>
+        <h1 className="text-2xl font-bold mb-4">Invalid Session</h1>
         <p className="text-brand-muted mb-8">Please start the registration process again.</p>
-        <Link href="/register" className="w-full bg-black text-white py-4 rounded-2xl inline-block font-black uppercase text-xs tracking-widest transition-transform hover:scale-[1.02]">Back to Register</Link>
+        <Link href="/register" className="w-full bg-black text-white py-4 rounded-2xl inline-block font-bold uppercase text-xs tracking-widest transition-transform hover:scale-[1.02]">Back to Register</Link>
       </div>
     );
   }
@@ -83,7 +83,7 @@ function VerifyOTPContent() {
           className="w-full"
         >
           <div className="mb-10">
-            <h1 className="text-4xl font-black mb-3 tracking-tight">Verify Identity</h1>
+            <h1 className="text-4xl font-bold mb-3 tracking-tight">Verify Identity</h1>
             <p className="text-brand-muted font-medium">We've sent a 6-digit code to your phone. Enter it below to activate your account.</p>
             <div className="mt-4 inline-flex items-center gap-2 bg-brand-beige-light px-4 py-2 rounded-full border border-black/5">
                 <div className="w-2 h-2 bg-brand-secondary rounded-full animate-pulse" />
@@ -93,7 +93,7 @@ function VerifyOTPContent() {
 
           <form onSubmit={handleSubmit} className="space-y-8">
             <div>
-              <label className="text-xs font-black text-brand-muted uppercase tracking-widest mb-4 block ml-1">Verification Code</label>
+              <label className="text-xs font-bold text-brand-muted uppercase tracking-widest mb-4 block ml-1">Verification Code</label>
               <input 
                 type="text"
                 maxLength={6}
@@ -101,13 +101,13 @@ function VerifyOTPContent() {
                 placeholder="000000"
                 value={otp}
                 onChange={(e) => setOtp(e.target.value.replace(/\D/g, ''))}
-                className="w-full bg-brand-beige-light border-none rounded-[2rem] py-8 text-center text-5xl font-black tracking-[0.5em] focus:ring-4 focus:ring-brand-primary/10 transition-all placeholder:text-brand-muted/10 shadow-inner"
+                className="w-full bg-brand-beige-light border-none rounded-[2rem] py-8 text-center text-5xl font-bold tracking-[0.5em] focus:ring-4 focus:ring-brand-primary/10 transition-all placeholder:text-brand-muted/10 shadow-inner"
               />
             </div>
 
             <button 
               disabled={loading || otp.length < 6}
-              className="w-full btn-primary py-6 text-lg font-black bg-[#914D00] shadow-xl shadow-brand-primary/20 disabled:opacity-50 flex items-center justify-center gap-2 transition-all hover:scale-[1.02]"
+              className="w-full btn-primary py-6 text-lg font-bold bg-[#914D00] shadow-xl shadow-brand-primary/20 disabled:opacity-50 flex items-center justify-center gap-2 transition-all hover:scale-[1.02]"
             >
               {loading ? <Loader2 size={24} className="animate-spin" /> : "Verify & Continue"}
             </button>
@@ -119,7 +119,7 @@ function VerifyOTPContent() {
                         animate={{ opacity: 1, height: 'auto' }}
                         className="space-y-2"
                     >
-                        <label className="text-[10px] font-black text-brand-muted uppercase tracking-widest block ml-1">Update Phone Number</label>
+                        <label className="text-[10px] font-bold text-brand-muted uppercase tracking-widest block ml-1">Update Phone Number</label>
                         <input 
                             type="tel"
                             placeholder="+254 700 000 000"
@@ -134,7 +134,7 @@ function VerifyOTPContent() {
                   type="button"
                   disabled={resending}
                   onClick={showPhoneInput ? handleResend : () => setShowPhoneInput(true)}
-                  className="w-full text-center text-[10px] font-black text-brand-muted uppercase tracking-[0.2em] hover:text-black transition-colors flex items-center justify-center gap-2"
+                  className="w-full text-center text-[10px] font-bold text-brand-muted uppercase tracking-[0.2em] hover:text-black transition-colors flex items-center justify-center gap-2"
                 >
                   {resending ? <Loader2 size={12} className="animate-spin" /> : (showPhoneInput ? "Send to this number" : "Didn't receive a code? Update number")}
                 </button>
@@ -151,7 +151,7 @@ function VerifyOTPContent() {
           <div className="w-24 h-24 bg-brand-secondary/10 text-brand-secondary rounded-full flex items-center justify-center mx-auto mb-8">
             <CheckCircle2 size={48} />
           </div>
-          <h2 className="text-3xl font-black mb-4 tracking-tight">Verified!</h2>
+          <h2 className="text-3xl font-bold mb-4 tracking-tight">Verified!</h2>
           <p className="text-brand-muted font-medium mb-10 leading-relaxed">Your Nexora Chai account is now active. Redirecting you to login...</p>
           <div className="w-full h-1.5 bg-black/5 rounded-full overflow-hidden">
             <motion.div 
@@ -186,7 +186,7 @@ export default function Verify() {
                         <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center text-brand-secondary mb-12 shadow-xl border border-white">
                             <Smartphone size={48} strokeWidth={1.5} />
                         </div>
-                        <h2 className="text-4xl font-black mb-8 leading-tight tracking-tight">
+                        <h2 className="text-4xl font-bold mb-8 leading-tight tracking-tight">
                             One last step to <br /><span className="text-brand-secondary">activate your journey.</span>
                         </h2>
                         <div className="bg-brand-beige-light p-8 rounded-[2.5rem] border border-black/[0.03] card-shadow">
@@ -206,7 +206,7 @@ export default function Verify() {
                     </div>
                 </div>
 
-                <div className="relative z-10 text-[10px] font-black text-brand-muted uppercase tracking-widest opacity-50">
+                <div className="relative z-10 text-[10px] font-bold text-brand-muted uppercase tracking-widest opacity-50">
                     Global Verification Engine by AfricasTalking.
                 </div>
             </div>
@@ -214,7 +214,7 @@ export default function Verify() {
             {/* Right Panel - Form */}
             <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
                 <div className="max-w-md w-full">
-                    <Suspense fallback={<div className="font-black uppercase tracking-widest text-brand-muted">Loading verification...</div>}>
+                    <Suspense fallback={<div className="font-bold uppercase tracking-widest text-brand-muted">Loading verification...</div>}>
                         <VerifyOTPContent />
                     </Suspense>
                 </div>

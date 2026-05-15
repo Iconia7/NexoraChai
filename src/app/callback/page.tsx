@@ -55,13 +55,13 @@ function CallbackContent() {
             <div className="min-h-screen flex items-center justify-center bg-white p-8">
                 <div className="max-w-md w-full text-center">
                     <div className="w-20 h-20 bg-red-50 rounded-3xl flex items-center justify-center mx-auto mb-8">
-                        <div className="w-10 h-10 text-red-500 text-4xl font-black">!</div>
+                        <div className="w-10 h-10 text-red-500 text-4xl font-bold">!</div>
                     </div>
-                    <h1 className="text-3xl font-black mb-4">Auth Error</h1>
+                    <h1 className="text-3xl font-bold mb-4">Auth Error</h1>
                     <p className="text-brand-muted font-bold mb-8">{error}</p>
                     <button 
                         onClick={() => router.push('/login')}
-                        className="btn-primary py-4 px-8 font-black bg-black"
+                        className="btn-primary py-4 px-8 font-bold bg-black"
                     >
                         Back to Login
                     </button>
@@ -77,7 +77,7 @@ function CallbackContent() {
                 <div className="absolute inset-0 border-8 border-brand-primary rounded-full border-t-transparent animate-spin" />
             </div>
             <div className="text-center">
-                <h2 className="text-2xl font-black tracking-tight mb-2">Syncing Identity</h2>
+                <h2 className="text-2xl font-bold tracking-tight mb-2">Syncing Identity</h2>
                 <p className="text-brand-muted font-bold animate-pulse">Establishing secure Nexora handshake...</p>
             </div>
         </div>

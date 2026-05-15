@@ -48,7 +48,7 @@ export default function ForgotPassword() {
             <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center text-brand-primary mb-12 shadow-xl">
               <ShieldQuestion size={48} strokeWidth={1.5} />
             </div>
-            <h2 className="text-4xl font-black mb-8 leading-tight tracking-tight text-brand-primary">
+            <h2 className="text-4xl font-bold mb-8 leading-tight tracking-tight text-brand-primary">
               Your security is our priority. Recover your account safely.
             </h2>
             <div className="bg-white/50 backdrop-blur-md p-8 rounded-[2.5rem] border border-white/40 shadow-sm">
@@ -56,19 +56,19 @@ export default function ForgotPassword() {
                     "The recovery process was seamless. I was back on my dashboard in less than 2 minutes."
                 </p>
                 <div className="flex items-center gap-3 mt-6">
-                    <div className="w-10 h-10 rounded-full bg-brand-primary/10 flex items-center justify-center text-brand-primary font-black text-xs uppercase">
+                    <div className="w-10 h-10 rounded-full bg-brand-primary/10 flex items-center justify-center text-brand-primary font-bold text-xs uppercase">
                         JM
                     </div>
                     <div>
                         <p className="font-bold text-xs">James Mwangi</p>
-                        <p className="text-[10px] text-brand-muted font-black uppercase">verified creator</p>
+                        <p className="text-[10px] text-brand-muted font-bold uppercase">verified creator</p>
                     </div>
                 </div>
             </div>
           </div>
         </div>
 
-        <div className="relative z-10 text-[10px] font-black text-brand-muted uppercase tracking-widest opacity-50">
+        <div className="relative z-10 text-[10px] font-bold text-brand-muted uppercase tracking-widest opacity-50">
           Global Security Infrastructure by ParsePesa.
         </div>
       </div>
@@ -89,13 +89,13 @@ export default function ForgotPassword() {
                 exit={{ opacity: 0, y: -20 }}
               >
                 <div className="mb-10">
-                  <h1 className="text-4xl font-black mb-3 tracking-tight">Forgot Password?</h1>
+                  <h1 className="text-4xl font-bold mb-3 tracking-tight">Forgot Password?</h1>
                   <p className="text-brand-muted font-medium">No worries! Enter your email and we'll send you a reset link.</p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label className="text-xs font-black text-brand-muted uppercase tracking-widest mb-2 block ml-1">Email Address</label>
+                    <label className="text-xs font-bold text-brand-muted uppercase tracking-widest mb-2 block ml-1">Email Address</label>
                     <div className="relative">
                       <Mail className="absolute left-5 top-1/2 -translate-y-1/2 text-brand-muted/40" size={20} />
                       <input 
@@ -111,7 +111,7 @@ export default function ForgotPassword() {
 
                   <button 
                     disabled={loading}
-                    className="w-full btn-primary py-5 text-lg font-black bg-[#914D00] shadow-xl shadow-brand-primary/20 disabled:opacity-50 flex items-center justify-center gap-2 transition-all hover:scale-[1.02]"
+                    className="w-full btn-primary py-5 text-lg font-bold bg-[#914D00] shadow-xl shadow-brand-primary/20 disabled:opacity-50 flex items-center justify-center gap-2 transition-all hover:scale-[1.02]"
                   >
                     {loading ? <Loader2 size={20} className="animate-spin" /> : "Send Reset Link"}
                   </button>
@@ -127,11 +127,11 @@ export default function ForgotPassword() {
                 <div className="w-20 h-20 bg-brand-secondary/10 text-brand-secondary rounded-full flex items-center justify-center mx-auto mb-6">
                   <CheckCircle2 size={40} />
                 </div>
-                <h2 className="text-2xl font-black mb-3 tracking-tight">Check your email</h2>
+                <h2 className="text-2xl font-bold mb-3 tracking-tight">Check your email</h2>
                 <p className="text-brand-muted font-medium mb-8 leading-relaxed">We've sent a password reset link to <br /><span className="text-black font-bold">{email}</span>.</p>
                 <button 
                   onClick={() => setSubmitted(false)}
-                  className="text-brand-primary font-black uppercase tracking-widest text-[10px] hover:underline"
+                  className="text-brand-primary font-bold uppercase tracking-widest text-[10px] hover:underline"
                 >
                   Didn't receive it? Try again
                 </button>
