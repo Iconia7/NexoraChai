@@ -94,6 +94,13 @@ export default function SettingsPage() {
     const [paystackSubaccountCode, setPaystackSubaccountCode] = useState('');
     // ──────────────────────────────────────────────────────────────────
 
+    // Social Links State
+    const [twitter, setTwitter] = useState('');
+    const [instagram, setInstagram] = useState('');
+    const [youtube, setYoutube] = useState('');
+    const [website, setWebsite] = useState('');
+    const [savingSocials, setSavingSocials] = useState(false);
+
     const categories = [
         'Digital Artist', 'Software Developer', 'Content Creator',
         'Musician', 'Writer', 'Podcaster', 'Video Producer', 'Gaming'
@@ -125,6 +132,16 @@ export default function SettingsPage() {
                 setPayoutBankName(res.data.profile?.payoutBankName || '');
                 setPayoutAccountNumber(res.data.profile?.payoutAccountNumber || '');
                 setPaystackSubaccountCode(res.data.profile?.paystackSubaccountCode || '');
+                // Restore social links
+                try {
+                    const links = res.data.profile?.socialLinks ? JSON.parse(res.data.profile.socialLinks) : {};
+                    setTwitter(links.twitter || '');
+                    setInstagram(links.instagram || '');
+                    setYoutube(links.youtube || '');
+                    setWebsite(links.website || '');
+                } catch {
+                    // fail silently
+                }
             } catch (err: any) {
                 addToast("Error loading settings. Please try again.", "error");
             } finally {
@@ -251,6 +268,26 @@ export default function SettingsPage() {
             addToast(err.response?.data?.error || "Failed to update profile", "error");
         } finally {
             setSaving(false);
+        }
+    };
+
+    const handleSaveSocials = async () => {
+        setSavingSocials(true);
+        try {
+            await axios.patch(`${BACKEND_URL}/api/creators/profile`, {
+                displayName,
+                bio,
+                category,
+                avatarUrl,
+                socialLinks: JSON.stringify({ twitter, instagram, youtube, website })
+            }, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            addToast("Social links updated successfully", "success");
+        } catch (err: any) {
+            addToast(err.response?.data?.error || "Failed to update social links", "error");
+        } finally {
+            setSavingSocials(false);
         }
     };
 
@@ -580,12 +617,60 @@ export default function SettingsPage() {
                                     <h2 className="text-xl font-bold tracking-tight">Social Links</h2>
                                 </div>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    {['Twitter', 'Instagram', 'YouTube', 'Website'].map((platform) => (
-                                        <div key={platform}>
-                                            <label className="text-[10px] font-bold text-brand-muted uppercase tracking-widest mb-2 block ml-1">{platform}</label>
-                                            <input type="text" placeholder={`@username`} className="input-base py-3 font-medium text-sm" />
-                                        </div>
-                                    ))}
+                                    <div>
+                                        <label className="text-[10px] font-bold text-brand-muted uppercase tracking-widest mb-2 block ml-1">Twitter / X</label>
+                                        <input 
+                                            type="text" 
+                                            placeholder="username" 
+                                            value={twitter} 
+                                            onChange={(e) => setTwitter(e.target.value)} 
+                                            className="input-base py-3 font-medium text-sm" 
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="text-[10px] font-bold text-brand-muted uppercase tracking-widest mb-2 block ml-1">Instagram</label>
+                                        <input 
+                                            type="text" 
+                                            placeholder="username" 
+                                            value={instagram} 
+                                            onChange={(e) => setInstagram(e.target.value)} 
+                                            className="input-base py-3 font-medium text-sm" 
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="text-[10px] font-bold text-brand-muted uppercase tracking-widest mb-2 block ml-1">YouTube</label>
+                                        <input 
+                                            type="text" 
+                                            placeholder="channel" 
+                                            value={youtube} 
+                                            onChange={(e) => setYoutube(e.target.value)} 
+                                            className="input-base py-3 font-medium text-sm" 
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="text-[10px] font-bold text-brand-muted uppercase tracking-widest mb-2 block ml-1">Website</label>
+                                        <input 
+                                            type="text" 
+                                            placeholder="https://example.com" 
+                                            value={website} 
+                                            onChange={(e) => setWebsite(e.target.value)} 
+                                            className="input-base py-3 font-medium text-sm" 
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="flex items-center justify-between pt-6 mt-8 border-t border-black/5">
+                                    <p className="text-[10px] font-bold text-brand-muted leading-relaxed max-w-[250px]">
+                                        Social links will be shown as clickable icons on your public profile page.
+                                    </p>
+                                    <button 
+                                        type="button" 
+                                        onClick={handleSaveSocials} 
+                                        disabled={savingSocials} 
+                                        className="bg-[#914D00] text-white py-4 px-10 rounded-[2rem] text-xs font-bold uppercase tracking-widest flex items-center gap-3 disabled:opacity-50 hover:scale-[1.02] transition-all shadow-xl shadow-brand-primary/20"
+                                    >
+                                        {savingSocials ? "Saving..." : "Save Socials"} <Save size={14} />
+                                    </button>
                                 </div>
                             </section>
                         </div>

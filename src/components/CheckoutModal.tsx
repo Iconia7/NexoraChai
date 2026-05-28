@@ -21,9 +21,10 @@ interface CheckoutModalProps {
     message: string;
     fanName?: string;
     onSuccess?: () => void;
+    source?: string;
 }
 
-export default function CheckoutModal({ isOpen, onClose, creator, amount, message, fanName, onSuccess }: CheckoutModalProps) {
+export default function CheckoutModal({ isOpen, onClose, creator, amount, message, fanName, onSuccess, source }: CheckoutModalProps) {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [email, setEmail] = useState('');
     const [loading, setLoading] = useState(false);
@@ -99,7 +100,8 @@ export default function CheckoutModal({ isOpen, onClose, creator, amount, messag
                 phoneNumber,
                 email,
                 fanName: fanName || 'A Supporter',
-                fanMessage: message
+                fanMessage: message,
+                source: source || 'Direct Link'
             });
 
             addToast(res.data.customerMessage || "Check your phone for the M-Pesa prompt", 'info');
@@ -124,7 +126,8 @@ export default function CheckoutModal({ isOpen, onClose, creator, amount, messag
                 amount,
                 email,
                 fanName: fanName || 'A Supporter',
-                fanMessage: message
+                fanMessage: message,
+                source: source || 'Direct Link'
             });
 
             const { reference, subaccount } = res.data;

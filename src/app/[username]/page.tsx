@@ -23,6 +23,7 @@ export default function CreatorPage() {
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [trafficSource, setTrafficSource] = useState('Direct Link');
   const addToast = useToastStore((state) => state.addToast);
 
   const basePrice = 100;
@@ -43,6 +44,35 @@ export default function CreatorPage() {
       }
     };
     fetchCreator();
+
+    // Detect traffic source
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      const querySource = urlParams.get('source') || urlParams.get('ref');
+      const referrer = document.referrer ? document.referrer.toLowerCase() : '';
+
+      let source = 'Direct Link';
+
+      if (querySource) {
+        const qs = querySource.toLowerCase();
+        if (qs === 'twitter' || qs === 'x') source = 'Twitter / X';
+        else if (qs === 'instagram') source = 'Instagram';
+        else if (qs === 'youtube') source = 'YouTube';
+        else if (qs === 'facebook') source = 'Facebook';
+        else source = querySource;
+      } else if (referrer) {
+        if (referrer.includes('t.co') || referrer.includes('twitter.com') || referrer.includes('x.com')) {
+          source = 'Twitter / X';
+        } else if (referrer.includes('instagram.com')) {
+          source = 'Instagram';
+        } else if (referrer.includes('youtube.com')) {
+          source = 'YouTube';
+        } else if (referrer.includes('facebook.com') || referrer.includes('fb.com')) {
+          source = 'Facebook';
+        }
+      }
+      setTrafficSource(source);
+    }
   }, [username]);
 
   const handleSupportClick = () => {
@@ -84,6 +114,7 @@ export default function CreatorPage() {
         amount={finalAmount}
         message={message}
         fanName={fanName}
+        source={trafficSource}
       />
 
       <main className="pb-32">
@@ -130,6 +161,67 @@ export default function CreatorPage() {
                  <p className="text-brand-muted font-medium text-lg leading-relaxed">
                     {creator.bio || `Supporting ${creator.displayName}'s creative journey on Nexora Chai.`}
                  </p>
+                 
+                 {/* Clickable Social Media Links */}
+                 {(() => {
+                    let socials: any = {};
+                    if (creator?.socialLinks) {
+                      try {
+                        socials = JSON.parse(creator.socialLinks);
+                      } catch (e) {
+                        console.error('Failed to parse socials JSON', e);
+                      }
+                    }
+                    if (!Object.keys(socials).some(key => socials[key])) return null;
+                    return (
+                      <div className="flex items-center justify-center gap-4 mt-6">
+                        {socials.twitter && (
+                          <a
+                            href={`https://x.com/${socials.twitter.replace('@', '')}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-10 h-10 rounded-full bg-white shadow-md border border-black/5 flex items-center justify-center text-brand-muted hover:text-blue-400 hover:scale-110 hover:shadow-lg transition-all"
+                            title="Twitter / X"
+                          >
+                            <TwitterIcon size={18} />
+                          </a>
+                        )}
+                        {socials.instagram && (
+                          <a
+                            href={`https://instagram.com/${socials.instagram.replace('@', '')}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-10 h-10 rounded-full bg-white shadow-md border border-black/5 flex items-center justify-center text-brand-muted hover:text-pink-500 hover:scale-110 hover:shadow-lg transition-all"
+                            title="Instagram"
+                          >
+                            <InstagramIcon size={18} />
+                          </a>
+                        )}
+                        {socials.youtube && (
+                          <a
+                            href={socials.youtube.startsWith('http') ? socials.youtube : `https://youtube.com/${socials.youtube.startsWith('@') ? socials.youtube : '@' + socials.youtube}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-10 h-10 rounded-full bg-white shadow-md border border-black/5 flex items-center justify-center text-brand-muted hover:text-red-500 hover:scale-110 hover:shadow-lg transition-all"
+                            title="YouTube"
+                          >
+                            <YoutubeIcon size={18} />
+                          </a>
+                        )}
+                        {socials.website && (
+                          <a
+                            href={socials.website.startsWith('http') ? socials.website : `https://${socials.website}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-10 h-10 rounded-full bg-white shadow-md border border-black/5 flex items-center justify-center text-brand-muted hover:text-brand-primary hover:scale-110 hover:shadow-lg transition-all"
+                            title="Website"
+                          >
+                            <Globe size={18} />
+                          </a>
+                        )}
+                      </div>
+                    );
+                 })()}
               </div>
            </div>
 
@@ -228,5 +320,32 @@ export default function CreatorPage() {
 
       <PublicFooter />
     </div>
+  );
+}
+
+function TwitterIcon({ size = 18 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+    </svg>
+  );
+}
+
+function InstagramIcon({ size = 18 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+    </svg>
+  );
+}
+
+function YoutubeIcon({ size = 18 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17z" />
+      <polygon points="10 15 15 12 10 9" />
+    </svg>
   );
 }
