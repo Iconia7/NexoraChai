@@ -1,17 +1,57 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Shield, Zap, Globe, ArrowRight, Terminal, CheckCircle2 } from 'lucide-react';
 import Image from 'next/image';
 import Script from 'next/script';
+import axios from 'axios';
 
 import PublicNavbar from '@/components/PublicNavbar';
 import PublicFooter from '@/components/PublicFooter';
 
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:4000';
+
 export default function Landing() {
   const [devTab, setDevTab] = useState<'react' | 'flutter' | 'script'>('react');
+  const [claimUsername, setClaimUsername] = useState('');
+  const [isAvailable, setIsAvailable] = useState<boolean | null>(null);
+  const [checking, setChecking] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (claimUsername.length < 3) {
+      setIsAvailable(null);
+      return;
+    }
+
+    const timer = setTimeout(async () => {
+      setChecking(true);
+      try {
+        const res = await axios.get(`${BACKEND_URL}/api/creators/check-username/${claimUsername}`);
+        setIsAvailable(res.data.available);
+      } catch (err) {
+        console.error('Check failed');
+      } finally {
+        setChecking(false);
+      }
+    }, 400);
+
+    return () => clearTimeout(timer);
+  }, [claimUsername]);
+
+  const handleClaim = () => {
+    if (claimUsername.trim()) {
+      if (typeof window !== 'undefined') {
+        sessionStorage.setItem('claimed_username', claimUsername.trim().toLowerCase());
+      }
+      router.push(`/register?username=${encodeURIComponent(claimUsername.trim().toLowerCase())}`);
+    } else {
+      router.push('/register');
+    }
+  };
 
   return (
     <div className="min-h-screen bg-brand-beige-light text-foreground overflow-x-hidden selection:bg-brand-primary/10 pt-24">
@@ -68,20 +108,48 @@ export default function Landing() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="flex flex-col md:flex-row items-center justify-center gap-0 max-w-xl mx-auto mb-16 px-4 md:px-0"
+            className="flex flex-col md:flex-row items-center justify-center gap-0 max-w-xl mx-auto mb-6 px-4 md:px-0"
           >
-            <div className="flex-1 w-full bg-white/10 backdrop-blur-md border border-white/20 rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none px-4 md:px-6 py-4 flex items-center gap-1 md:gap-2 text-white/60 font-bold text-sm md:text-lg">
-              <span className="shrink-0">chai.nexoracreatives.co.ke/</span>
+            <div className="flex-grow w-full bg-white/10 backdrop-blur-md border border-white/20 rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none px-4 md:px-6 py-4 flex items-center gap-1 md:gap-2 text-white/60 font-bold text-sm md:text-lg">
+              <span className="shrink-0 text-white/50">chai.nexoracreatives.co.ke/</span>
               <input
                 type="text"
                 placeholder="username"
-                className="bg-transparent border-none focus:outline-none w-full text-white placeholder:text-white/40"
+                value={claimUsername}
+                onChange={(e) => setClaimUsername(e.target.value.toLowerCase().replace(/[^a-z0-9_-]/g, ''))}
+                className="bg-transparent border-none focus:outline-none w-full text-white placeholder:text-white/40 font-bold"
               />
             </div>
-            <button className="w-full md:w-auto bg-brand-primary text-white px-8 py-4 rounded-b-2xl md:rounded-r-2xl md:rounded-bl-none font-black text-lg flex items-center justify-center gap-3 hover:bg-brand-primary/90 transition-all shadow-2xl shadow-brand-primary/20 whitespace-nowrap">
+            <button 
+              onClick={handleClaim}
+              className="w-full md:w-auto bg-brand-primary text-white px-8 py-4 rounded-b-2xl md:rounded-r-2xl md:rounded-bl-none font-black text-lg flex items-center justify-center gap-3 hover:bg-brand-primary/90 transition-all shadow-2xl shadow-brand-primary/20 whitespace-nowrap"
+            >
               Claim Link <ArrowRight size={20} />
             </button>
           </motion.div>
+
+          {/* Availability Feedback Badge */}
+          {claimUsername.length >= 3 && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mb-10"
+            >
+              {checking ? (
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 text-white/70 text-xs font-bold uppercase tracking-widest backdrop-blur-sm border border-white/10">
+                  Checking availability...
+                </span>
+              ) : isAvailable ? (
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-green-500/20 text-green-300 text-xs font-bold uppercase tracking-widest backdrop-blur-sm border border-green-500/30">
+                  <CheckCircle2 size={12} /> chai.nexoracreatives.co.ke/{claimUsername} is available!
+                </span>
+              ) : (
+                <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-500/20 text-red-300 text-xs font-bold uppercase tracking-widest backdrop-blur-sm border border-red-500/30">
+                  Username already taken
+                </span>
+              )}
+            </motion.div>
+          )}
 
           {/* Trust Badges */}
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 text-white/60 font-bold text-sm uppercase tracking-widest">

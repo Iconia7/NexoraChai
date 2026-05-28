@@ -38,6 +38,12 @@ export default function ExplorePage() {
       }
     };
     fetchCreators();
+
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      const q = urlParams.get('query');
+      if (q) setSearchQuery(q);
+    }
   }, []);
 
   const categories = ['All', 'Creative', 'Tech', 'Education', 'Gaming', 'Music', 'Vlog'];

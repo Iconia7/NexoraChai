@@ -13,6 +13,44 @@ export default function DashboardHeader() {
   const [notifications, setNotifications] = useState<any[]>([]);
   const [unreadCount, setUnreadCount] = useState(0);
 
+  // Search functionality states
+  const [searchQuery, setSearchQuery] = useState('');
+  const [creators, setCreators] = useState<any[]>([]);
+  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [loadingSearch, setLoadingSearch] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const fetchCreators = async () => {
+    if (creators.length > 0) return;
+    setLoadingSearch(true);
+    try {
+      const res = await axios.get(`${BACKEND_URL}/api/creators`);
+      setCreators(res.data || []);
+    } catch (err) {
+      console.error('Failed to fetch creators for search');
+    } finally {
+      setLoadingSearch(false);
+    }
+  };
+
+  useEffect(() => {
+    if (!searchQuery.trim()) {
+      setSearchResults([]);
+      return;
+    }
+    const filtered = creators.filter(c => 
+      c.displayName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      c.username.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setSearchResults(filtered.slice(0, 5));
+  }, [searchQuery, creators]);
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      window.location.href = `/explore?query=${encodeURIComponent(searchQuery)}`;
+    }
+  };
+
   useEffect(() => {
     if (!token) return;
 
@@ -52,9 +90,55 @@ export default function DashboardHeader() {
         <Search className="absolute left-5 md:left-6 top-1/2 -translate-y-1/2 text-brand-muted/40" size={16} />
         <input
           type="text"
-          placeholder="Search for anything..."
+          placeholder="Search creators..."
+          value={searchQuery}
+          onFocus={() => {
+            fetchCreators();
+            setShowDropdown(true);
+          }}
+          onBlur={() => {
+            // Delay closing so that clicks on results register
+            setTimeout(() => setShowDropdown(false), 200);
+          }}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          onKeyDown={handleKeyDown}
           className="w-full bg-white px-12 md:px-14 py-3.5 md:py-4 rounded-2xl md:rounded-full border border-black/[0.03] card-shadow font-bold text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/10 transition-all placeholder:text-brand-muted/30"
         />
+
+        {showDropdown && searchQuery.trim() && (
+          <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-2xl border border-black/5 p-4 z-50 max-h-80 overflow-y-auto no-scrollbar">
+            {loadingSearch ? (
+              <p className="text-xs font-bold text-brand-muted text-center py-4">Loading creators...</p>
+            ) : searchResults.length > 0 ? (
+              <div className="space-y-2">
+                <p className="text-[9px] font-bold text-brand-muted uppercase tracking-widest px-2 mb-2 text-left">Creators Found</p>
+                {searchResults.map((c) => (
+                  <a
+                    key={c.id}
+                    href={`/${c.username}`}
+                    className="flex items-center gap-3 p-2 rounded-xl hover:bg-brand-beige-light/50 transition-colors group"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-brand-beige overflow-hidden shrink-0 border border-black/5">
+                      {c.avatarUrl ? (
+                        <img src={c.avatarUrl} alt={c.displayName} className="w-full h-full object-cover" />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center font-bold text-brand-primary uppercase">
+                          {c.displayName[0]}
+                        </div>
+                      )}
+                    </div>
+                    <div className="text-left">
+                      <p className="text-xs font-bold text-foreground group-hover:text-brand-primary transition-colors text-left">{c.displayName}</p>
+                      <p className="text-[10px] font-bold text-brand-muted text-left">@{c.username}</p>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            ) : (
+              <p className="text-xs font-bold text-brand-muted text-center py-4">No creators match "{searchQuery}"</p>
+            )}
+          </div>
+        )}
       </div>
 
       <div className="flex items-center justify-between w-full md:w-auto order-1 md:order-2">

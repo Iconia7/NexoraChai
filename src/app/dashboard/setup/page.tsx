@@ -30,6 +30,13 @@ export default function OnboardingSetup() {
 
   useEffect(() => {
     setMounted(true);
+    if (typeof window !== 'undefined') {
+      const saved = sessionStorage.getItem('claimed_username');
+      if (saved) {
+        setUsername(saved);
+        sessionStorage.removeItem('claimed_username');
+      }
+    }
   }, []);
 
   useEffect(() => {
