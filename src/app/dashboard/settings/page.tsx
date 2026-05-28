@@ -67,6 +67,7 @@ export default function SettingsPage() {
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [twoFactor, setTwoFactor] = useState(false);
+    const [newMpesaNumber, setNewMpesaNumber] = useState('');
 
     // 2FA Setup State
     const [show2FAModal, setShow2FAModal] = useState(false);
@@ -116,6 +117,7 @@ export default function SettingsPage() {
                 setCategory(res.data.profile?.category || 'Content Creator');
                 setAvatarUrl(res.data.profile?.avatarUrl || `https://api.dicebear.com/7.x/avataaars/svg?seed=${res.data.profile?.username}`);
                 setMpesaNumber(res.data.profile?.mpesaNumber || '');
+                setNewMpesaNumber(res.data.profile?.mpesaNumber || '');
                 setTwoFactor(res.data.user?.twoFactorEnabled || false);
                 // Restore existing payout settings
                 setPayoutCountry(res.data.profile?.payoutCountry || '');
@@ -292,6 +294,31 @@ export default function SettingsPage() {
             addToast(err.response?.data?.error || "Invalid verification code", "error");
         } finally {
             setSetupLoading(false);
+        }
+    };
+
+    const handleUpdatePayout = async () => {
+        if (!currentPassword) {
+            addToast("Please enter your password to authorize this change", "error");
+            return;
+        }
+        if (!newMpesaNumber) {
+            addToast("Please enter a valid M-Pesa number", "error");
+            return;
+        }
+        try {
+            await axios.post(`${BACKEND_URL}/api/creators/payout-number`, {
+                currentPassword,
+                mpesaNumber: newMpesaNumber
+            }, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            setMpesaNumber(newMpesaNumber);
+            addToast("Payout number updated successfully", "success");
+            setShowPayoutModal(false);
+            setCurrentPassword('');
+        } catch (err: any) {
+            addToast(err.response?.data?.error || "Failed to update payout number", "error");
         }
     };
 
@@ -577,7 +604,13 @@ export default function SettingsPage() {
                                             <p className="font-bold text-sm">M-Pesa Withdrawals</p>
                                             <CheckCircle2 size={16} className={mpesaNumber ? "text-green-500" : "text-brand-muted opacity-20"} />
                                         </div>
-                                        <p className="text-xs font-bold text-brand-secondary">{mpesaNumber || 'Not configured'}</p>
+                                        <p className="text-xs font-bold text-brand-secondary mb-4">{mpesaNumber || 'Not configured'}</p>
+                                        <button
+                                            onClick={() => setShowPayoutModal(true)}
+                                            className="text-brand-primary text-[10px] font-bold uppercase tracking-widest hover:underline flex items-center gap-2"
+                                        >
+                                            Update Payout Account <ArrowUpRight size={12} />
+                                        </button>
                                     </div>
 
                                     <div className="p-5 rounded-2xl bg-brand-beige-light border border-black/5">
@@ -679,6 +712,65 @@ export default function SettingsPage() {
                                             <input type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} placeholder="••••••••" className="input-base py-4 font-bold" />
                                         </div>
                                         <button onClick={handleChangePassword} className="w-full bg-[#914D00] text-white py-5 rounded-2xl text-sm font-bold uppercase tracking-widest shadow-xl shadow-brand-primary/20 hover:scale-[1.02] transition-all">Update Password</button>
+                                    </div>
+                                </motion.div>
+                            </div>
+                        )}
+                    </AnimatePresence>
+
+                    {/* Payout Modal */}
+                    <AnimatePresence>
+                        {showPayoutModal && (
+                            <div className="fixed inset-0 z-[100] flex items-center justify-center p-6">
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    onClick={() => { setShowPayoutModal(false); setCurrentPassword(''); }}
+                                    className="absolute inset-0 bg-black/60 backdrop-blur-md"
+                                />
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                                    exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                                    className="bg-white w-full max-w-md rounded-[3rem] p-10 relative z-10 shadow-2xl"
+                                >
+                                    <button onClick={() => setShowPayoutModal(false)} className="absolute top-6 right-6 text-brand-muted hover:text-black">
+                                        <X size={24} />
+                                    </button>
+                                    <div className="w-16 h-16 bg-[#00E676]/10 rounded-[2rem] flex items-center justify-center text-[#00C853] mb-8">
+                                        <Phone size={32} />
+                                    </div>
+                                    <h3 className="text-2xl font-bold tracking-tight mb-2">Update Payout Details</h3>
+                                    <p className="text-brand-muted font-medium text-sm mb-8">Authorized personnel only. Please verify your identity.</p>
+
+                                    <div className="space-y-6">
+                                        <div>
+                                            <label className="text-[10px] font-bold text-brand-muted uppercase tracking-widest mb-3 block ml-1">New M-Pesa Number</label>
+                                            <input
+                                                type="text"
+                                                value={newMpesaNumber}
+                                                onChange={(e) => setNewMpesaNumber(e.target.value)}
+                                                placeholder="+254 --- --- ---"
+                                                className="input-base py-4 font-bold"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="text-[10px] font-bold text-brand-muted uppercase tracking-widest mb-3 block ml-1">Current Password</label>
+                                            <input
+                                                type="password"
+                                                value={currentPassword}
+                                                onChange={(e) => setCurrentPassword(e.target.value)}
+                                                placeholder="••••••••"
+                                                className="input-base py-4 font-bold"
+                                            />
+                                        </div>
+                                        <button
+                                            onClick={handleUpdatePayout}
+                                            className="w-full bg-[#00C853] text-black py-5 rounded-2xl text-sm font-bold uppercase tracking-widest shadow-xl shadow-[#00E676]/20 hover:scale-[1.02] transition-all"
+                                        >
+                                            Confirm Payout Number
+                                        </button>
                                     </div>
                                 </motion.div>
                             </div>
