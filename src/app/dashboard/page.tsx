@@ -149,12 +149,18 @@ export default function Dashboard() {
                                     .map((t: any) => (
                                         <div key={t.id} className="flex items-center justify-between p-2">
                                             <div className="flex items-center gap-4">
-                                                <div className="w-12 h-12 rounded-full overflow-hidden bg-brand-beige-light flex items-center justify-center font-bold text-brand-primary uppercase">
+                                                <div className="w-12 h-12 rounded-full overflow-hidden bg-brand-beige-light flex items-center justify-center font-bold text-brand-primary uppercase shrink-0">
                                                     {t.fanName?.[0] || 'A'}
                                                 </div>
                                                 <div>
                                                     <p className="font-bold text-sm tracking-tight">{t.fanName || 'A Supporter'} ☕</p>
-                                                    <p className="text-[10px] font-bold text-brand-muted uppercase tracking-widest">Buy me a Chai</p>
+                                                    {t.fanMessage ? (
+                                                        <p className="text-xs font-medium text-brand-muted italic mt-1 bg-brand-beige-light/50 px-3 py-1.5 rounded-xl border border-black/[0.03] inline-block">
+                                                            "{t.fanMessage}"
+                                                        </p>
+                                                    ) : (
+                                                        <p className="text-[10px] font-bold text-brand-muted uppercase tracking-widest">Buy me a Chai</p>
+                                                    )}
                                                 </div>
                                             </div>
                                             <div className="text-right shrink-0 ml-4">

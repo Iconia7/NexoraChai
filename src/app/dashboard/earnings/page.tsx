@@ -196,14 +196,20 @@ export default function EarningsPage() {
                             {data.transactions.map((t: any) => (
                                 <div key={t.id} className="flex items-center justify-between p-4 hover:bg-brand-beige-light/50 rounded-2xl transition-colors border border-transparent hover:border-black/5">
                                     <div className="flex items-center gap-4">
-                                        <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${t.type === 'WITHDRAWAL' ? 'bg-red-50 text-red-500' : 'bg-brand-beige-light text-brand-secondary'}`}>
+                                        <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 ${t.type === 'WITHDRAWAL' ? 'bg-red-50 text-red-500' : 'bg-brand-beige-light text-brand-secondary'}`}>
                                             {t.type === 'WITHDRAWAL' ? <ArrowUpRight size={20} /> : <ArrowDownLeft size={20} />}
                                         </div>
                                         <div>
                                             <p className="font-bold text-sm tracking-tight">{t.type === 'WITHDRAWAL' ? 'Withdrawal to M-Pesa' : (t.fanName || 'A Supporter') + ' ☕'}</p>
-                                            <p className="text-[10px] font-bold text-brand-muted uppercase tracking-widest">
-                                                {t.type === 'WITHDRAWAL' ? 'M-Pesa Transfer' : 'Support Chai'}
-                                            </p>
+                                            {t.type !== 'WITHDRAWAL' && t.fanMessage ? (
+                                                <p className="text-xs font-medium text-brand-muted italic mt-1 bg-brand-beige-light/50 px-3 py-1.5 rounded-xl border border-black/[0.03] inline-block">
+                                                    "{t.fanMessage}"
+                                                </p>
+                                            ) : (
+                                                <p className="text-[10px] font-bold text-brand-muted uppercase tracking-widest">
+                                                    {t.type === 'WITHDRAWAL' ? 'M-Pesa Transfer' : 'Support Chai'}
+                                                </p>
+                                            )}
                                         </div>
                                     </div>
                                     <div className="text-right">
