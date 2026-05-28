@@ -127,7 +127,7 @@ export default function CheckoutModal({ isOpen, onClose, creator, amount, messag
                 fanMessage: message
             });
 
-            const { reference, access_code, subaccount } = res.data;
+            const { reference, subaccount } = res.data;
 
             initializePayment({
                 key: process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY!,
@@ -135,7 +135,10 @@ export default function CheckoutModal({ isOpen, onClose, creator, amount, messag
                 amount: Math.round(cardTotal * 100),
                 currency: 'KES',
                 reference,
-                accessCode: access_code,
+                // NOTE: Do NOT pass accessCode here. Using access_code locks the Paystack
+                // popup to the Card channel. When user switches to Mobile Money, Paystack
+                // creates a NEW reference, breaking our polling. By passing ref directly,
+                // Paystack uses our NC-... reference for ANY payment method.
                 subaccount,
                 onSuccess: (response: any) => {
                     setStep('processing');
