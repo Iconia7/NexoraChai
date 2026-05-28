@@ -308,7 +308,7 @@ export default function SettingsPage() {
         }
     };
 
-    const isMobileMoney = payoutBankType === 'mobile_money' || payoutBankType === 'ghipss';
+    const isMobileMoney = payoutBankType?.startsWith('mobile_money') || payoutBankType === 'ghipss';
     const accountLabel = isMobileMoney ? 'Phone Number / Mobile Money Number' : 'Account Number';
     const accountPlaceholder = isMobileMoney ? 'e.g. 0712345678' : 'e.g. 0123456789';
     const canVerify = !isMobileMoney && payoutAccountNumber.length >= 8 && payoutBankCode;
@@ -454,17 +454,17 @@ export default function SettingsPage() {
                                                     {!payoutCountry ? 'Select a country first' : loadingBanks ? 'Loading...' : 'Select bank or mobile money'}
                                                 </option>
                                                 {/* Group: Mobile Money first */}
-                                                {banks.filter(b => b.type === 'mobile_money' || b.type === 'ghipss').length > 0 && (
+                                                {banks.filter(b => b.type?.startsWith('mobile_money') || b.type === 'ghipss').length > 0 && (
                                                     <optgroup label="📱 Mobile Money">
-                                                        {banks.filter(b => b.type === 'mobile_money' || b.type === 'ghipss').map(b => (
+                                                        {banks.filter(b => b.type?.startsWith('mobile_money') || b.type === 'ghipss').map(b => (
                                                             <option key={b.code} value={b.code}>{b.name}</option>
                                                         ))}
                                                     </optgroup>
                                                 )}
                                                 {/* Group: Banks */}
-                                                {banks.filter(b => b.type !== 'mobile_money' && b.type !== 'ghipss').length > 0 && (
+                                                {banks.filter(b => !b.type?.startsWith('mobile_money') && b.type !== 'ghipss').length > 0 && (
                                                     <optgroup label="🏦 Banks">
-                                                        {banks.filter(b => b.type !== 'mobile_money' && b.type !== 'ghipss').map(b => (
+                                                        {banks.filter(b => !b.type?.startsWith('mobile_money') && b.type !== 'ghipss').map(b => (
                                                             <option key={b.code} value={b.code}>{b.name}</option>
                                                         ))}
                                                     </optgroup>
