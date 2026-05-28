@@ -136,6 +136,106 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* How it Works Section */}
+      <section className="bg-white py-32 border-y border-black/[0.03]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-6">
+              How it <span className="text-brand-primary">Works</span>
+            </h2>
+            <p className="text-brand-muted text-lg max-w-xl mx-auto font-medium">
+              Start accepting support from your fans in four simple steps.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            {[
+              {
+                step: "01",
+                title: "Claim Your Link",
+                desc: "Sign up instantly and claim your custom nexora-chai handle to share with your audience."
+              },
+              {
+                step: "02",
+                title: "Configure Payouts",
+                desc: "Choose between direct M-Pesa withdrawals or Paystack multi-country bank settlement."
+              },
+              {
+                step: "03",
+                title: "Share & Embed",
+                desc: "Put your link on your socials, or embed our customizable React/Flutter SDKs in your apps."
+              },
+              {
+                step: "04",
+                title: "Track & Grow",
+                desc: "View supporters, export earnings, and track traffic sources (Twitter, Instagram, YouTube) in real-time."
+              }
+            ].map((step, i) => (
+              <motion.div
+                key={step.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="relative p-8 rounded-[2rem] bg-brand-beige-light border border-black/[0.02]"
+              >
+                <div className="text-4xl font-black text-brand-primary/20 mb-6 font-mono">{step.step}</div>
+                <h3 className="text-lg font-bold mb-3 tracking-tight">{step.title}</h3>
+                <p className="text-brand-muted text-xs md:text-sm leading-relaxed font-medium">{step.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* What We Offer Section */}
+      <section className="max-w-7xl mx-auto px-6 py-32">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-6">
+            Everything you need to <span className="text-brand-primary">succeed.</span>
+          </h2>
+          <p className="text-brand-muted text-lg max-w-xl mx-auto font-medium">
+            Designed for creators who want premium, secure, and hassle-free support options.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {[
+            {
+              title: "Supporter Traffic Analytics",
+              desc: "Know where your tips originate. Track visitors from Twitter/X, Instagram, YouTube, and Facebook to measure your conversion rates across networks."
+            },
+            {
+              title: "Multi-Country Payout Channels",
+              desc: "Get payouts in your local currency. Connect Kenya M-Pesa Till/Paybill numbers, or bank transfers across Nigeria, Ghana, South Africa, and more using Paystack."
+            },
+            {
+              title: "Clickable Creator Profiles",
+              desc: "Provide context for your supporters. Highlight your biography, display name, creator category, and direct links to your active social networks."
+            },
+            {
+              title: "Developer Widgets & SDKs",
+              desc: "Integrate seamlessly into any developer workflow with official packages for React, Flutter, and native HTML embed tags."
+            }
+          ].map((offer, i) => (
+            <motion.div
+              key={offer.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="bg-white p-10 rounded-[2.5rem] card-shadow border border-black/[0.02]"
+            >
+              <div className="inline-block px-4 py-1.5 rounded-full bg-brand-primary/5 text-brand-primary text-[10px] font-black uppercase tracking-widest mb-6">
+                Feature
+              </div>
+              <h3 className="text-xl md:text-2xl font-bold mb-4 tracking-tight">{offer.title}</h3>
+              <p className="text-brand-muted text-sm md:text-base leading-relaxed font-medium">{offer.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
       {/* Developer Hub Section */}
       <section className="bg-zinc-950 py-32 px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto">

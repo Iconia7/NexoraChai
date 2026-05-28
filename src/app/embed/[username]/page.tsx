@@ -19,6 +19,7 @@ export default function EmbedCheckout() {
   const amount = Number(searchParams.get('amount')) || 100;
   const message = searchParams.get('message') || '';
   const fanName = searchParams.get('name') || '';
+  const source = searchParams.get('source') || 'Widget / SDK';
 
   useEffect(() => {
     const fetchCreator = async () => {
@@ -72,6 +73,7 @@ export default function EmbedCheckout() {
         amount={amount}
         message={message}
         fanName={fanName}
+        source={source}
       />
     </div>
   );
