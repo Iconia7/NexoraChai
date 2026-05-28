@@ -63,10 +63,13 @@ export default function CheckoutModal({ isOpen, onClose, creator, amount, messag
         // Timeout after 2 minutes
         setTimeout(() => {
             clearInterval(interval);
-            if (step === 'processing') {
-                setStep('failed');
-                setErrorMsg("Request timed out. Please check your transaction history.");
-            }
+            setStep((currentStep) => {
+                if (currentStep === 'processing') {
+                    setErrorMsg("Request timed out. Please check your transaction history.");
+                    return 'failed';
+                }
+                return currentStep;
+            });
         }, 120000);
     };
 
@@ -136,7 +139,7 @@ export default function CheckoutModal({ isOpen, onClose, creator, amount, messag
                 subaccount,
                 onSuccess: (response: any) => {
                     setStep('processing');
-                    startPolling(reference);
+                    startPolling(response?.reference || reference);
                 },
                 onClose: () => {
                     setLoading(false);
