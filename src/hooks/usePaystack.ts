@@ -33,7 +33,7 @@ export const usePaystack = () => {
     onClose: () => void;
   }) => {
     const config = accessCode 
-      ? { key, access_code: accessCode, email, amount, currency: currency || 'KES' }
+      ? { key, access_code: accessCode }
       : {
           key,
           email,
