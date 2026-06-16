@@ -38,13 +38,17 @@ export default function PricingPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left mb-12">
                         {[
                             'Custom Creator Link',
-                            'Unlimited Chai Support',
-                            'M-Pesa & Card Integration',
-                            'Instant Payout Access',
-                            'Dashboard Analytics',
-                            'Split Payment Support',
-                            'Artisanal Profile Customization',
-                            'Priority Support'
+                            'Unlimited Chai Support & Goals',
+                            'Digital Products Storefront',
+                            'Membership Subscription Tiers',
+                            'Gated Posts & Premium Content',
+                            'Custom Commissions & Bookings',
+                            'Multi-Admin Organization Portals',
+                            'Supporter CRM & Traffic Analytics',
+                            'M-Pesa & Card Gateway Integration',
+                            'Instant Payouts & Split Routing',
+                            'Artisanal Customizations',
+                            '24/7 Priority Support'
                         ].map((feature, i) => (
                             <div key={i} className="flex items-center gap-4">
                                 <div className="w-6 h-6 rounded-full bg-brand-secondary/10 text-brand-secondary flex items-center justify-center shrink-0">

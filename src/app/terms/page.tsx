@@ -13,15 +13,19 @@ export default function TermsPage() {
     },
     {
       title: '2. Creator Responsibilities',
-      content: 'Creators are responsible for the content they publish and for ensuring that they have the right to receive payments. Nexora Chai reserves the right to suspend accounts that violate our community guidelines.'
+      content: 'Creators are solely responsible for the digital products they sell, membership perks they offer, commission services they deliver, and gated posts they publish. Creators must have all appropriate rights to their media and products. Nexora Chai reserves the right to suspend accounts violating our guidelines.'
     },
     {
-      title: '3. Fees and Payments',
-      content: 'Nexora Chai charges a flat 2% processing fee on all transactions. Third-party payment gateways (M-Pesa, Paystack) may charge additional fees. All payouts are processed according to our payout schedule.'
+      title: '3. Fees, Payments, & Splits',
+      content: 'Nexora Chai charges a standard 2.0% platform fee for M-Pesa STK push checkouts and 5.0% for card payments. Split payouts are routed directly to creator subaccounts. Digital product orders, memberships, and commissions checkouts are final, and refunds are subject to gatekeeper approvals.'
     },
     {
-      title: '4. Prohibited Content',
-      content: 'Creators may not use Nexora Chai to solicit funds for illegal activities, explicit content, or fraudulent schemes.'
+      title: '4. Organization & Multi-Admin Compliance',
+      content: 'Organizations, NGOs, and clubs must configure a unified bank subaccount. All designated admins share collaborative accountability for joint fundraising campaigns, team invitations, and centralized balance allocations.'
+    },
+    {
+      title: '5. Prohibited Content',
+      content: 'Creators may not use Nexora Chai to host or distribute malicious software, fraudulent schemes, explicit/unauthorized media, or solicit funds for illegal activities.'
     }
   ];
 

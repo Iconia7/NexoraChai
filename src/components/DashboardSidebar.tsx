@@ -8,7 +8,13 @@ import {
   Settings, 
   Radio,
   X,
-  LogOut
+  LogOut,
+  Users,
+  ShoppingBag,
+  Heart,
+  MessageSquare,
+  Sparkles,
+  Building
 } from 'lucide-react';
 import { useAuthStore } from '@/lib/store';
 import { useRouter } from 'next/navigation';
@@ -31,6 +37,12 @@ export default function DashboardSidebar({ displayName, username, avatarUrl, isO
 
   const sidebarItems = [
     { label: 'Dashboard', icon: LayoutDashboard, href: '/dashboard' },
+    { label: 'Supporters CRM', icon: Users, href: '/dashboard/crm' },
+    { label: 'My Shop', icon: ShoppingBag, href: '/dashboard/products' },
+    { label: 'Memberships', icon: Heart, href: '/dashboard/memberships' },
+    { label: 'Gated Posts', icon: MessageSquare, href: '/dashboard/posts' },
+    { label: 'Commissions', icon: Sparkles, href: '/dashboard/commissions' },
+    { label: 'Organizations', icon: Building, href: '/dashboard/organizations' },
     { label: 'Analytics', icon: BarChart3, href: '/dashboard/analytics' },
     { label: 'Earnings', icon: Wallet, href: '/dashboard/earnings' },
     { label: 'Settings', icon: Settings, href: '/dashboard/settings' },

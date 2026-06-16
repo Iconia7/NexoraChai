@@ -92,16 +92,16 @@ export default function Landing() {
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight mb-6 md:mb-8 leading-[1.1] text-white"
           >
-            Fund your creativity, <span className="text-brand-primary">instantly.</span>
+            Monetize your creativity, <span className="text-brand-primary">instantly.</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-base md:text-xl text-white/80 mb-8 md:mb-12 max-w-2xl mx-auto leading-relaxed font-medium"
+            className="text-base md:text-xl text-white/80 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed font-medium"
           >
-            The premium platform for African creators to receive support directly from their audience. Secure, fast, and built for your growth.
+            The premium SaaS monetization platform for African creators. Accept tips, sell digital products, run memberships, gate post content, manage custom bookings, and organize collaborative fundraising.
           </motion.p>
 
           <motion.div
@@ -263,27 +263,35 @@ export default function Landing() {
             Everything you need to <span className="text-brand-primary">succeed.</span>
           </h2>
           <p className="text-brand-muted text-lg max-w-xl mx-auto font-medium">
-            Designed for creators who want premium, secure, and hassle-free support options.
+            Designed for creators and organizations who want premium, secure, and diverse monetization channels.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {[
             {
-              title: "Supporter Traffic Analytics",
-              desc: "Know where your tips originate. Track visitors from Twitter/X, Instagram, YouTube, and Facebook to measure your conversion rates across networks."
+              title: "Storefront & Digital Downloads",
+              desc: "Sell digital assets, templates, e-books, and audio files directly. Hosted securely on Cloudflare R2 with expiring SHA-256 download links."
             },
             {
-              title: "Multi-Country Payout Channels",
-              desc: "Get payouts in your local currency. Connect Kenya M-Pesa Till/Paybill numbers, or bank transfers across Nigeria, Ghana, South Africa, and more using Paystack."
+              title: "Recurring Membership Tiers",
+              desc: "Launch subscription tiers with exclusive benefits, automated M-Pesa renewal reminders via Africa's Talking, and card recurring billing."
             },
             {
-              title: "Clickable Creator Profiles",
-              desc: "Provide context for your supporters. Highlight your biography, display name, creator category, and direct links to your active social networks."
+              title: "Custom Commissions & Bookings",
+              desc: "Accept custom bookings for voice-overs, artwork, design audits, and consulting services with custom requirements questionnaires."
             },
             {
-              title: "Developer Widgets & SDKs",
-              desc: "Integrate seamlessly into any developer workflow with official packages for React, Flutter, and native HTML embed tags."
+              title: "Gated Posts & Premium Content",
+              desc: "Publish premium blogs, videos, and guides gated behind visibility rules—free, for supporters, tier members, or single pay-unlocks."
+            },
+            {
+              title: "Collaborative Organization Accounts",
+              desc: "Manage organizations, clubs, NGOs, or media houses with multi-admin roles, centralized bank/M-Pesa details, and fundraising campaigns."
+            },
+            {
+              title: "Supporter CRM & Analytics",
+              desc: "Understand your patrons. Build relationships with a searchable contact database, log private notes, and monitor traffic sources."
             }
           ].map((offer, i) => (
             <motion.div
@@ -295,7 +303,7 @@ export default function Landing() {
               className="bg-white p-10 rounded-[2.5rem] card-shadow border border-black/[0.02]"
             >
               <div className="inline-block px-4 py-1.5 rounded-full bg-brand-primary/5 text-brand-primary text-[10px] font-black uppercase tracking-widest mb-6">
-                Feature
+                Monetization Stream
               </div>
               <h3 className="text-xl md:text-2xl font-bold mb-4 tracking-tight">{offer.title}</h3>
               <p className="text-brand-muted text-sm md:text-base leading-relaxed font-medium">{offer.desc}</p>
@@ -362,13 +370,15 @@ export default function Landing() {
                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                       <p className="text-zinc-500 mb-2">// 1. Install SDK</p>
                       <p className="text-brand-primary mb-4">npm install nexora-chai-react</p>
-                      <p className="text-zinc-500 mb-2">// 2. Drop in the button</p>
+                      <p className="text-zinc-500 mb-2">// 2. Drop in the button with custom modes</p>
                       <p className="text-blue-400">import <span className="text-purple-400">{'{ ChaiButton }'}</span> from <span className="text-orange-400">'nexora-chai-react'</span>;</p>
                       <br />
                       <p className="text-blue-400">{'<'}<span className="text-yellow-400">ChaiButton</span></p>
                       <p className="ml-4 text-zinc-300">username=<span className="text-orange-400">"nexora"</span></p>
-                      <p className="ml-4 text-zinc-300">amount={<span className="text-purple-400">100</span>}</p>
-                      <p className="ml-4 text-zinc-300">onSuccess={<span className="text-purple-400">() ={'>'} congratulate()</span>}</p>
+                      <p className="ml-4 text-zinc-300">mode=<span className="text-orange-400">"PRODUCT"</span> <span className="text-zinc-500">// TIP, GOAL, PRODUCT, MEMBERSHIP, COMMISSION</span></p>
+                      <p className="ml-4 text-zinc-300">itemId=<span className="text-orange-400">"prod_abc123"</span></p>
+                      <p className="ml-4 text-zinc-300">amount={<span className="text-purple-400">500</span>}</p>
+                      <p className="ml-4 text-zinc-300">onSuccess={<span className="text-purple-400">(ref) ={'>'} congratulate(ref)</span>}</p>
                       <p className="text-blue-400">{'/>'}</p>
                     </motion.div>
                   )}

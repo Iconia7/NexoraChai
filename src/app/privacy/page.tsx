@@ -9,19 +9,23 @@ export default function PrivacyPage() {
   const sections = [
     {
       title: '1. Data Collection',
-      content: 'We collect information you provide when creating an account, such as your email, name, and profile details. For supporters, we collect payment information required to process transactions securely via our partners.'
+      content: 'We collect information you provide when creating an account, such as your name, email, profile details, and payout configuration. For supporters making checkouts (tips, digital downloads, memberships, commissions), we collect contact information (email/phone) and payment metadata. We also log IP addresses and user agents for secure file download tracking on Cloudflare R2.'
     },
     {
-      title: '2. Use of Information',
-      content: 'Your information is used to provide our services, process payments, and communicate with you about your account. We never sell your personal data to third parties.'
+      title: '2. Supporter CRM and Traffic Analytics',
+      content: 'patron data (name, contact details, total contribution sums) is consolidated into the creator’s Supporter CRM dashboard. We also track traffic sources (e.g. Twitter/X, Instagram, YouTube) to help creators understand user conversion rates. We never sell this information to third-party advertisers.'
     },
     {
-      title: '3. Data Security',
-      content: 'All data is stored securely using industry-standard encryption. Financial transactions are handled by PCI-DSS compliant partners like Paystack and Safaricom Daraja.'
+      title: '3. Communications & Alerts',
+      content: 'We use contact details to dispatch automated transactions updates, secure single-use access links, and send membership renewal alerts (via Africa’s Talking SMS). Sensitive payout modifications also trigger immediate security alerts via Zoho SMTP email and SMS.'
     },
     {
-      title: '4. Your Rights',
-      content: 'You have the right to access, correct, or delete your personal information at any time via your dashboard settings.'
+      title: '4. Data Security & Gateways',
+      content: 'All details are stored securely using industry-standard encryption. Transactions are processed directly by PCI-DSS compliant partners (Paystack and Safaricom Daraja STK Push), and your full card credentials are never stored on our servers.'
+    },
+    {
+      title: '5. Your Rights',
+      content: 'You have the right to inspect, edit, or purge your personal data or creator profile information at any time via your dashboard settings.'
     }
   ];
 

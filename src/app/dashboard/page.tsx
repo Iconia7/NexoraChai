@@ -143,37 +143,53 @@ export default function Dashboard() {
                                 <Link href="/dashboard/earnings" className="text-brand-primary text-xs font-bold uppercase tracking-widest hover:underline">View All</Link>
                             </div>
                             <div className="space-y-6">
-                                {data.transactions
-                                    .filter((t: any) => t.type === 'TIP' && t.status === 'COMPLETED')
-                                    .slice(0, 6)
-                                    .map((t: any) => (
+                                {(() => {
+                                    const getTransactionLabel = (type: string) => {
+                                        switch (type) {
+                                            case 'TIP': return 'Tipped you ☕';
+                                            case 'GOAL': return 'Goal Contribution 🎯';
+                                            case 'PRODUCT': return 'Product Purchase 🛍️';
+                                            case 'MEMBERSHIP': return 'Membership Tier Subscribe ❤️';
+                                            case 'COMMISSION': return 'Commission Booking ✨';
+                                            case 'POST_UNLOCK': return 'Post Unlocked 🔓';
+                                            case 'ORGANIZATION_CAMPAIGN': return 'Campaign Donation 🏛️';
+                                            default: return 'Supported you';
+                                        }
+                                    };
+
+                                    const completedTxs = data.transactions
+                                        .filter((t: any) => t.status === 'COMPLETED' && t.type !== 'WITHDRAWAL')
+                                        .slice(0, 6);
+
+                                    if (completedTxs.length === 0) {
+                                        return <p className="text-center text-brand-muted py-10 font-bold">No transactions yet. Share your link!</p>;
+                                    }
+
+                                    return completedTxs.map((t: any) => (
                                         <div key={t.id} className="flex items-center justify-between p-2">
                                             <div className="flex items-center gap-4">
-                                                <div className="w-12 h-12 rounded-full overflow-hidden bg-brand-beige-light flex items-center justify-center font-bold text-brand-primary uppercase shrink-0">
+                                                <div className="w-12 h-12 rounded-full overflow-hidden bg-brand-beige-light/80 flex items-center justify-center font-bold text-brand-primary uppercase shrink-0">
                                                     {t.fanName?.[0] || 'A'}
                                                 </div>
                                                 <div>
-                                                    <p className="font-bold text-sm tracking-tight">{t.fanName || 'A Supporter'} ☕</p>
-                                                    {t.fanMessage ? (
+                                                    <p className="font-bold text-sm tracking-tight">{t.fanName || 'A Supporter'}</p>
+                                                    <p className="text-[10px] font-semibold text-brand-muted uppercase tracking-wider">{getTransactionLabel(t.type)}</p>
+                                                    {t.fanMessage && (
                                                         <p className="text-xs font-medium text-brand-muted italic mt-1 bg-brand-beige-light/50 px-3 py-1.5 rounded-xl border border-black/[0.03] inline-block">
                                                             "{t.fanMessage}"
                                                         </p>
-                                                    ) : (
-                                                        <p className="text-[10px] font-bold text-brand-muted uppercase tracking-widest">Buy me a Chai</p>
                                                     )}
                                                 </div>
                                             </div>
                                             <div className="text-right shrink-0 ml-4">
-                                                <p className="font-bold text-brand-secondary text-sm md:text-base">KES {t.netAmount.toLocaleString()}</p>
+                                                <p className="font-bold text-brand-secondary text-sm md:text-base">KES {Number(t.netAmount).toLocaleString()}</p>
                                                 <p className="text-[10px] font-bold text-brand-muted opacity-50 uppercase tracking-widest">
                                                     {new Date(t.createdAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })} • {new Date(t.createdAt).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}
                                                 </p>
                                             </div>
                                         </div>
-                                    ))}
-                                {data.transactions.length === 0 && (
-                                    <p className="text-center text-brand-muted py-10 font-bold">No transactions yet. Share your link!</p>
-                                )}
+                                    ));
+                                })()}
                             </div>
                         </div>
 

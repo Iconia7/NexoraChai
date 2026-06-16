@@ -8,7 +8,13 @@ import {
     Coffee,
     ArrowUpRight,
     Calendar,
-    Filter
+    Filter,
+    ShoppingBag,
+    Heart,
+    Sparkles,
+    Lock,
+    Building,
+    Target
 } from 'lucide-react';
 import axios from 'axios';
 import { useAuthStore } from '@/lib/store';
@@ -130,6 +136,54 @@ export default function AnalyticsPage() {
                                 <h2 className="text-4xl font-bold tracking-tight">{stat.value}</h2>
                             </motion.div>
                         ))}
+                    </div>
+
+                    {/* Revenue Breakdown */}
+                    <div className="bg-white p-8 md:p-10 rounded-[2.5rem] card-shadow border border-black/[0.02] mb-12">
+                        <h3 className="text-lg font-bold tracking-tight mb-8">Earnings by Channel</h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                            {(() => {
+                                const breakdown = data.revenueBreakdown || {
+                                    TIP: 0,
+                                    GOAL: 0,
+                                    PRODUCT: 0,
+                                    MEMBERSHIP: 0,
+                                    COMMISSION: 0,
+                                    POST_UNLOCK: 0,
+                                    ORGANIZATION_CAMPAIGN: 0
+                                };
+                                const total = Object.values(breakdown).reduce((a: number, b: any) => a + Number(b), 0) || 1;
+
+                                const channels = [
+                                    { label: 'Direct Tips', value: Number(breakdown.TIP), icon: Coffee, color: 'text-amber-600 bg-amber-500/10' },
+                                    { label: 'Support Goals', value: Number(breakdown.GOAL), icon: Target, color: 'text-indigo-600 bg-indigo-500/10' },
+                                    { label: 'Digital Products', value: Number(breakdown.PRODUCT), icon: ShoppingBag, color: 'text-emerald-600 bg-emerald-500/10' },
+                                    { label: 'Memberships', value: Number(breakdown.MEMBERSHIP), icon: Heart, color: 'text-rose-600 bg-rose-500/10' },
+                                    { label: 'Commissions', value: Number(breakdown.COMMISSION), icon: Sparkles, color: 'text-purple-600 bg-purple-500/10' },
+                                    { label: 'Post Unlocks', value: Number(breakdown.POST_UNLOCK), icon: Lock, color: 'text-cyan-600 bg-cyan-500/10' },
+                                    { label: 'Campaign Contributions', value: Number(breakdown.ORGANIZATION_CAMPAIGN), icon: Building, color: 'text-blue-600 bg-blue-500/10' }
+                                ].filter(c => c.value > 0 || c.label === 'Direct Tips');
+
+                                return channels.map((c, i) => {
+                                    const pct = Math.min(100, Math.round((c.value / total) * 100));
+                                    return (
+                                        <div key={i} className="p-6 rounded-3xl bg-brand-beige-light/35 border border-black/[0.01]">
+                                            <div className="flex justify-between items-start mb-4">
+                                                <div className={`w-10 h-10 rounded-2xl flex items-center justify-center ${c.color}`}>
+                                                    <c.icon size={20} />
+                                                </div>
+                                                <span className="text-[10px] font-bold text-brand-muted">{pct}% of total</span>
+                                            </div>
+                                            <p className="text-[10px] font-bold text-brand-muted uppercase tracking-widest mb-1">{c.label}</p>
+                                            <h4 className="text-xl font-bold tracking-tight mb-3">KES {c.value.toLocaleString()}</h4>
+                                            <div className="h-1.5 w-full bg-black/5 rounded-full overflow-hidden">
+                                                <div className="h-full bg-brand-primary animate-pulse" style={{ width: `${pct}%`, backgroundColor: c.color.split(' ')[0] === 'text-amber-600' ? '#914D00' : undefined }} />
+                                            </div>
+                                        </div>
+                                    );
+                                });
+                            })()}
+                        </div>
                     </div>
 
                     {/* Growth Chart */}

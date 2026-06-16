@@ -13,11 +13,14 @@ export default function PublicFooter() {
                         <span className="font-bold text-xl tracking-tight">Nexora Chai</span>
                     </div>
                     <p className="text-brand-muted font-medium max-w-sm mb-8 leading-relaxed">
-                        The premium platform for African creators to receive support directly from their audience. Secure, fast, and built for your growth.
+                        The premium SaaS monetization platform for African creators. Sell digital products, run memberships, manage commissions, and accept secure payments.
                     </p>
-                    <div className="flex gap-4">
+                    <div className="flex flex-wrap gap-x-6 gap-y-2">
                         <Link href="/terms" className="text-xs font-bold uppercase tracking-widest text-brand-muted hover:text-brand-primary transition-colors">Terms</Link>
                         <Link href="/privacy" className="text-xs font-bold uppercase tracking-widest text-brand-muted hover:text-brand-primary transition-colors">Privacy</Link>
+                        <Link href="/aup" className="text-xs font-bold uppercase tracking-widest text-brand-muted hover:text-brand-primary transition-colors">AUP</Link>
+                        <Link href="/refund-policy" className="text-xs font-bold uppercase tracking-widest text-brand-muted hover:text-brand-primary transition-colors">Refunds</Link>
+                        <Link href="/takedown" className="text-xs font-bold uppercase tracking-widest text-brand-muted hover:text-brand-primary transition-colors">Takedown</Link>
                     </div>
                 </div>
                 <div>

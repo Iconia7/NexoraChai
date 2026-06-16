@@ -92,6 +92,11 @@ export default function SettingsPage() {
     const [payoutBankType, setPayoutBankType] = useState('');
     const [payoutAccountNumber, setPayoutAccountNumber] = useState('');
     const [paystackSubaccountCode, setPaystackSubaccountCode] = useState('');
+
+    // Security verification for payout updates
+    const [showPayoutAuthModal, setShowPayoutAuthModal] = useState(false);
+    const [payoutConfirmCode, setPayoutConfirmCode] = useState('');
+    const [payoutConfirmPassword, setPayoutConfirmPassword] = useState('');
     // ──────────────────────────────────────────────────────────────────
 
     // Social Links State
@@ -207,24 +212,40 @@ export default function SettingsPage() {
         }
     };
 
-    const handleSavePayoutSettings = async () => {
+    const handleSavePayoutSettings = async (verificationValue: string) => {
         if (!payoutCountry || !payoutBankCode || !payoutAccountNumber) {
             addToast('Please fill in all payout fields', 'error');
             return;
         }
+        if (!verificationValue) {
+            addToast('Verification code or password is required.', 'error');
+            return;
+        }
         setSavingPayout(true);
         try {
-            const res = await axios.put(`${BACKEND_URL}/api/creators/payout-settings`, {
+            const payload: any = {
                 payoutCountry,
                 payoutBankCode,
                 payoutBankName,
                 payoutAccountNumber,
                 bankType: payoutBankType
-            }, { headers: { Authorization: `Bearer ${token}` } });
+            };
+            if (twoFactor) {
+                payload.code = verificationValue;
+            } else {
+                payload.password = verificationValue;
+            }
+
+            const res = await axios.put(`${BACKEND_URL}/api/creators/payout-settings`, payload, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
 
             setPaystackSubaccountCode(res.data.paystackSubaccountCode || '');
             if (res.data.verifiedAccountName) setVerifiedAccountName(res.data.verifiedAccountName);
             addToast('Payout settings saved successfully!', 'success');
+            setShowPayoutAuthModal(false);
+            setPayoutConfirmCode('');
+            setPayoutConfirmPassword('');
         } catch (err: any) {
             addToast(err.response?.data?.error || 'Failed to save payout settings', 'error');
         } finally {
@@ -600,7 +621,15 @@ export default function SettingsPage() {
                                         </div>
                                         <button
                                             type="button"
-                                            onClick={handleSavePayoutSettings}
+                                            onClick={() => {
+                                                if (!payoutCountry || !payoutBankCode || !payoutAccountNumber) {
+                                                    addToast('Please fill in all payout fields', 'error');
+                                                    return;
+                                                }
+                                                setPayoutConfirmCode('');
+                                                setPayoutConfirmPassword('');
+                                                setShowPayoutAuthModal(true);
+                                            }}
                                             disabled={savingPayout || !payoutCountry || !payoutBankCode || !payoutAccountNumber || (!isMobileMoney && !verifiedAccountName)}
                                             className="bg-[#00C853] text-black py-5 px-10 rounded-[2rem] text-sm font-bold uppercase tracking-widest flex items-center gap-3 disabled:opacity-40 hover:scale-[1.02] transition-all shadow-xl shadow-[#00E676]/20"
                                         >
@@ -855,6 +884,74 @@ export default function SettingsPage() {
                                             className="w-full bg-[#00C853] text-black py-5 rounded-2xl text-sm font-bold uppercase tracking-widest shadow-xl shadow-[#00E676]/20 hover:scale-[1.02] transition-all"
                                         >
                                             Confirm Payout Number
+                                        </button>
+                                    </div>
+                                </motion.div>
+                            </div>
+                        )}
+                    </AnimatePresence>
+
+                    {/* Payout Sensitive Auth Modal */}
+                    <AnimatePresence>
+                        {showPayoutAuthModal && (
+                            <div className="fixed inset-0 z-[100] flex items-center justify-center p-6">
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    onClick={() => { setShowPayoutAuthModal(false); setPayoutConfirmCode(''); setPayoutConfirmPassword(''); }}
+                                    className="absolute inset-0 bg-black/60 backdrop-blur-md"
+                                />
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                                    exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                                    className="bg-white w-full max-w-md rounded-[3rem] p-10 relative z-10 shadow-2xl"
+                                >
+                                    <button onClick={() => { setShowPayoutAuthModal(false); setPayoutConfirmCode(''); setPayoutConfirmPassword(''); }} className="absolute top-6 right-6 text-brand-muted hover:text-black">
+                                        <X size={24} />
+                                    </button>
+                                    <div className="w-16 h-16 bg-[#00E676]/10 rounded-[2rem] flex items-center justify-center text-[#00C853] mb-8">
+                                        <Shield size={32} />
+                                    </div>
+                                    <h3 className="text-2xl font-bold tracking-tight mb-2">Confirm Payout Settings</h3>
+                                    <p className="text-brand-muted font-medium text-sm mb-8">
+                                        {twoFactor
+                                            ? 'Please enter the 6-digit 2FA code from your authenticator app to authorize this change.'
+                                            : 'Please confirm your account password to authorize this change.'}
+                                    </p>
+
+                                    <div className="space-y-6">
+                                        {twoFactor ? (
+                                            <div>
+                                                <label className="text-[10px] font-bold text-brand-muted uppercase tracking-widest mb-3 block ml-1">2FA Verification Code</label>
+                                                <input
+                                                    type="text"
+                                                    maxLength={6}
+                                                    value={payoutConfirmCode}
+                                                    onChange={(e) => setPayoutConfirmCode(e.target.value)}
+                                                    placeholder="000000"
+                                                    className="w-full text-center text-3xl font-bold tracking-[0.3em] py-4 border-2 border-black/5 rounded-2xl focus:border-brand-primary outline-none transition-colors"
+                                                />
+                                            </div>
+                                        ) : (
+                                            <div>
+                                                <label className="text-[10px] font-bold text-brand-muted uppercase tracking-widest mb-3 block ml-1">Confirm Password</label>
+                                                <input
+                                                    type="password"
+                                                    value={payoutConfirmPassword}
+                                                    onChange={(e) => setPayoutConfirmPassword(e.target.value)}
+                                                    placeholder="••••••••"
+                                                    className="input-base py-4 font-bold"
+                                                />
+                                            </div>
+                                        )}
+                                        <button
+                                            onClick={() => handleSavePayoutSettings(twoFactor ? payoutConfirmCode : payoutConfirmPassword)}
+                                            disabled={savingPayout || (twoFactor ? payoutConfirmCode.length !== 6 : !payoutConfirmPassword)}
+                                            className="w-full bg-[#00C853] text-black py-5 rounded-2xl text-sm font-bold uppercase tracking-widest shadow-xl shadow-[#00E676]/20 hover:scale-[1.02] transition-all disabled:opacity-40"
+                                        >
+                                            {savingPayout ? <><Loader2 size={16} className="animate-spin inline mr-2" /> Saving...</> : 'Confirm & Save'}
                                         </button>
                                     </div>
                                 </motion.div>
