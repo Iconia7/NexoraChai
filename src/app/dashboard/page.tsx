@@ -3,18 +3,19 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import {
-    LayoutDashboard,
-    BarChart3,
     Wallet,
-    Settings,
-    Bell,
-    ArrowUpRight,
     ArrowRight,
-    Plus,
     Copy,
     TrendingUp,
     Globe,
-    Radio
+    Radio,
+    Coffee,
+    Target,
+    ShoppingBag,
+    Heart,
+    Sparkles,
+    Unlock,
+    Building2
 } from 'lucide-react';
 import axios from 'axios';
 import DashboardSidebar from '@/components/DashboardSidebar';
@@ -92,21 +93,21 @@ export default function Dashboard() {
                 <main className="flex-1 p-4 md:p-6 lg:p-8 overflow-y-auto">
                     <DashboardHeader />
 
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 mb-6 md:mb-8">
                         {/* Balance Card */}
-                        <div className="lg:col-span-2 bg-[#0C0C0C] rounded-[2.5rem] p-8 text-white relative overflow-hidden flex flex-col justify-between min-h-[280px] shadow-2xl">
+                        <div className="lg:col-span-2 bg-[#0C0C0C] rounded-[2.5rem] md:rounded-[3.5rem] p-6 sm:p-8 md:p-8 text-white relative overflow-hidden flex flex-col justify-between min-h-[220px] md:min-h-[280px] shadow-2xl">
                             <div className="relative z-10">
                                 <p className="text-white/60 text-[10px] md:text-xs font-bold uppercase tracking-widest mb-2 md:mb-4">Available M-Pesa Balance</p>
-                                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">KES {(data.wallet?.balance || 0).toLocaleString()}.00</h1>
+                                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-3 md:mb-4">KES {(data.wallet?.balance || 0).toLocaleString()}.00</h1>
                                 <div className="flex items-center gap-2 text-brand-secondary font-bold text-xs md:text-sm">
-                                    <TrendingUp size={16} />
+                                    <TrendingUp size={14} />
                                     <span>Total Earnings: KES {(data.totalEarnings || 0).toLocaleString()}</span>
                                 </div>
                             </div>
 
-                            <div className="relative z-10 flex justify-start">
-                                <Link href="/dashboard/earnings" className="bg-[#00E676] text-black px-6 py-4 rounded-xl font-bold text-xs uppercase tracking-widest flex items-center gap-2 hover:bg-[#00C853] transition-colors shadow-lg shadow-[#00E676]/20">
-                                    <Wallet size={16} /> Withdraw to M-Pesa
+                            <div className="relative z-10 flex justify-start mt-4 md:mt-0">
+                                <Link href="/dashboard/earnings" className="bg-[#00E676] text-black px-5 md:px-6 py-3 md:py-4 rounded-xl font-bold text-xs uppercase tracking-widest flex items-center gap-2 hover:bg-[#00C853] transition-colors shadow-lg shadow-[#00E676]/20">
+                                    <Wallet size={14} /> Withdraw to M-Pesa
                                 </Link>
                             </div>
 
@@ -118,18 +119,18 @@ export default function Dashboard() {
                         </div>
 
                         {/* International Tips */}
-                        <div className="bg-white rounded-[2.5rem] p-8 card-shadow border border-black/[0.02] flex flex-col">
-                            <div className="flex items-center gap-3 mb-8">
-                                <div className="w-10 h-10 rounded-xl bg-brand-beige-light flex items-center justify-center text-brand-primary">
-                                    <Globe size={20} />
+                        <div className="bg-white rounded-[2.5rem] p-6 sm:p-8 card-shadow border border-black/[0.02] flex flex-col">
+                            <div className="flex items-center gap-3 mb-5 md:mb-8">
+                                <div className="w-9 h-9 md:w-10 md:h-10 rounded-xl bg-brand-beige-light flex items-center justify-center text-brand-primary shrink-0">
+                                    <Globe size={18} />
                                 </div>
                                 <div>
                                     <p className="font-bold text-sm tracking-tight">International Card Tips</p>
                                     <p className="text-[10px] font-bold text-brand-muted uppercase">Via Paystack</p>
                                 </div>
                             </div>
-                            <h2 className="text-4xl font-bold tracking-tight mb-8">KES {(data.paystackTotal || 0).toLocaleString()}.00</h2>
-                            <Link href="/dashboard/earnings" className="w-full border border-black/10 py-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 hover:bg-black/[0.02] transition-colors mt-auto">
+                            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-5 md:mb-8">KES {(data.paystackTotal || 0).toLocaleString()}.00</h2>
+                            <Link href="/dashboard/earnings" className="w-full border border-black/10 py-3 md:py-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 hover:bg-black/[0.02] transition-colors mt-auto">
                                 Manage Payouts <ArrowRight size={16} />
                             </Link>
                         </div>
@@ -137,23 +138,23 @@ export default function Dashboard() {
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                         {/* Recent Support */}
-                        <div className="lg:col-span-2 bg-white rounded-[2.5rem] p-8 card-shadow border border-black/[0.02]">
-                            <div className="flex items-center justify-between mb-8">
+                        <div className="lg:col-span-2 bg-white rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-8 card-shadow border border-black/[0.02]">
+                            <div className="flex items-center justify-between mb-5 sm:mb-8">
                                 <h2 className="text-xl font-bold tracking-tight">Recent Support</h2>
                                 <Link href="/dashboard/earnings" className="text-brand-primary text-xs font-bold uppercase tracking-widest hover:underline">View All</Link>
                             </div>
                             <div className="space-y-6">
                                 {(() => {
-                                    const getTransactionLabel = (type: string) => {
+                                    const getTransactionMeta = (type: string): { label: string; Icon: any } => {
                                         switch (type) {
-                                            case 'TIP': return 'Tipped you ☕';
-                                            case 'GOAL': return 'Goal Contribution 🎯';
-                                            case 'PRODUCT': return 'Product Purchase 🛍️';
-                                            case 'MEMBERSHIP': return 'Membership Tier Subscribe ❤️';
-                                            case 'COMMISSION': return 'Commission Booking ✨';
-                                            case 'POST_UNLOCK': return 'Post Unlocked 🔓';
-                                            case 'ORGANIZATION_CAMPAIGN': return 'Campaign Donation 🏛️';
-                                            default: return 'Supported you';
+                                            case 'TIP': return { label: 'Tip', Icon: Coffee };
+                                            case 'GOAL': return { label: 'Goal Contribution', Icon: Target };
+                                            case 'PRODUCT': return { label: 'Product Purchase', Icon: ShoppingBag };
+                                            case 'MEMBERSHIP': return { label: 'Membership', Icon: Heart };
+                                            case 'COMMISSION': return { label: 'Commission Booking', Icon: Sparkles };
+                                            case 'POST_UNLOCK': return { label: 'Post Unlocked', Icon: Unlock };
+                                            case 'ORGANIZATION_CAMPAIGN': return { label: 'Campaign Donation', Icon: Building2 };
+                                            default: return { label: 'Support', Icon: Heart };
                                         }
                                     };
 
@@ -165,36 +166,41 @@ export default function Dashboard() {
                                         return <p className="text-center text-brand-muted py-10 font-bold">No transactions yet. Share your link!</p>;
                                     }
 
-                                    return completedTxs.map((t: any) => (
-                                        <div key={t.id} className="flex items-center justify-between p-2">
-                                            <div className="flex items-center gap-4">
-                                                <div className="w-12 h-12 rounded-full overflow-hidden bg-brand-beige-light/80 flex items-center justify-center font-bold text-brand-primary uppercase shrink-0">
-                                                    {t.fanName?.[0] || 'A'}
-                                                </div>
-                                                <div>
-                                                    <p className="font-bold text-sm tracking-tight">{t.fanName || 'A Supporter'}</p>
-                                                    <p className="text-[10px] font-semibold text-brand-muted uppercase tracking-wider">{getTransactionLabel(t.type)}</p>
-                                                    {t.fanMessage && (
-                                                        <p className="text-xs font-medium text-brand-muted italic mt-1 bg-brand-beige-light/50 px-3 py-1.5 rounded-xl border border-black/[0.03] inline-block">
-                                                            "{t.fanMessage}"
+                                    return completedTxs.map((t: any) => {
+                                        const { label, Icon } = getTransactionMeta(t.type);
+                                        return (
+                                            <div key={t.id} className="flex items-start sm:items-center justify-between p-2 gap-3">
+                                                <div className="flex items-center gap-3">
+                                                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden bg-brand-beige-light/80 flex items-center justify-center font-bold text-brand-primary uppercase shrink-0 text-sm">
+                                                        {t.fanName?.[0] || 'A'}
+                                                    </div>
+                                                    <div className="min-w-0">
+                                                        <p className="font-bold text-sm tracking-tight truncate">{t.fanName || 'A Supporter'}</p>
+                                                        <p className="text-[10px] font-semibold text-brand-muted uppercase tracking-wider flex items-center gap-1">
+                                                            <Icon size={10} />{label}
                                                         </p>
-                                                    )}
+                                                        {t.fanMessage && (
+                                                            <p className="text-xs font-medium text-brand-muted italic mt-1 bg-brand-beige-light/50 px-3 py-1.5 rounded-xl border border-black/[0.03] inline-block truncate max-w-[180px]">
+                                                                &ldquo;{t.fanMessage}&rdquo;
+                                                            </p>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                                <div className="text-right shrink-0">
+                                                    <p className="font-bold text-brand-secondary text-sm">KES {Number(t.netAmount).toLocaleString()}</p>
+                                                    <p className="text-[10px] font-bold text-brand-muted opacity-50 uppercase tracking-widest whitespace-nowrap">
+                                                        {new Date(t.createdAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
+                                                    </p>
                                                 </div>
                                             </div>
-                                            <div className="text-right shrink-0 ml-4">
-                                                <p className="font-bold text-brand-secondary text-sm md:text-base">KES {Number(t.netAmount).toLocaleString()}</p>
-                                                <p className="text-[10px] font-bold text-brand-muted opacity-50 uppercase tracking-widest">
-                                                    {new Date(t.createdAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })} • {new Date(t.createdAt).toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    ));
+                                        );
+                                    });
                                 })()}
                             </div>
                         </div>
 
                         {/* Referral/Action Card */}
-                        <div className="bg-brand-primary rounded-[2.5rem] p-8 text-white card-shadow flex flex-col justify-between bg-[#914D00] min-h-[450px]">
+                        <div className="bg-brand-primary rounded-[2.5rem] p-6 sm:p-8 text-white card-shadow flex flex-col justify-between bg-[#914D00] min-h-[380px] md:min-h-[450px]">
                             <div>
                                 <h3 className="text-xl font-bold tracking-tight mb-4">Share your page</h3>
                                 <p className="text-white/80 text-sm leading-relaxed mb-8">Let your fans know they can support your work directly via M-Pesa.</p>

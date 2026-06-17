@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { Search, Bell, Check } from 'lucide-react';
+import { useEffect, useState, useRef } from 'react';
+import { Search, Bell, Check, CheckCircle2 } from 'lucide-react';
 import axios from 'axios';
 import { useAuthStore } from '@/lib/store';
 import { formatDistanceToNow } from 'date-fns';
@@ -12,6 +12,8 @@ export default function DashboardHeader() {
   const { token } = useAuthStore();
   const [notifications, setNotifications] = useState<any[]>([]);
   const [unreadCount, setUnreadCount] = useState(0);
+  const [notifOpen, setNotifOpen] = useState(false);
+  const notifRef = useRef<HTMLDivElement>(null);
 
   // Search functionality states
   const [searchQuery, setSearchQuery] = useState('');
@@ -19,6 +21,23 @@ export default function DashboardHeader() {
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [loadingSearch, setLoadingSearch] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+
+  // Close notification panel on outside click / touch
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent | TouchEvent) => {
+      if (notifRef.current && !notifRef.current.contains(e.target as Node)) {
+        setNotifOpen(false);
+      }
+    };
+    if (notifOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('touchstart', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [notifOpen]);
 
   const fetchCreators = async () => {
     if (creators.length > 0) return;
@@ -38,7 +57,7 @@ export default function DashboardHeader() {
       setSearchResults([]);
       return;
     }
-    const filtered = creators.filter(c => 
+    const filtered = creators.filter(c =>
       c.displayName.toLowerCase().includes(searchQuery.toLowerCase()) ||
       c.username.toLowerCase().includes(searchQuery.toLowerCase())
     );
@@ -67,7 +86,6 @@ export default function DashboardHeader() {
     };
 
     fetchNotifications();
-    // Refresh every 30 seconds
     const interval = setInterval(fetchNotifications, 30000);
     return () => clearInterval(interval);
   }, [token]);
@@ -84,6 +102,11 @@ export default function DashboardHeader() {
     }
   };
 
+  const markAllAsRead = async () => {
+    const unread = notifications.filter(n => !n.isRead);
+    await Promise.all(unread.map(n => markAsRead(n.id)));
+  };
+
   return (
     <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 md:gap-6 mb-8 md:mb-10">
       <div className="relative w-full max-w-xl order-2 md:order-1">
@@ -97,7 +120,6 @@ export default function DashboardHeader() {
             setShowDropdown(true);
           }}
           onBlur={() => {
-            // Delay closing so that clicks on results register
             setTimeout(() => setShowDropdown(false), 200);
           }}
           onChange={(e) => setSearchQuery(e.target.value)}
@@ -128,14 +150,14 @@ export default function DashboardHeader() {
                       )}
                     </div>
                     <div className="text-left">
-                      <p className="text-xs font-bold text-foreground group-hover:text-brand-primary transition-colors text-left">{c.displayName}</p>
-                      <p className="text-[10px] font-bold text-brand-muted text-left">@{c.username}</p>
+                      <p className="text-xs font-bold text-foreground group-hover:text-brand-primary transition-colors">{c.displayName}</p>
+                      <p className="text-[10px] font-bold text-brand-muted">@{c.username}</p>
                     </div>
                   </a>
                 ))}
               </div>
             ) : (
-              <p className="text-xs font-bold text-brand-muted text-center py-4">No creators match "{searchQuery}"</p>
+              <p className="text-xs font-bold text-brand-muted text-center py-4">No creators match &quot;{searchQuery}&quot;</p>
             )}
           </div>
         )}
@@ -144,58 +166,86 @@ export default function DashboardHeader() {
       <div className="flex items-center justify-between w-full md:w-auto order-1 md:order-2">
         <h2 className="text-xl font-bold md:hidden">Overview</h2>
         <div className="flex items-center gap-4">
-          <button className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center text-brand-muted border border-black/[0.03] card-shadow hover:bg-black/[0.01] transition-colors relative group">
-            <Bell size={20} />
-            {unreadCount > 0 && (
-              <span className="absolute top-2.5 right-2.5 md:top-3 md:right-3 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white animate-pulse" />
-            )}
 
-            {/* Tooltip mockup - Hidden on very small screens or adjusted */}
-            <div className="absolute top-full right-0 mt-4 w-80 bg-white rounded-[2rem] shadow-2xl border border-black/5 p-6 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all translate-y-2 group-hover:translate-y-0 z-50 hidden md:block">
-              <div className="flex items-center justify-between mb-4">
-                <p className="text-[10px] font-bold text-brand-muted uppercase tracking-widest">Notifications</p>
-                {unreadCount > 0 && <span className="px-2 py-0.5 bg-red-50 text-red-500 text-[9px] font-bold rounded-full">{unreadCount} New</span>}
-              </div>
-              
-              <div className="space-y-4 max-h-[300px] overflow-y-auto no-scrollbar">
-                {notifications.length > 0 ? (
-                  notifications.map((n) => (
-                    <div key={n.id} className={`flex gap-3 items-start group/item p-2 rounded-xl transition-colors ${n.isRead ? 'opacity-60' : 'bg-brand-beige-light/30'}`}>
-                      <div className={`w-2 h-2 rounded-full mt-1.5 shrink-0 ${n.isRead ? 'bg-black/10' : 'bg-brand-primary'}`} />
-                      <div className="flex-1 text-left">
-                        <p className="text-xs font-bold leading-tight mb-1 text-foreground">{n.title}</p>
-                        <p className="text-[10px] font-medium leading-relaxed text-brand-muted line-clamp-2">{n.message}</p>
-                        <p className="text-[9px] font-bold text-black/20 mt-1 uppercase tracking-tighter">
-                          {formatDistanceToNow(new Date(n.createdAt), { addSuffix: true })}
-                        </p>
-                      </div>
-                      {!n.isRead && (
-                        <button 
-                          onClick={(e) => {
-                            e.preventDefault();
-                            markAsRead(n.id);
-                          }}
-                          className="p-1 hover:bg-brand-primary hover:text-white rounded-md transition-all text-brand-muted"
+          {/* Notification Bell — click to open, works on all devices */}
+          <div ref={notifRef} className="relative">
+            <button
+              onClick={() => setNotifOpen((v) => !v)}
+              className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center text-brand-muted border border-black/[0.03] card-shadow hover:bg-black/[0.01] active:scale-95 transition-all relative"
+              aria-label="Notifications"
+            >
+              <Bell size={20} />
+              {unreadCount > 0 && (
+                <span className="absolute top-2 right-2 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white animate-pulse" />
+              )}
+            </button>
+
+            {/* Notification panel — visible on all screen sizes when open */}
+            {notifOpen && (
+              <div className="absolute top-full right-0 mt-3 w-[min(340px,calc(100vw-2rem))] bg-white rounded-[2rem] shadow-2xl border border-black/5 p-6 z-[999]">
+                <div className="flex items-center justify-between mb-4">
+                  <p className="text-[10px] font-bold text-brand-muted uppercase tracking-widest">Notifications</p>
+                  <div className="flex items-center gap-3">
+                    {unreadCount > 0 && (
+                      <>
+                        <span className="px-2 py-0.5 bg-red-50 text-red-500 text-[9px] font-bold rounded-full">{unreadCount} New</span>
+                        <button
+                          onClick={markAllAsRead}
+                          className="text-[9px] font-bold text-brand-primary uppercase tracking-widest hover:underline"
                         >
-                          <Check size={12} />
+                          Mark all read
                         </button>
-                      )}
-                    </div>
-                  ))
-                ) : (
-                  <div className="py-8 text-center">
-                    <p className="text-xs font-bold text-brand-muted">All caught up! ✨</p>
+                      </>
+                    )}
                   </div>
+                </div>
+
+                <div className="space-y-3 max-h-[300px] overflow-y-auto no-scrollbar">
+                  {notifications.length > 0 ? (
+                    notifications.map((n) => (
+                      <div
+                        key={n.id}
+                        className={`flex gap-3 items-start p-2.5 rounded-xl transition-colors ${n.isRead ? 'opacity-50' : 'bg-brand-beige-light/40'}`}
+                      >
+                        <div className={`w-2 h-2 rounded-full mt-1.5 shrink-0 ${n.isRead ? 'bg-black/10' : 'bg-brand-primary'}`} />
+                        <div className="flex-1 text-left min-w-0">
+                          <p className="text-xs font-bold leading-tight mb-1 text-foreground">{n.title}</p>
+                          <p className="text-[10px] font-medium leading-relaxed text-brand-muted line-clamp-2">{n.message}</p>
+                          <p className="text-[9px] font-bold text-black/20 mt-1 uppercase tracking-tighter">
+                            {formatDistanceToNow(new Date(n.createdAt), { addSuffix: true })}
+                          </p>
+                        </div>
+                        {!n.isRead && (
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              markAsRead(n.id);
+                            }}
+                            className="p-1 hover:bg-brand-primary hover:text-white rounded-md transition-all text-brand-muted shrink-0"
+                            title="Mark as read"
+                          >
+                            <Check size={12} />
+                          </button>
+                        )}
+                      </div>
+                    ))
+                  ) : (
+                    <div className="py-8 text-center">
+                      <CheckCircle2 size={20} className="mx-auto mb-2 text-brand-muted/30" />
+                      <p className="text-xs font-bold text-brand-muted">All caught up</p>
+                    </div>
+                  )}
+                </div>
+
+                {notifications.length > 0 && (
+                  <button className="w-full mt-4 pt-4 border-t border-black/5 text-[10px] font-bold text-brand-primary uppercase tracking-widest hover:text-brand-secondary transition-colors text-center">
+                    View All Notifications
+                  </button>
                 )}
               </div>
-              
-              {notifications.length > 0 && (
-                <button className="w-full mt-4 pt-4 border-t border-black/5 text-[10px] font-bold text-brand-primary uppercase tracking-widest hover:text-brand-secondary transition-colors text-center">
-                  View All Notifications
-                </button>
-              )}
-            </div>
-          </button>
+            )}
+          </div>
+
         </div>
       </div>
     </header>

@@ -252,7 +252,7 @@ export default function CheckoutModal({ isOpen, onClose, creator, amount, messag
                                     <label className="text-[10px] font-bold text-brand-muted uppercase tracking-widest mb-3 block ml-1">M-Pesa Number</label>
                                     <div className="flex items-center bg-[#F9FAFB] border border-black/5 rounded-2xl overflow-hidden">
                                         <div className="pl-4 pr-2 flex items-center gap-2 border-r border-black/5">
-                                            <span className="text-xl">🇰🇪</span>
+                                            <span className="text-xs font-bold text-brand-muted">KE</span>
                                             <span className="text-sm font-bold">+254</span>
                                         </div>
                                         <input 

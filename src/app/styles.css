@@ -11,7 +11,7 @@
   --brand-beige-light: #FFF9F0;
   --brand-muted: #666666;
   --brand-border: rgba(0, 0, 0, 0.08);
-  
+
   --accent: var(--brand-primary);
   --accent-foreground: #FFFFFF;
   --muted: #F3F4F6;
@@ -25,20 +25,25 @@
   --color-brand-secondary: var(--brand-secondary);
   --color-brand-beige: var(--brand-beige);
   --color-brand-beige-light: var(--brand-beige-light);
+  --color-brand-muted: var(--brand-muted);
   --font-sans: 'Outfit', 'Inter', sans-serif;
 }
 
 /* Global: Hide all scrollbars while keeping functionality */
 * {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE/Edge */
 }
 
 *::-webkit-scrollbar {
-  display: none; /* Chrome/Safari/Opera */
+  display: none;
+  /* Chrome/Safari/Opera */
 }
 
-html, body {
+html,
+body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
@@ -48,9 +53,17 @@ html, body {
 
 /* Responsive Font Sizes */
 @layer base {
-  h1 { @apply text-4xl md:text-5xl lg:text-7xl; }
-  h2 { @apply text-3xl md:text-4xl lg:text-5xl; }
-  h3 { @apply text-2xl md:text-3xl; }
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-7xl;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
 }
 
 .card-shadow {
@@ -64,9 +77,11 @@ html, body {
   font-weight: 700;
   transition: all 0.2s;
 }
+
 .btn-primary:hover {
   background-color: var(--brand-primary-hover);
 }
+
 .btn-primary:active {
   transform: scale(0.98);
 }
@@ -78,9 +93,11 @@ html, body {
   font-weight: 700;
   transition: all 0.2s;
 }
+
 .btn-secondary:hover {
   background-color: var(--brand-secondary-hover);
 }
+
 .btn-secondary:active {
   transform: scale(0.98);
 }
@@ -93,6 +110,7 @@ html, body {
   padding: 0.75rem 1rem;
   transition: all 0.2s;
 }
+
 .input-base:focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(145, 77, 0, 0.2);
@@ -105,8 +123,10 @@ html, body {
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .no-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
   /* Ensure horizontal scroll works if needed */
   overflow-x: auto;
 }

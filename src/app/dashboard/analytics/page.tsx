@@ -197,33 +197,33 @@ export default function AnalyticsPage() {
 
                         <div className="overflow-x-auto no-scrollbar -mx-2">
                             <div className="h-[300px] flex items-end gap-3 md:gap-4 relative z-10 min-w-[600px] px-2">
-                            {(() => {
-                                const months = (data.monthlyGrowth || Array(12).fill(0));
-                                const maxVal = Math.max(...months, 1);
-                                const monthLabels = Array.from({ length: 12 }, (_, i) => {
-                                    const d = new Date();
-                                    d.setMonth(d.getMonth() - (11 - i));
-                                    return d.toLocaleString('default', { month: 'short' })[0];
-                                });
+                                {(() => {
+                                    const months = (data.monthlyGrowth || Array(12).fill(0));
+                                    const maxVal = Math.max(...months, 1);
+                                    const monthLabels = Array.from({ length: 12 }, (_, i) => {
+                                        const d = new Date();
+                                        d.setMonth(d.getMonth() - (11 - i));
+                                        return d.toLocaleString('default', { month: 'short' })[0];
+                                    });
 
-                                return months.map((val: number, i: number) => {
-                                    const h = (val / maxVal) * 100;
-                                    return (
-                                        <div key={i} className="flex-1 flex flex-col items-center gap-4 h-full justify-end">
-                                            <motion.div
-                                                initial={{ height: 0 }}
-                                                animate={{ height: `${Math.max(h, 2)}%` }}
-                                                className="w-full bg-gradient-to-t from-brand-primary/20 to-brand-primary rounded-t-xl relative group"
-                                            >
-                                                <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-white text-black px-2 py-1 rounded-md text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-xl z-20">
-                                                    KES {val.toLocaleString()}
-                                                </div>
-                                            </motion.div>
-                                            <span className="text-[10px] font-bold text-white/20">{monthLabels[i]}</span>
-                                        </div>
-                                    );
-                                });
-                            })()}
+                                    return months.map((val: number, i: number) => {
+                                        const h = (val / maxVal) * 100;
+                                        return (
+                                            <div key={i} className="flex-1 flex flex-col items-center gap-4 h-full justify-end">
+                                                <motion.div
+                                                    initial={{ height: 0 }}
+                                                    animate={{ height: `${Math.max(h, 2)}%` }}
+                                                    className="w-full bg-gradient-to-t from-brand-primary/20 to-brand-primary rounded-t-xl relative group"
+                                                >
+                                                    <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-white text-black px-2 py-1 rounded-md text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-xl z-20">
+                                                        KES {val.toLocaleString()}
+                                                    </div>
+                                                </motion.div>
+                                                <span className="text-[10px] font-bold text-white/20">{monthLabels[i]}</span>
+                                            </div>
+                                        );
+                                    });
+                                })()}
                             </div>
                         </div>
 

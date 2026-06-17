@@ -54,7 +54,7 @@ export default function Landing() {
   };
 
   return (
-    <div className="min-h-screen bg-brand-beige-light text-foreground overflow-x-hidden selection:bg-brand-primary/10 pt-24">
+    <div className="min-h-screen bg-brand-beige-light text-foreground overflow-x-hidden selection:bg-brand-primary/10 pt-20 md:pt-24">
       <PublicNavbar />
 
       <Script id="structured-data" type="application/ld+json">
@@ -73,7 +73,7 @@ export default function Landing() {
       </Script>
 
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center pt-24 pb-32 px-6 overflow-hidden">
+      <section className="relative min-h-[80vh] md:min-h-[90vh] flex items-center pt-16 md:pt-24 pb-20 md:pb-32 px-4 sm:px-6 overflow-hidden">
         {/* Background Image & Overlay */}
         <div className="absolute inset-0 z-0">
           <Image
@@ -86,11 +86,11 @@ export default function Landing() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-brand-beige-light" />
         </div>
 
-        <div className="max-w-4xl mx-auto text-center relative z-10">
+        <div className="max-w-4xl mx-auto text-center relative z-10 px-2">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight mb-6 md:mb-8 leading-[1.1] text-white"
+            className="text-[2.2rem] sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight mb-5 md:mb-8 leading-[1.1] text-white"
           >
             Monetize your creativity, <span className="text-brand-primary">instantly.</span>
           </motion.h1>
@@ -99,32 +99,32 @@ export default function Landing() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-base md:text-xl text-white/80 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed font-medium"
+            className="text-sm md:text-lg lg:text-xl text-white/80 mb-8 md:mb-12 max-w-2xl mx-auto leading-relaxed font-medium px-2"
           >
-            The premium SaaS monetization platform for African creators. Accept tips, sell digital products, run memberships, gate post content, manage custom bookings, and organize collaborative fundraising.
+            The go-to platform for African creators to accept tips, sell digital products, run memberships, take commissions, and organize fundraising — all through M-Pesa and cards.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="flex flex-col md:flex-row items-center justify-center gap-0 max-w-xl mx-auto mb-6 px-4 md:px-0"
+            className="flex flex-col sm:flex-row items-stretch justify-center gap-0 max-w-xl mx-auto mb-6 px-4 sm:px-0"
           >
-            <div className="flex-grow w-full bg-white/10 backdrop-blur-md border border-white/20 rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none px-4 md:px-6 py-4 flex items-center gap-1 md:gap-2 text-white/60 font-bold text-sm md:text-lg">
-              <span className="shrink-0 text-white/50">chai.nexoracreatives.co.ke/</span>
+            <div className="flex-grow w-full bg-white/10 backdrop-blur-md border border-white/20 rounded-t-2xl sm:rounded-l-2xl sm:rounded-tr-none px-4 sm:px-5 py-3.5 sm:py-4 flex items-center gap-1 sm:gap-2 text-white/60 font-bold">
+              <span className="shrink-0 text-white/50 text-[10px] sm:text-xs">chai.nexoracreatives.co.ke/</span>
               <input
                 type="text"
-                placeholder="username"
+                placeholder="yourname"
                 value={claimUsername}
                 onChange={(e) => setClaimUsername(e.target.value.toLowerCase().replace(/[^a-z0-9_-]/g, ''))}
-                className="bg-transparent border-none focus:outline-none w-full text-white placeholder:text-white/40 font-bold"
+                className="bg-transparent border-none focus:outline-none w-full text-white placeholder:text-white/40 font-bold text-sm sm:text-base"
               />
             </div>
-            <button 
+            <button
               onClick={handleClaim}
-              className="w-full md:w-auto bg-brand-primary text-white px-8 py-4 rounded-b-2xl md:rounded-r-2xl md:rounded-bl-none font-black text-lg flex items-center justify-center gap-3 hover:bg-brand-primary/90 transition-all shadow-2xl shadow-brand-primary/20 whitespace-nowrap"
+              className="w-full sm:w-auto bg-brand-primary text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-b-2xl sm:rounded-r-2xl sm:rounded-bl-none font-black text-sm sm:text-base flex items-center justify-center gap-2 hover:bg-brand-primary/90 transition-all shadow-2xl shadow-brand-primary/20 whitespace-nowrap"
             >
-              Claim Link <ArrowRight size={20} />
+              Claim My Page <ArrowRight size={18} />
             </button>
           </motion.div>
 
@@ -152,38 +152,46 @@ export default function Landing() {
           )}
 
           {/* Trust Badges */}
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 text-white/60 font-bold text-sm uppercase tracking-widest">
-            <div className="flex items-center gap-2">
-              <Zap size={18} className="text-brand-primary" /> M-Pesa Supported
+          <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-8 md:gap-12 text-white/60 font-bold text-[10px] sm:text-xs uppercase tracking-widest">
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <Zap size={14} className="text-brand-primary" /> M-Pesa Supported
             </div>
-            <div className="flex items-center gap-2">
-              <Shield size={18} className="text-brand-primary" /> PCI DSS Compliant
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <Shield size={14} className="text-brand-primary" /> Secure Payments
             </div>
-            <div className="flex items-center gap-2">
-              <Globe size={18} className="text-brand-primary" /> Bank Transfers
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <Globe size={14} className="text-brand-primary" /> Bank Transfers
             </div>
           </div>
         </div>
       </section>
 
       {/* Feature Grid */}
-      <section className="max-w-7xl mx-auto px-6 py-32">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24 md:py-32">
+        <div className="text-center mb-10 md:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight mb-4">
+            Built for creators who <span className="text-brand-primary">mean business</span>
+          </h2>
+          <p className="text-brand-muted font-medium max-w-md mx-auto text-sm sm:text-base">
+            Everything you need to turn your audience into a sustainable income — without the tech headaches.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 md:gap-8">
           {[
             {
               icon: Zap,
-              title: "Instant Payouts",
-              desc: "Get access to your funds immediately. Connect directly to mobile money or bank accounts with zero delays."
+              title: "Fast Payouts",
+              desc: "Your earnings land in your M-Pesa or bank account fast — no holding periods, no mystery timelines."
             },
             {
               icon: Globe,
-              title: "Global Reach",
-              desc: "Accept support from anywhere in the world. We handle currency conversions seamlessly so you don't have to."
+              title: "Fans Anywhere",
+              desc: "Supporters from Kenya, Nigeria, the UK — wherever your audience is, they can back you. We handle the currency side."
             },
             {
               icon: Shield,
-              title: "Total Transparency",
-              desc: "Clear, upfront fees. What you see is what you get, ensuring absolute trust between you and your supporters."
+              title: "No Surprises",
+              desc: "Fees shown upfront before you publish anything. What you see is what gets deposited. Simple."
             }
           ].map((feature, i) => (
             <motion.div
@@ -192,51 +200,51 @@ export default function Landing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="bg-white p-8 md:p-12 rounded-[2.5rem] card-shadow border border-black/[0.02]"
+              className="bg-white p-6 sm:p-8 md:p-10 rounded-[2rem] sm:rounded-[2.5rem] card-shadow border border-black/[0.02]"
             >
-              <div className="w-12 h-12 md:w-14 md:h-14 bg-brand-beige-light rounded-2xl flex items-center justify-center text-brand-primary mb-6 md:mb-8">
-                <feature.icon size={28} />
+              <div className="w-12 h-12 bg-brand-beige-light rounded-2xl flex items-center justify-center text-brand-primary mb-5 md:mb-8">
+                <feature.icon size={24} />
               </div>
-              <h3 className="text-xl md:text-2xl font-bold mb-4 tracking-tight">{feature.title}</h3>
-              <p className="text-brand-muted text-sm md:text-base leading-relaxed font-medium">{feature.desc}</p>
+              <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 tracking-tight">{feature.title}</h3>
+              <p className="text-brand-muted text-sm leading-relaxed font-medium">{feature.desc}</p>
             </motion.div>
           ))}
         </div>
       </section>
 
       {/* How it Works Section */}
-      <section className="bg-white py-32 border-y border-black/[0.03]">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-6">
-              How it <span className="text-brand-primary">Works</span>
+      <section className="bg-white py-16 sm:py-24 md:py-32 border-y border-black/[0.03]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-10 md:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight mb-4 md:mb-6">
+              Up and running in <span className="text-brand-primary">minutes</span>
             </h2>
-            <p className="text-brand-muted text-lg max-w-xl mx-auto font-medium">
-              Start accepting support from your fans in four simple steps.
+            <p className="text-brand-muted text-sm sm:text-base max-w-md mx-auto font-medium">
+              No tech degree required. If you can post on Instagram, you can set this up.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-8">
             {[
               {
                 step: "01",
                 title: "Claim Your Link",
-                desc: "Sign up instantly and claim your custom nexora-chai handle to share with your audience."
+                desc: "Sign up and pick a username. Your page is live at chai.nexoracreatives.co.ke/yourname in under a minute."
               },
               {
                 step: "02",
-                title: "Configure Payouts",
-                desc: "Choose between direct M-Pesa withdrawals or Paystack multi-country bank settlement."
+                title: "Connect Payouts",
+                desc: "Add your M-Pesa or bank details. That's where your money goes — directly, with no middleman holding it."
               },
               {
                 step: "03",
-                title: "Share & Embed",
-                desc: "Put your link on your socials, or embed our customizable React/Flutter SDKs in your apps."
+                title: "Share With Your Audience",
+                desc: "Drop your link in your bio, your YouTube description, or your WhatsApp status. Your fans will take it from there."
               },
               {
                 step: "04",
-                title: "Track & Grow",
-                desc: "View supporters, export earnings, and track traffic sources (Twitter, Instagram, YouTube) in real-time."
+                title: "Watch It Grow",
+                desc: "See who's supporting you, where they're coming from, and how much you've made — all in one clean dashboard."
               }
             ].map((step, i) => (
               <motion.div
@@ -245,11 +253,11 @@ export default function Landing() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="relative p-8 rounded-[2rem] bg-brand-beige-light border border-black/[0.02]"
+                className="relative p-6 sm:p-8 rounded-[2rem] bg-brand-beige-light border border-black/[0.02]"
               >
-                <div className="text-4xl font-black text-brand-primary/20 mb-6 font-mono">{step.step}</div>
-                <h3 className="text-lg font-bold mb-3 tracking-tight">{step.title}</h3>
-                <p className="text-brand-muted text-xs md:text-sm leading-relaxed font-medium">{step.desc}</p>
+                <div className="text-3xl font-black text-brand-primary/20 mb-3 font-mono">{step.step}</div>
+                <h3 className="text-base sm:text-lg font-bold mb-2 tracking-tight">{step.title}</h3>
+                <p className="text-brand-muted text-xs sm:text-sm leading-relaxed font-medium">{step.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -257,41 +265,41 @@ export default function Landing() {
       </section>
 
       {/* What We Offer Section */}
-      <section className="max-w-7xl mx-auto px-6 py-32">
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-6">
-            Everything you need to <span className="text-brand-primary">succeed.</span>
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24 md:py-32">
+        <div className="text-center mb-10 md:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight mb-4 md:mb-6">
+            Six ways to get <span className="text-brand-primary">paid</span>
           </h2>
-          <p className="text-brand-muted text-lg max-w-xl mx-auto font-medium">
-            Designed for creators and organizations who want premium, secure, and diverse monetization channels.
+          <p className="text-brand-muted text-sm sm:text-base max-w-lg mx-auto font-medium">
+            Whether you make videos, write, design, or run an organization — there's a revenue stream here for you.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-8">
           {[
             {
-              title: "Storefront & Digital Downloads",
-              desc: "Sell digital assets, templates, e-books, and audio files directly. Hosted securely on Cloudflare R2 with expiring SHA-256 download links."
+              title: "Digital Storefront",
+              desc: "Sell presets, e-books, templates, or audio packs. Files are hosted securely and download links expire after use."
             },
             {
-              title: "Recurring Membership Tiers",
-              desc: "Launch subscription tiers with exclusive benefits, automated M-Pesa renewal reminders via Africa's Talking, and card recurring billing."
+              title: "Monthly Memberships",
+              desc: "Let your biggest supporters subscribe for exclusive perks. M-Pesa renewal reminders go out automatically before the due date."
             },
             {
-              title: "Custom Commissions & Bookings",
-              desc: "Accept custom bookings for voice-overs, artwork, design audits, and consulting services with custom requirements questionnaires."
+              title: "Custom Commissions",
+              desc: "Take bookings for artwork, voice-overs, design work, or consulting. Clients fill in a brief, you get paid before you start."
             },
             {
-              title: "Gated Posts & Premium Content",
-              desc: "Publish premium blogs, videos, and guides gated behind visibility rules—free, for supporters, tier members, or single pay-unlocks."
+              title: "Gated Posts",
+              desc: "Write premium content and lock it behind a one-time payment, a membership tier, or supporter-only access."
             },
             {
-              title: "Collaborative Organization Accounts",
-              desc: "Manage organizations, clubs, NGOs, or media houses with multi-admin roles, centralized bank/M-Pesa details, and fundraising campaigns."
+              title: "Organization Accounts",
+              desc: "Ideal for clubs, NGOs, and media houses. Manage multiple admins, run fundraising campaigns, and keep finances centralized."
             },
             {
-              title: "Supporter CRM & Analytics",
-              desc: "Understand your patrons. Build relationships with a searchable contact database, log private notes, and monitor traffic sources."
+              title: "Supporter Insights",
+              desc: "See who your top backers are, where they found your page, and what keeps them coming back. Your built-in audience CRM."
             }
           ].map((offer, i) => (
             <motion.div
@@ -300,49 +308,49 @@ export default function Landing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="bg-white p-10 rounded-[2.5rem] card-shadow border border-black/[0.02]"
+              className="bg-white p-6 sm:p-8 md:p-10 rounded-[2rem] sm:rounded-[2.5rem] card-shadow border border-black/[0.02]"
             >
-              <div className="inline-block px-4 py-1.5 rounded-full bg-brand-primary/5 text-brand-primary text-[10px] font-black uppercase tracking-widest mb-6">
-                Monetization Stream
+              <div className="inline-block px-3 py-1 rounded-full bg-brand-primary/5 text-brand-primary text-[10px] font-black uppercase tracking-widest mb-4">
+                Revenue Stream
               </div>
-              <h3 className="text-xl md:text-2xl font-bold mb-4 tracking-tight">{offer.title}</h3>
-              <p className="text-brand-muted text-sm md:text-base leading-relaxed font-medium">{offer.desc}</p>
+              <h3 className="text-lg sm:text-xl font-bold mb-3 tracking-tight">{offer.title}</h3>
+              <p className="text-brand-muted text-sm leading-relaxed font-medium">{offer.desc}</p>
             </motion.div>
           ))}
         </div>
       </section>
 
       {/* Developer Hub Section */}
-      <section className="bg-zinc-950 py-32 px-6 overflow-hidden">
+      <section className="bg-zinc-950 py-16 sm:py-24 md:py-32 px-4 sm:px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-primary/10 border border-brand-primary/20 text-brand-primary text-xs font-black uppercase tracking-widest mb-6">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-primary/10 border border-brand-primary/20 text-brand-primary text-xs font-black uppercase tracking-widest mb-5 md:mb-6">
                 <Terminal size={14} /> Developer Hub
               </div>
-              <h2 className="text-4xl md:text-5xl font-black text-white mb-6 leading-tight">
-                Built for <span className="text-brand-primary">Builders.</span>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-4 md:mb-6 leading-tight">
+                Built for <span className="text-brand-primary">developers.</span>
               </h2>
-              <p className="text-zinc-400 text-lg mb-8 leading-relaxed max-w-xl">
-                Integrate Nexora Chai directly into your apps and websites. Whether you're building a React dashboard, a Flutter mobile app, or a simple blog, our SDKs make M-Pesa monetization a breeze.
+              <p className="text-zinc-400 text-sm sm:text-base md:text-lg mb-6 md:mb-8 leading-relaxed">
+                Drop a payment button into your React app, Flutter project, or plain HTML site. Your users pay without ever leaving your product.
               </p>
-              
-              <div className="flex flex-col gap-6">
-                 {[
-                   { title: "One-line Integration", desc: "Copy-paste a single script tag and you're live." },
-                   { title: "Native Mobile Checkout", desc: "No redirects. Secure in-app payments for your fans." },
-                   { title: "Webhooks & Events", desc: "Listen for payments and trigger custom app logic." }
-                 ].map((item, i) => (
-                   <div key={i} className="flex gap-4">
-                     <div className="w-6 h-6 rounded-full bg-brand-primary/20 flex items-center justify-center shrink-0">
-                        <CheckCircle2 size={14} className="text-brand-primary" />
-                     </div>
-                     <div>
-                       <h4 className="text-white font-bold text-sm mb-1">{item.title}</h4>
-                       <p className="text-zinc-500 text-sm">{item.desc}</p>
-                     </div>
-                   </div>
-                 ))}
+
+              <div className="flex flex-col gap-4 md:gap-6">
+                {[
+                  { title: "One-line setup", desc: "Paste a single script tag and your widget is live. No build steps." },
+                  { title: "Native mobile checkout", desc: "In-app M-Pesa or card payment — no browser redirects for your users." },
+                  { title: "Webhooks on every event", desc: "Get notified the moment a payment completes. Trigger whatever logic you need." }
+                ].map((item, i) => (
+                  <div key={i} className="flex gap-3 md:gap-4">
+                    <div className="w-6 h-6 rounded-full bg-brand-primary/20 flex items-center justify-center shrink-0 mt-0.5">
+                      <CheckCircle2 size={14} className="text-brand-primary" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-bold text-sm mb-0.5">{item.title}</h4>
+                      <p className="text-zinc-500 text-xs sm:text-sm">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -355,9 +363,8 @@ export default function Landing() {
                     <button
                       key={tab}
                       onClick={() => setDevTab(tab as any)}
-                      className={`px-6 py-4 text-xs font-black uppercase tracking-widest transition-all ${
-                        devTab === tab ? 'text-brand-primary bg-white/5' : 'text-zinc-500 hover:text-white'
-                      }`}
+                      className={`px-6 py-4 text-xs font-black uppercase tracking-widest transition-all ${devTab === tab ? 'text-brand-primary bg-white/5' : 'text-zinc-500 hover:text-white'
+                        }`}
                     >
                       {tab}
                     </button>

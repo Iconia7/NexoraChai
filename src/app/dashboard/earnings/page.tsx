@@ -117,12 +117,12 @@ export default function EarningsPage() {
             <div className="flex-1 flex flex-col min-w-0">
                 <MobileDashboardNav onOpenSidebar={() => setSidebarOpen(true)} />
 
-                <main className="flex-1 p-8 overflow-y-auto">
+                <main className="flex-1 p-4 md:p-8 overflow-y-auto">
                     <DashboardHeader />
 
-                    <header className="flex justify-between items-center mb-10">
+                    <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8 sm:mb-10">
                         <div>
-                            <h1 className="text-3xl font-bold tracking-tight mb-2">Earnings</h1>
+                            <h1 className="text-2xl md:text-3xl font-bold tracking-tight mb-2">Earnings</h1>
                             <p className="text-brand-muted font-medium">Manage your wallet and withdraw your creator funds.</p>
                         </div>
                         <button
@@ -134,28 +134,28 @@ export default function EarningsPage() {
                     </header>
 
                     {/* Main Wallet Card */}
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-                        <div className="lg:col-span-2 bg-[#0C0C0C] rounded-[3rem] p-12 text-white relative overflow-hidden shadow-2xl">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 md:gap-8 mb-8 md:mb-12">
+                        <div className="lg:col-span-2 bg-[#0C0C0C] rounded-[2.5rem] md:rounded-[3rem] p-6 sm:p-8 md:p-12 text-white relative overflow-hidden shadow-2xl">
                             <div className="relative z-10">
-                                <div className="flex justify-between items-start mb-12">
+                                <div className="flex justify-between items-start mb-8 md:mb-12">
                                     <div>
-                                        <p className="text-white/60 text-xs font-bold uppercase tracking-widest mb-2">Available M-Pesa Balance</p>
-                                        <h2 className="text-6xl font-bold tracking-tight">KES {(data.wallet?.balance || 0).toLocaleString()}.00</h2>
+                                        <p className="text-white/60 text-[10px] md:text-xs font-bold uppercase tracking-widest mb-1 md:mb-2">Available M-Pesa Balance</p>
+                                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">KES {(data.wallet?.balance || 0).toLocaleString()}.00</h2>
                                     </div>
-                                    <div className="w-16 h-16 bg-white/10 rounded-[2rem] flex items-center justify-center backdrop-blur-xl">
-                                        <Wallet size={32} className="text-[#00E676]" />
+                                    <div className="w-12 h-12 md:w-16 md:h-16 bg-white/10 rounded-[1.5rem] md:rounded-[2rem] flex items-center justify-center backdrop-blur-xl shrink-0">
+                                        <Wallet size={24} className="text-[#00E676]" />
                                     </div>
                                 </div>
 
-                                <div className="flex flex-col md:flex-row gap-6 items-stretch md:items-center">
+                                <div className="flex flex-col sm:flex-row gap-3 md:gap-6 items-stretch">
                                     <button
                                         onClick={() => setIsWithdrawModalOpen(true)}
-                                        className="bg-[#00E676] text-black px-10 py-5 rounded-2xl font-bold text-sm uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-[#00C853] transition-all hover:scale-[1.02] shadow-xl shadow-[#00E676]/20"
+                                        className="bg-[#00E676] text-black px-6 md:px-10 py-4 md:py-5 rounded-2xl font-bold text-xs md:text-sm uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-[#00C853] transition-all hover:scale-[1.02] shadow-xl shadow-[#00E676]/20"
                                     >
-                                        Withdraw to M-Pesa <ArrowUpRight size={18} />
+                                        Withdraw to M-Pesa <ArrowUpRight size={16} />
                                     </button>
-                                    <Link href="/dashboard/settings" className="bg-white/10 text-white px-10 py-5 rounded-2xl font-bold text-sm uppercase tracking-widest hover:bg-white/20 transition-all border border-white/10 backdrop-blur-md flex items-center justify-center gap-2">
-                                        Wallet Settings <Settings size={18} />
+                                    <Link href="/dashboard/settings" className="bg-white/10 text-white px-6 md:px-10 py-4 md:py-5 rounded-2xl font-bold text-xs md:text-sm uppercase tracking-widest hover:bg-white/20 transition-all border border-white/10 backdrop-blur-md flex items-center justify-center gap-2">
+                                        Wallet Settings <Settings size={16} />
                                     </Link>
                                 </div>
                             </div>
@@ -165,18 +165,18 @@ export default function EarningsPage() {
                         </div>
 
                         {/* Paystack Summary */}
-                        <div className="bg-white rounded-[3rem] p-10 card-shadow border border-black/[0.02] flex flex-col justify-between">
+                        <div className="bg-white rounded-[2.5rem] md:rounded-[3rem] p-6 sm:p-8 md:p-10 card-shadow border border-black/[0.02] flex flex-col justify-between">
                             <div>
-                                <div className="w-12 h-12 rounded-2xl bg-brand-beige-light text-brand-primary flex items-center justify-center mb-6">
-                                    <CreditCard size={24} />
+                                <div className="w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-brand-beige-light text-brand-primary flex items-center justify-center mb-4 md:mb-6">
+                                    <CreditCard size={20} />
                                 </div>
                                 <p className="text-[10px] font-bold text-brand-muted uppercase tracking-widest mb-2">International (Paystack)</p>
-                                <h3 className="text-4xl font-bold tracking-tight mb-4">KES {(data.paystackTotal || 0).toLocaleString()}.00</h3>
+                                <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-3 md:mb-4">KES {(data.paystackTotal || 0).toLocaleString()}.00</h3>
                                 <p className="text-xs font-bold text-brand-muted leading-relaxed">Automatically settled to your bank via Paystack Split.</p>
                             </div>
                             <button
                                 onClick={() => addToast("Login to your Paystack Dashboard to view detailed card settlements.", "info")}
-                                className="w-full mt-8 flex items-center justify-between text-brand-primary font-bold uppercase tracking-widest text-xs group"
+                                className="w-full mt-6 md:mt-8 flex items-center justify-between text-brand-primary font-bold uppercase tracking-widest text-xs group"
                             >
                                 Manage Paystack Payouts <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                             </button>
@@ -184,23 +184,23 @@ export default function EarningsPage() {
                     </div>
 
                     {/* Transaction History */}
-                    <div className="bg-white rounded-[3rem] p-10 card-shadow border border-black/[0.02]">
-                        <div className="flex items-center justify-between mb-10">
+                    <div className="bg-white rounded-[2.5rem] md:rounded-[3rem] p-6 sm:p-8 md:p-10 card-shadow border border-black/[0.02]">
+                        <div className="flex items-center justify-between mb-6 md:mb-10">
                             <div className="flex items-center gap-3">
-                                <History size={24} className="text-brand-muted" />
-                                <h3 className="text-xl font-bold tracking-tight">Transaction History</h3>
+                                <History size={20} className="text-brand-muted" />
+                                <h3 className="text-lg md:text-xl font-bold tracking-tight">Transaction History</h3>
                             </div>
                         </div>
 
                         <div className="space-y-4">
                             {data.transactions.map((t: any) => (
-                                <div key={t.id} className="flex items-center justify-between p-4 hover:bg-brand-beige-light/50 rounded-2xl transition-colors border border-transparent hover:border-black/5">
+                                <div key={t.id} className="flex items-start sm:items-center justify-between p-3 sm:p-4 hover:bg-brand-beige-light/50 rounded-2xl transition-colors border border-transparent hover:border-black/5 gap-3">
                                     <div className="flex items-center gap-4">
                                         <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 ${t.type === 'WITHDRAWAL' ? 'bg-red-50 text-red-500' : 'bg-brand-beige-light text-brand-secondary'}`}>
                                             {t.type === 'WITHDRAWAL' ? <ArrowUpRight size={20} /> : <ArrowDownLeft size={20} />}
                                         </div>
                                         <div>
-                                            <p className="font-bold text-sm tracking-tight">{t.type === 'WITHDRAWAL' ? 'Withdrawal to M-Pesa' : (t.fanName || 'A Supporter') + ' ☕'}</p>
+                                            <p className="font-bold text-sm tracking-tight truncate max-w-[200px]">{t.type === 'WITHDRAWAL' ? 'Withdrawal to M-Pesa' : (t.fanName || 'A Supporter')}</p>
                                             {t.type !== 'WITHDRAWAL' && t.fanMessage ? (
                                                 <p className="text-xs font-medium text-brand-muted italic mt-1 bg-brand-beige-light/50 px-3 py-1.5 rounded-xl border border-black/[0.03] inline-block">
                                                     "{t.fanMessage}"

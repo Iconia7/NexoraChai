@@ -385,7 +385,7 @@ export default function CommissionCheckoutModal({
             {step === 'success' && (
               <div className="py-8 flex flex-col items-center justify-center text-center">
                 <CheckCircle2 size={48} className="text-green-500 mb-6" />
-                <h3 className="text-lg font-bold mb-2">Order Confirmed! 🎉</h3>
+                <h3 className="text-lg font-bold mb-2">Order Confirmed</h3>
                 <p className="text-xs font-semibold text-zinc-500 leading-relaxed mb-6 px-4">
                   Awesome! Your commission order has been received by {creator.displayName}. You will receive status updates and deliverables in your inbox.
                 </p>

@@ -176,7 +176,7 @@ function CommissionOrderContent() {
 
             {order.status === 'CANCELLED' && (
               <div className="mt-8 p-4 bg-red-50 border border-red-100 text-red-700 text-xs font-semibold rounded-2xl text-center">
-                ⚠️ This commission order has been canceled by the creator. A reversal/refund will be processed according to platform policies.
+                This commission order was canceled by the creator. A reversal or refund will be processed according to platform policies.
               </div>
             )}
           </div>

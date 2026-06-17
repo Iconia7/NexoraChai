@@ -388,7 +388,7 @@ export default function CRMPage() {
                                 </div>
                             </div>
 
-                            <div className="bg-[#0C0C0C] text-white rounded-[2.5rem] p-6 md:p-8 shadow-2xl relative overflow-hidden flex flex-col justify-between">
+                            <div className="bg-[#0C0C0C] text-white rounded-[2.5rem] p-6 md:p-8 shadow-2xl relative flex flex-col justify-between">
                                 <div>
                                     <h3 className="text-xs font-bold text-white/50 uppercase tracking-widest mb-4">Tag Management</h3>
                                     <form onSubmit={handleCreateTag} className="flex gap-2 mb-4">
@@ -397,12 +397,12 @@ export default function CRMPage() {
                                             value={newTagName}
                                             onChange={(e) => setNewTagName(e.target.value)}
                                             placeholder="Create new tag (e.g. VIP)..."
-                                            className="flex-1 bg-white/10 border border-white/5 px-4 py-3 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/20 transition-all text-white placeholder-white/30"
+                                            className="flex-1 min-w-0 bg-white/10 border border-white/5 px-4 py-3 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/20 transition-all text-white placeholder-white/30"
                                         />
                                         <button
                                             type="submit"
                                             disabled={creatingTag || !newTagName.trim()}
-                                            className="bg-brand-primary hover:bg-[#A35900] disabled:bg-white/10 disabled:text-white/30 text-white px-4 rounded-xl font-bold flex items-center justify-center transition-colors bg-[#914D00]"
+                                            className="shrink-0 bg-brand-primary hover:bg-[#A35900] disabled:bg-white/10 disabled:text-white/30 text-white px-4 py-3 rounded-xl font-bold flex items-center justify-center transition-colors bg-[#914D00]"
                                         >
                                             <Plus size={18} />
                                         </button>

@@ -387,7 +387,7 @@ export default function CampaignDonationPage() {
               {step === 'success' && (
                 <div className="py-8 flex flex-col items-center justify-center text-center">
                   <Heart size={48} className="text-red-500 fill-current mb-6 animate-bounce" />
-                  <h3 className="text-lg font-bold mb-2">Thank You! ❤️</h3>
+                  <h3 className="text-lg font-bold mb-2">Thank You</h3>
                   <p className="text-xs font-semibold text-zinc-500 leading-relaxed mb-6 px-4">
                     Your contribution of KES {Number(donationAmount).toLocaleString()} has been received successfully. You have supported {campaign.organization.name}'s mission.
                   </p>

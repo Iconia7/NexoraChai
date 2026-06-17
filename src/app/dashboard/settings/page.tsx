@@ -407,19 +407,19 @@ export default function SettingsPage() {
             <div className="flex-1 flex flex-col min-w-0">
                 <MobileDashboardNav onOpenSidebar={() => setSidebarOpen(true)} />
 
-                <main className="flex-1 p-8 overflow-y-auto">
+                <main className="flex-1 p-4 md:p-8 overflow-y-auto">
                     <DashboardHeader />
 
-                    <header className="mb-10">
-                        <h1 className="text-3xl font-bold tracking-tight mb-2">Settings</h1>
-                        <p className="text-brand-muted font-medium">Manage your creator profile and security preferences.</p>
+                    <header className="mb-6 md:mb-10">
+                        <h1 className="text-2xl md:text-3xl font-bold tracking-tight mb-2">Settings</h1>
+                        <p className="text-brand-muted font-medium text-sm md:text-base">Manage your creator profile and security preferences.</p>
                     </header>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 pb-20">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 md:gap-8 pb-20">
                         {/* Left: Profile + Payout Settings */}
-                        <div className="lg:col-span-2 space-y-8">
+                        <div className="lg:col-span-2 space-y-5 md:space-y-8">
                             {/* Public Profile */}
-                            <section className="bg-white p-10 rounded-[3rem] card-shadow border border-black/[0.02]">
+                            <section className="bg-white p-6 sm:p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] card-shadow border border-black/[0.02]">
                                 <div className="flex items-center gap-3 mb-10">
                                     <div className="w-8 h-8 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary"><User size={18} /></div>
                                     <h2 className="text-xl font-bold tracking-tight">Public Profile</h2>
@@ -540,7 +540,7 @@ export default function SettingsPage() {
                                                 </option>
                                                 {/* Group: Mobile Money first */}
                                                 {banks.filter(b => b.type?.startsWith('mobile_money') || b.type === 'ghipss').length > 0 && (
-                                                    <optgroup label="📱 Mobile Money">
+                                                    <optgroup label="Mobile Money">
                                                         {banks.filter(b => b.type?.startsWith('mobile_money') || b.type === 'ghipss').map(b => (
                                                             <option key={b.code} value={b.code}>{b.name}</option>
                                                         ))}
@@ -548,7 +548,7 @@ export default function SettingsPage() {
                                                 )}
                                                 {/* Group: Banks */}
                                                 {banks.filter(b => !b.type?.startsWith('mobile_money') && b.type !== 'ghipss').length > 0 && (
-                                                    <optgroup label="🏦 Banks">
+                                                    <optgroup label="Banks">
                                                         {banks.filter(b => !b.type?.startsWith('mobile_money') && b.type !== 'ghipss').map(b => (
                                                             <option key={b.code} value={b.code}>{b.name}</option>
                                                         ))}
@@ -559,7 +559,7 @@ export default function SettingsPage() {
                                         </div>
                                         {payoutBankCode && (
                                             <p className="text-[10px] font-bold text-brand-muted uppercase tracking-widest mt-2 ml-1">
-                                                {isMobileMoney ? '📱 Mobile Money — verification not required' : '🏦 Bank Account — verification required'}
+                                                {isMobileMoney ? 'Mobile Money — no account verification required' : 'Bank Account — verification required before saving'}
                                             </p>
                                         )}
                                     </div>

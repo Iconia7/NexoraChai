@@ -452,10 +452,10 @@ export default function PostsDashboard() {
                         onChange={(e: any) => setVisibility(e.target.value)}
                         className="w-full bg-zinc-50 border border-zinc-200 px-4 py-3 rounded-xl text-sm font-bold focus:outline-none focus:ring-2 focus:ring-amber-500/20 appearance-none cursor-pointer"
                       >
-                        <option value="PUBLIC">🔓 Public (Everyone)</option>
-                        <option value="SUPPORTERS_ONLY">☕ Supporters Only (Any Tip)</option>
-                        <option value="MEMBERS_ONLY">❤️ Members Only (Subscribers)</option>
-                        <option value="PAID_UNLOCK">🔒 Paid Unlock (One-time Fee)</option>
+                        <option value="PUBLIC">Public (Everyone)</option>
+                        <option value="SUPPORTERS_ONLY">Supporters Only (Any Tip)</option>
+                        <option value="MEMBERS_ONLY">Members Only (Subscribers)</option>
+                        <option value="PAID_UNLOCK">Paid Unlock (One-time Fee)</option>
                       </select>
                     </div>
 

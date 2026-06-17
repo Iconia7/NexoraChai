@@ -1,11 +1,11 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  LayoutDashboard, 
-  BarChart3, 
-  Wallet, 
-  Settings, 
+import {
+  LayoutDashboard,
+  BarChart3,
+  Wallet,
+  Settings,
   Radio,
   X,
   LogOut,
@@ -68,60 +68,59 @@ export default function DashboardSidebar({ displayName, username, avatarUrl, isO
             <span className="text-[#1A1A1A] font-bold text-lg tracking-tight">Nexora Chai</span>
           </Link>
           {onClose && (
-              <button onClick={onClose} className="lg:hidden text-brand-muted hover:text-black">
-                  <X size={20} />
-              </button>
+            <button onClick={onClose} className="lg:hidden text-brand-muted hover:text-black">
+              <X size={20} />
+            </button>
           )}
         </div>
 
         <div className="flex items-center gap-3 mb-6 p-2 bg-brand-beige-light/50 rounded-2xl border border-black/[0.02]">
-            <div className="w-10 h-10 rounded-full overflow-hidden bg-brand-beige shrink-0 border-2 border-white shadow-sm">
-                <Image src={avatarUrl || '/avatar-1.png'} alt="Creator" width={40} height={40} unoptimized className="object-cover" />
-            </div>
-            <div className="overflow-hidden">
-                <p className="font-bold text-sm tracking-tight truncate">{displayName}</p>
-                <p className="text-[9px] font-bold text-brand-muted uppercase tracking-widest">Premium Tier</p>
-            </div>
+          <div className="w-10 h-10 rounded-full overflow-hidden bg-brand-beige shrink-0 border-2 border-white shadow-sm">
+            <Image src={avatarUrl || '/avatar-1.png'} alt="Creator" width={40} height={40} unoptimized className="object-cover" />
+          </div>
+          <div className="overflow-hidden">
+            <p className="font-bold text-sm tracking-tight truncate">{displayName}</p>
+            <p className="text-[9px] font-bold text-brand-muted uppercase tracking-widest">Premium Tier</p>
+          </div>
         </div>
       </div>
 
       {/* 2. MIDDLE SECTION - Scrollable */}
       <nav className="flex-1 overflow-y-auto p-6 pt-2 space-y-1 no-scrollbar">
-          <p className="text-[9px] font-bold text-brand-muted uppercase tracking-widest mb-4 ml-2 opacity-50">Menu</p>
-          {sidebarItems.map((item) => {
-              const isActive = pathname === item.href;
-              return (
-                <Link 
-                    key={item.label}
-                    href={item.href}
-                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-sm transition-all duration-200 ${
-                        isActive 
-                            ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/20 bg-[#914D00] translate-x-1' 
-                            : 'text-brand-muted hover:bg-black/[0.03] hover:text-foreground'
-                    }`}
-                >
-                    <item.icon size={18} />
-                    {item.label}
-                </Link>
-              );
-          })}
+        <p className="text-[9px] font-bold text-brand-muted uppercase tracking-widest mb-4 ml-2 opacity-50">Menu</p>
+        {sidebarItems.map((item) => {
+          const isActive = pathname === item.href;
+          return (
+            <Link
+              key={item.label}
+              href={item.href}
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-sm transition-all duration-200 ${isActive
+                  ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/20 bg-[#914D00] translate-x-1'
+                  : 'text-brand-muted hover:bg-black/[0.03] hover:text-foreground'
+                }`}
+            >
+              <item.icon size={18} />
+              {item.label}
+            </Link>
+          );
+        })}
       </nav>
 
       {/* 3. BOTTOM SECTION - Fixed */}
       <div className="p-6 pt-4 border-t border-black/[0.03] space-y-3">
-        <Link 
-          href={`/${username}`} 
+        <Link
+          href={`/${username}`}
           target="_blank"
           className="w-full btn-primary py-4 text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 bg-[#914D00] shadow-xl shadow-brand-primary/10 hover:scale-[1.02] transition-transform text-white"
         >
-            <Radio size={16} /> Go Live
+          <Radio size={16} /> Go Live
         </Link>
-        
-        <button 
+
+        <button
           onClick={handleLogout}
           className="w-full flex items-center justify-center gap-2 py-4 text-[10px] font-bold uppercase tracking-widest text-red-500 hover:bg-red-50 rounded-xl transition-all border border-transparent hover:border-red-100"
         >
-            <LogOut size={14} /> Sign Out
+          <LogOut size={14} /> Sign Out
         </button>
       </div>
     </aside>
@@ -138,7 +137,7 @@ export default function DashboardSidebar({ displayName, username, avatarUrl, isO
       <AnimatePresence>
         {isOpen && (
           <>
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
