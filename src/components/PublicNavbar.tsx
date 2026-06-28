@@ -13,7 +13,7 @@ export default function PublicNavbar() {
     <nav className="h-20 md:h-24 bg-white/80 backdrop-blur-xl border-b border-black/5 fixed top-0 left-0 w-full z-[100]">
       <div className="max-w-7xl mx-auto px-4 md:px-6 h-full flex items-center justify-between">
         <Link href="/" className="flex items-center text-[#0C0C0C]">
-          <Image src="/logo.png" alt="Talent Jar Logo" width={120} height={40} className="object-contain h-10 w-auto" />
+          <Image src="/logo.png" alt="Talent Jar Logo" width={180} height={60} className="object-contain h-14 md:h-16 w-auto" />
         </Link>
         
         {/* Desktop Links */}

@@ -12,7 +12,7 @@ export default function MobileDashboardNav({ onOpenSidebar }: MobileDashboardNav
   return (
     <div className="lg:hidden h-16 bg-white border-b border-black/5 flex items-center justify-between px-6 sticky top-0 z-[80] backdrop-blur-md bg-white/90">
       <Link href="/dashboard" className="flex items-center">
-        <Image src="/logo.png" alt="Talent Jar Logo" width={90} height={30} className="object-contain h-8 w-auto" />
+        <Image src="/logo.png" alt="Talent Jar Logo" width={110} height={36} className="object-contain h-11 w-auto" />
       </Link>
 
       <button 

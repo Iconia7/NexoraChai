@@ -62,7 +62,7 @@ export default function DashboardSidebar({ displayName, username, avatarUrl, isO
       <div className="p-6 pb-0">
         <div className="flex items-center justify-between mb-8">
           <Link href="/dashboard" className="flex items-center group">
-            <Image src="/logo.png" alt="Talent Jar Logo" width={140} height={45} className="object-contain h-12 w-auto group-hover:scale-105 transition-transform" />
+            <Image src="/logo.png" alt="Talent Jar Logo" width={180} height={60} className="object-contain h-16 w-auto group-hover:scale-105 transition-transform" />
           </Link>
           {onClose && (
             <button onClick={onClose} className="lg:hidden text-brand-muted hover:text-black">

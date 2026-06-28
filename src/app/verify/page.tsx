@@ -170,43 +170,48 @@ function VerifyOTPContent() {
 export default function Verify() {
     return (
         <div className="min-h-screen bg-white flex font-sans">
-            {/* Left Panel - Decorative */}
-            <div className="hidden lg:flex lg:w-1/2 bg-brand-beige p-12 flex-col justify-between relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-full h-full opacity-10">
-                    <div className="absolute -top-20 -right-20 w-96 h-96 bg-brand-primary rounded-full blur-[120px]" />
-                </div>
+            {/* Left Panel - Decorative Background */}
+            <div className="hidden lg:flex lg:w-1/2 relative p-12 flex-col justify-between overflow-hidden">
+                <Image
+                  src="/login-visual.png"
+                  alt="Talent Jar Hero"
+                  fill
+                  priority
+                  sizes="50vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/30 z-10" />
 
-                <div className="relative z-10">
-                    <div className="flex items-center mb-20">
-                        <Image src="/logo.png" alt="Talent Jar Logo" width={140} height={45} className="object-contain h-12 w-auto" />
+                <div className="relative z-20 flex flex-col h-full justify-between">
+                    <div>
+                        <Link href="/" className="inline-block">
+                            <Image src="/logo.png" alt="Talent Jar Logo" width={180} height={60} className="object-contain h-16 w-auto brightness-0 invert" />
+                        </Link>
                     </div>
 
-                    <div className="max-w-md">
-                        <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center text-brand-secondary mb-12 shadow-xl border border-white">
-                            <Smartphone size={48} strokeWidth={1.5} />
-                        </div>
-                        <h2 className="text-4xl font-bold mb-8 leading-tight tracking-tight">
-                            One last step to <br /><span className="text-brand-secondary">activate your journey.</span>
+                    <div className="max-w-md bg-black/45 backdrop-blur-xl p-8 rounded-[2.5rem] border border-white/10 shadow-2xl">
+                        <h2 className="text-2xl font-bold mb-6 leading-tight tracking-tight text-white">
+                            One last step to <br /><span className="text-brand-beige">activate your journey.</span>
                         </h2>
-                        <div className="bg-brand-beige-light p-8 rounded-[2.5rem] border border-black/[0.03] card-shadow">
-                            <p className="text-brand-muted font-medium text-sm leading-relaxed mb-6">
+                        <div className="bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-white/10">
+                            <p className="text-white/70 font-medium text-xs leading-relaxed mb-4">
                                 "The SMS verification is instant. I love how Nexora keeps my account tied to my actual phone number."
                             </p>
                             <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-lg">
-                                    <Image src="/avatar-2.png" alt="Creator" width={48} height={48} />
+                                <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-white/20 shadow-lg">
+                                    <Image src="/avatar-2.png" alt="Creator" width={40} height={40} />
                                 </div>
                                 <div>
-                                    <p className="font-bold text-sm">Amina Kariuki</p>
-                                    <p className="text-xs text-brand-muted font-bold">Top Creator</p>
+                                    <p className="font-bold text-xs text-white">Amina Kariuki</p>
+                                    <p className="text-[9px] text-white/50 font-bold uppercase tracking-wider">Top Creator</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div className="relative z-10 text-[10px] font-bold text-brand-muted uppercase tracking-widest opacity-50">
-                    Global Verification Engine by AfricasTalking.
+                    <div className="text-[10px] font-bold text-white/40 uppercase tracking-widest">
+                        Global Verification Engine by AfricasTalking.
+                    </div>
                 </div>
             </div>
 

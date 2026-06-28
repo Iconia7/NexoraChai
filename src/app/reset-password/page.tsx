@@ -140,40 +140,45 @@ function ResetPasswordContent() {
 export default function ResetPassword() {
     return (
         <div className="min-h-screen bg-white flex font-sans">
-            {/* Left Panel - Decorative */}
-            <div className="hidden lg:flex lg:w-1/2 bg-[#0C0C0C] p-12 flex-col justify-between relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-full h-full opacity-20">
-                    <div className="absolute -top-20 -right-20 w-96 h-96 bg-brand-primary rounded-full blur-[120px]" />
-                </div>
+            {/* Left Panel - Decorative Background */}
+            <div className="hidden lg:flex lg:w-1/2 relative p-12 flex-col justify-between overflow-hidden">
+                <Image
+                  src="/login-visual.png"
+                  alt="Talent Jar Hero"
+                  fill
+                  priority
+                  sizes="50vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/30 z-10" />
 
-                <div className="relative z-10">
-                    <div className="flex items-center mb-20">
-                        <Image src="/logo.png" alt="Talent Jar Logo" width={140} height={45} className="object-contain h-12 w-auto" />
+                <div className="relative z-20 flex flex-col h-full justify-between">
+                    <div>
+                        <Link href="/" className="inline-block">
+                            <Image src="/logo.png" alt="Talent Jar Logo" width={180} height={60} className="object-contain h-16 w-auto brightness-0 invert" />
+                        </Link>
                     </div>
 
-                    <div className="max-w-md">
-                        <div className="w-24 h-24 bg-white/10 backdrop-blur-xl rounded-full flex items-center justify-center text-white mb-12 border border-white/20">
-                            <KeyRound size={48} strokeWidth={1.5} />
-                        </div>
-                        <h2 className="text-4xl font-bold mb-8 leading-tight tracking-tight text-white">
+                    <div className="max-w-md bg-black/45 backdrop-blur-xl p-8 rounded-[2.5rem] border border-white/10 shadow-2xl text-white">
+                        <h2 className="text-2xl font-bold mb-6 leading-tight tracking-tight">
                             Lock back in. <br /><span className="text-brand-primary">Secure your creator portal.</span>
                         </h2>
-                        <div className="bg-white/5 backdrop-blur-md p-8 rounded-[2.5rem] border border-white/10">
-                            <p className="text-white/60 font-medium text-sm leading-relaxed mb-6">
+                        <div className="bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-white/10">
+                            <p className="text-white/75 font-medium text-sm leading-relaxed mb-4">
                                 We use bank-grade encryption to ensure your new password and account access remain completely private.
                             </p>
                             <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-xl bg-brand-secondary/20 flex items-center justify-center text-brand-secondary">
-                                    <ShieldCheck size={20} />
+                                <div className="w-8 h-8 rounded-lg bg-brand-secondary/20 flex items-center justify-center text-brand-secondary">
+                                    <ShieldCheck size={16} />
                                 </div>
-                                <span className="text-white text-xs font-bold uppercase tracking-widest">End-to-End Encrypted</span>
+                                <span className="text-white text-[10px] font-bold uppercase tracking-widest">End-to-End Encrypted</span>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div className="relative z-10 text-[10px] font-bold text-white/30 uppercase tracking-widest">
-                    Authentication Infrastructure by ParsePesa API.
+                    <div className="text-[10px] font-bold text-white/40 uppercase tracking-widest">
+                        Authentication Infrastructure by ParsePesa API.
+                    </div>
                 </div>
             </div>
 

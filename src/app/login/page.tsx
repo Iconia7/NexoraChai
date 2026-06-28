@@ -87,36 +87,36 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex bg-white font-sans">
-      {/* Left Panel - Decorative */}
-      <div className="hidden lg:flex lg:w-1/2 bg-brand-beige p-12 items-center justify-center">
-        <div className="max-w-md w-full">
-          <div className="mb-12">
-            <div className="flex items-center mb-8">
-              <Image src="/logo.png" alt="Talent Jar Logo" width={140} height={45} className="object-contain h-12 w-auto" />
-            </div>
-            <div className="relative aspect-square rounded-[3rem] overflow-hidden card-shadow mb-12">
-              <Image
-                src="/login-visual.png"
-                alt="Talent Jar Visual"
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
-              />
-            </div>
+      {/* Left Panel - Decorative Background */}
+      <div className="hidden lg:flex lg:w-1/2 relative p-12 flex-col justify-between overflow-hidden">
+        <Image
+          src="/login-visual.png"
+          alt="Talent Jar Hero"
+          fill
+          priority
+          sizes="50vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/30 z-10" />
+
+        <div className="relative z-20 flex flex-col h-full justify-between">
+          <div>
+            <Link href="/" className="inline-block">
+              <Image src="/logo.png" alt="Talent Jar Logo" width={180} height={60} className="object-contain h-16 w-auto brightness-0 invert" />
+            </Link>
           </div>
 
-          <div className="bg-brand-beige-light p-8 rounded-[2.5rem] card-shadow">
-            <p className="text-lg font-medium text-brand-muted mb-6 leading-relaxed">
+          <div className="max-w-md bg-black/45 backdrop-blur-xl p-8 rounded-[2.5rem] border border-white/10 shadow-2xl">
+            <p className="text-lg font-medium text-white/90 mb-6 leading-relaxed">
               "Finally, a fintech platform built for how African creators actually operate. Beautiful, fast, and completely intuitive."
             </p>
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white">
+              <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/20">
                 <Image src="/avatar-1.png" alt="Amara N." width={48} height={48} />
               </div>
               <div>
-                <p className="font-bold text-sm">Amara N.</p>
-                <p className="text-xs text-brand-muted font-bold">Digital Artist</p>
+                <p className="font-bold text-sm text-white">Amara N.</p>
+                <p className="text-xs text-white/60 font-bold">Digital Artist</p>
               </div>
             </div>
           </div>

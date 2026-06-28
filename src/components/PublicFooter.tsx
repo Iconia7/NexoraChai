@@ -9,7 +9,7 @@ export default function PublicFooter() {
             <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
                 <div className="col-span-2">
                     <div className="flex items-center mb-5 md:mb-8">
-                        <Image src="/logo.png" alt="Talent Jar Logo" width={100} height={32} className="object-contain h-8 w-auto" />
+                        <Image src="/logo.png" alt="Talent Jar Logo" width={160} height={50} className="object-contain h-14 w-auto" />
                     </div>
                     <p className="text-brand-muted font-medium max-w-sm mb-5 md:mb-8 leading-relaxed text-sm">
                         The go-to monetization platform for African creators. Sell digital products, run memberships, manage commissions, and accept secure payments.
