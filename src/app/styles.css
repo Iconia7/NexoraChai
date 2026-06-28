@@ -111,6 +111,18 @@ body {
   transition: all 0.2s;
 }
 
+.input-base.pl-14 {
+  padding-left: 3.5rem;
+}
+
+.input-base.pr-12 {
+  padding-right: 3rem;
+}
+
+.input-base.pr-10 {
+  padding-right: 2.5rem;
+}
+
 .input-base:focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(145, 77, 0, 0.2);

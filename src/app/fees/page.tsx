@@ -24,66 +24,66 @@ export default function FeesPage() {
           <div className="space-y-12">
             {/* Nexora Fee */}
             <div className="bg-white p-10 rounded-[3rem] card-shadow border-l-8 border-brand-primary">
-                <div className="flex justify-between items-start mb-6">
-                    <div>
-                        <h2 className="text-2xl font-bold mb-1 tracking-tight">Nexora Platform Fee</h2>
-                        <p className="text-sm font-bold text-brand-muted uppercase tracking-widest">Our Service Cost</p>
-                    </div>
-                    <span className="text-4xl font-bold text-brand-primary">2.0%</span>
+              <div className="flex justify-between items-start mb-6">
+                <div>
+                  <h2 className="text-2xl font-bold mb-1 tracking-tight">Talent Jar Platform Fee</h2>
+                  <p className="text-sm font-bold text-brand-muted uppercase tracking-widest">Our Service Cost</p>
                 </div>
-                <p className="text-lg text-brand-muted font-medium leading-relaxed mb-6">
-                    This covers our infrastructure, artisanal design updates, security monitoring, and 24/7 creator support.
-                </p>
-                <div className="flex items-center gap-2 text-brand-primary text-xs font-bold uppercase tracking-widest">
-                    <CheckCircle2 size={16} /> Included in all plans
-                </div>
+                <span className="text-4xl font-bold text-brand-primary">2.0%</span>
+              </div>
+              <p className="text-lg text-brand-muted font-medium leading-relaxed mb-6">
+                This covers our infrastructure, artisanal design updates, security monitoring, and 24/7 creator support.
+              </p>
+              <div className="flex items-center gap-2 text-brand-primary text-xs font-bold uppercase tracking-widest">
+                <CheckCircle2 size={16} /> Included in all plans
+              </div>
             </div>
 
             {/* Gateway Fees */}
             <div className="bg-white p-10 rounded-[3rem] card-shadow border-l-8 border-brand-secondary">
-                <div className="flex justify-between items-start mb-6">
-                    <div>
-                        <h2 className="text-2xl font-bold mb-1 tracking-tight">Payment Gateway Fees</h2>
-                        <p className="text-sm font-bold text-brand-muted uppercase tracking-widest">Third-Party Processing</p>
-                    </div>
-                    <span className="text-xl font-bold text-brand-secondary">At Cost</span>
+              <div className="flex justify-between items-start mb-6">
+                <div>
+                  <h2 className="text-2xl font-bold mb-1 tracking-tight">Payment Gateway Fees</h2>
+                  <p className="text-sm font-bold text-brand-muted uppercase tracking-widest">Third-Party Processing</p>
                 </div>
-                
-                <div className="space-y-6">
-                    <div className="p-6 bg-brand-beige-light rounded-2xl border border-black/5">
-                        <p className="font-bold mb-2 flex items-center gap-2">M-Pesa (Daraja API)</p>
-                        <p className="text-sm text-brand-muted font-medium">Standard carrier rates apply. Typically KES 5 - KES 30 depending on transaction size.</p>
-                    </div>
-                    <div className="p-6 bg-brand-beige-light rounded-2xl border border-black/5">
-                        <p className="font-bold mb-2 flex items-center gap-2">Card Payments (Paystack)</p>
-                        <p className="text-sm text-brand-muted font-medium">1.5% for local cards, 3.9% for international cards + KES 10 base fee.</p>
-                    </div>
+                <span className="text-xl font-bold text-brand-secondary">At Cost</span>
+              </div>
+
+              <div className="space-y-6">
+                <div className="p-6 bg-brand-beige-light rounded-2xl border border-black/5">
+                  <p className="font-bold mb-2 flex items-center gap-2">M-Pesa (Daraja API)</p>
+                  <p className="text-sm text-brand-muted font-medium">Standard carrier rates apply. Typically KES 5 - KES 30 depending on transaction size.</p>
                 </div>
+                <div className="p-6 bg-brand-beige-light rounded-2xl border border-black/5">
+                  <p className="font-bold mb-2 flex items-center gap-2">Card Payments (Paystack)</p>
+                  <p className="text-sm text-brand-muted font-medium">1.5% for local cards, 3.9% for international cards + KES 10 base fee.</p>
+                </div>
+              </div>
             </div>
 
             {/* Payouts */}
             <div className="bg-[#F3E5D8] p-10 rounded-[3rem] card-shadow border border-black/5">
-                <div className="flex items-center gap-4 mb-6">
-                    <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-brand-primary">
-                        <Info size={24} />
-                    </div>
-                    <h2 className="text-2xl font-bold tracking-tight">Withdrawals & Payouts</h2>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-brand-primary">
+                  <Info size={24} />
                 </div>
-                <p className="text-lg text-brand-muted font-medium leading-relaxed mb-6">
-                    We offer **Instant Payouts** to M-Pesa. Withdrawal fees are capped at KES 50 to ensure you keep more of your earnings.
-                </p>
-                <Link href="/help" className="text-brand-primary font-bold uppercase tracking-widest text-xs hover:underline">Read more about payouts</Link>
+                <h2 className="text-2xl font-bold tracking-tight">Withdrawals & Payouts</h2>
+              </div>
+              <p className="text-lg text-brand-muted font-medium leading-relaxed mb-6">
+                We offer **Instant Payouts** to M-Pesa. Withdrawal fees are capped at KES 50 to ensure you keep more of your earnings.
+              </p>
+              <Link href="/help" className="text-brand-primary font-bold uppercase tracking-widest text-xs hover:underline">Read more about payouts</Link>
             </div>
           </div>
 
           <div className="mt-24 p-12 bg-white rounded-[3rem] card-shadow border border-black/[0.02] text-center">
-             <div className="w-16 h-16 bg-red-50 text-red-500 rounded-2xl flex items-center justify-center mx-auto mb-8">
-                <AlertCircle size={32} />
-             </div>
-             <h3 className="text-xl font-bold mb-4 tracking-tight">Anti-Fraud Protection</h3>
-             <p className="text-brand-muted font-medium mb-8">
-                Fees also fund our advanced fraud detection systems, keeping both creators and supporters safe from chargebacks and fraudulent STK pushes.
-             </p>
+            <div className="w-16 h-16 bg-red-50 text-red-500 rounded-2xl flex items-center justify-center mx-auto mb-8">
+              <AlertCircle size={32} />
+            </div>
+            <h3 className="text-xl font-bold mb-4 tracking-tight">Anti-Fraud Protection</h3>
+            <p className="text-brand-muted font-medium mb-8">
+              Fees also fund our advanced fraud detection systems, keeping both creators and supporters safe from chargebacks and fraudulent STK pushes.
+            </p>
           </div>
         </motion.div>
       </main>
