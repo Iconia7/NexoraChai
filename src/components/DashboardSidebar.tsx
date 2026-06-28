@@ -61,11 +61,8 @@ export default function DashboardSidebar({ displayName, username, avatarUrl, isO
       {/* 1. TOP SECTION - Fixed */}
       <div className="p-6 pb-0">
         <div className="flex items-center justify-between mb-8">
-          <Link href="/dashboard" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 bg-white rounded-xl shadow-sm border border-black/5 flex items-center justify-center overflow-hidden p-1 group-hover:scale-105 transition-transform">
-              <Image src="/logo.png" alt="Logo" width={40} height={40} className="object-contain" />
-            </div>
-            <span className="text-[#1A1A1A] font-bold text-lg tracking-tight">Nexora Chai</span>
+          <Link href="/dashboard" className="flex items-center group">
+            <Image src="/logo.png" alt="Talent Jar Logo" width={140} height={45} className="object-contain h-12 w-auto group-hover:scale-105 transition-transform" />
           </Link>
           {onClose && (
             <button onClick={onClose} className="lg:hidden text-brand-muted hover:text-black">

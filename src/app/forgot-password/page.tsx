@@ -39,9 +39,8 @@ export default function ForgotPassword() {
         </div>
 
         <div className="relative z-10">
-          <div className="flex items-center gap-3 mb-20">
-            <Image src="/logo.png" alt="Nexora Chai" width={32} height={32} />
-            <span className="font-bold text-xl tracking-tight">Nexora Chai</span>
+          <div className="flex items-center mb-20">
+            <Image src="/logo.png" alt="Talent Jar Logo" width={140} height={45} className="object-contain h-12 w-auto" />
           </div>
 
           <div className="max-w-md">

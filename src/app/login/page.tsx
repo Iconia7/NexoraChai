@@ -91,14 +91,13 @@ export default function Login() {
       <div className="hidden lg:flex lg:w-1/2 bg-brand-beige p-12 items-center justify-center">
         <div className="max-w-md w-full">
           <div className="mb-12">
-            <div className="flex items-center gap-3 mb-8">
-              <Image src="/logo.png" alt="Nexora Chai Logo" width={40} height={40} className="rounded-xl shadow-lg" />
-              <h2 className="text-brand-primary font-bold text-2xl tracking-tight">Nexora Chai</h2>
+            <div className="flex items-center mb-8">
+              <Image src="/logo.png" alt="Talent Jar Logo" width={140} height={45} className="object-contain h-12 w-auto" />
             </div>
             <div className="relative aspect-square rounded-[3rem] overflow-hidden card-shadow mb-12">
               <Image
                 src="/login-visual.png"
-                alt="Nexora Chai Visual"
+                alt="Talent Jar Visual"
                 fill
                 priority
                 sizes="(max-width: 1024px) 100vw, 50vw"

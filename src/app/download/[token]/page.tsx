@@ -84,7 +84,7 @@ export default function DownloadPage() {
                     </div>
 
                     <div className="mt-8 text-[10px] font-bold text-brand-muted uppercase tracking-widest opacity-60">
-                        Securely processed by Nexora Chai
+                        Securely processed by Talent Jar
                     </div>
                 </motion.div>
             </main>

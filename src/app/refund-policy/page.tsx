@@ -21,7 +21,7 @@ export default function RefundPolicyPage() {
     },
     {
       title: 'Dispute & Resolution Workflow',
-      content: 'If a supporter disputes an order (e.g. non-delivery of service or fraudulent charge), Nexora Chai freezes the specific payout allocation. The supporter and creator will be requested to submit delivery proofs. Safe resolutions are handled directly by the support team.'
+      content: 'If a supporter disputes an order (e.g. non-delivery of service or fraudulent charge), Talent Jar freezes the specific payout allocation. The supporter and creator will be requested to submit delivery proofs. Safe resolutions are handled directly by the support team.'
     }
   ];
 
@@ -38,7 +38,7 @@ export default function RefundPolicyPage() {
           <p className="text-brand-muted font-bold mb-16 uppercase tracking-widest text-xs">Last Updated: June 2026</p>
 
           <p className="text-xl text-brand-muted font-medium mb-12 leading-relaxed">
-            Nexora Chai aims to maintain trust and transparency between creators and supporters. This policy structures the conditions for refund claims and dispute resolutions.
+            Talent Jar aims to maintain trust and transparency between creators and supporters. This policy structures the conditions for refund claims and dispute resolutions.
           </p>
 
           <div className="space-y-12 mb-16">

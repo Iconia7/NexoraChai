@@ -117,8 +117,8 @@ export default function OnboardingSetup() {
       {/* Header */}
       <header className="h-20 bg-white border-b border-black/5 flex items-center justify-between px-8 sticky top-0 z-50">
         <div className="flex items-center gap-3">
-          <Image src="/logo.png" alt="Nexora Chai" width={24} height={24} />
-          <span className="font-bold tracking-tight">Nexora Chai</span>
+          <Image src="/logo.png" alt="Talent Jar" width={24} height={24} />
+          <span className="font-bold tracking-tight">Talent Jar</span>
         </div>
 
         <nav className="hidden md:flex items-center gap-4 text-[10px] font-bold uppercase tracking-widest text-brand-muted">

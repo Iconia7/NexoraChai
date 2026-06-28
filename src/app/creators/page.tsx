@@ -171,7 +171,7 @@ export default function CreatorsPage() {
                 </div>
                 <h2 className="text-4xl md:text-6xl font-bold mb-8">Want to see yourself <span className="text-brand-primary underline decoration-brand-beige underline-offset-8">here?</span></h2>
                 <p className="text-brand-muted text-xl font-medium mb-12">
-                   Start your Nexora Chai page today and join the elite community of Kenyan creators earning their worth.
+                   Start your Talent Jar page today and join the elite community of Kenyan creators earning their worth.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                    <Link href="/register" className="w-full sm:w-auto btn-primary py-6 px-12 bg-brand-primary text-white text-sm font-bold uppercase tracking-[0.2em] rounded-2xl shadow-2xl shadow-brand-primary/20 hover:scale-105 active:scale-95 transition-all">

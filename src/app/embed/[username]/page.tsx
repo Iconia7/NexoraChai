@@ -109,15 +109,15 @@ function EmbedCheckoutContent() {
   const handleClose = () => {
     setIsModalOpen(false);
     window.parent.postMessage('close-chai-widget', '*');
-    if ((window as any).NexoraChai) {
-      (window as any).NexoraChai.postMessage('close-chai-widget');
+    if ((window as any).TalentJar) {
+      (window as any).TalentJar.postMessage('close-chai-widget');
     }
   };
 
   const handleSuccess = () => {
     window.parent.postMessage('payment-success', '*');
-    if ((window as any).NexoraChai) {
-      (window as any).NexoraChai.postMessage('payment-success');
+    if ((window as any).TalentJar) {
+      (window as any).TalentJar.postMessage('payment-success');
     }
   };
 

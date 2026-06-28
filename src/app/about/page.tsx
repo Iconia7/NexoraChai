@@ -30,7 +30,7 @@ export default function AboutPage() {
                     Empowering the <span className="text-brand-primary">African Creative</span> Economy.
                 </h1>
                 <p className="text-xl text-brand-muted font-medium max-w-2xl mx-auto leading-relaxed">
-                    Nexora Chai was built to bridge the gap between passion and sustainability for creators across the continent. We make support frictionless, fast, and local.
+                    Talent Jar was built to bridge the gap between passion and sustainability for creators across the continent. We make support frictionless, fast, and local.
                 </p>
             </motion.div>
         </section>
@@ -83,7 +83,7 @@ export default function AboutPage() {
                     </div>
                     <div className="text-left">
                         <p className="font-bold text-lg">Newton Nderitu</p>
-                        <p className="text-xs font-bold uppercase tracking-widest text-brand-muted">Founder, Nexora Chai</p>
+                        <p className="text-xs font-bold uppercase tracking-widest text-brand-muted">Founder, Talent Jar</p>
                     </div>
                 </div>
             </div>

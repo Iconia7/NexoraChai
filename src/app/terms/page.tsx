@@ -9,15 +9,15 @@ export default function TermsPage() {
   const sections = [
     {
       title: '1. Acceptance of Terms',
-      content: 'By accessing and using Nexora Chai, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.'
+      content: 'By accessing and using Talent Jar, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.'
     },
     {
       title: '2. Creator Responsibilities',
-      content: 'Creators are solely responsible for the digital products they sell, membership perks they offer, commission services they deliver, and gated posts they publish. Creators must have all appropriate rights to their media and products. Nexora Chai reserves the right to suspend accounts violating our guidelines.'
+      content: 'Creators are solely responsible for the digital products they sell, membership perks they offer, commission services they deliver, and gated posts they publish. Creators must have all appropriate rights to their media and products. Talent Jar reserves the right to suspend accounts violating our guidelines.'
     },
     {
       title: '3. Fees, Payments, & Splits',
-      content: 'Nexora Chai charges a standard 2.0% platform fee for M-Pesa STK push checkouts and 5.0% for card payments. Split payouts are routed directly to creator subaccounts. Digital product orders, memberships, and commissions checkouts are final, and refunds are subject to gatekeeper approvals.'
+      content: 'Talent Jar charges a standard 2.0% platform fee for M-Pesa STK push checkouts and 5.0% for card payments. Split payouts are routed directly to creator subaccounts. Digital product orders, memberships, and commissions checkouts are final, and refunds are subject to gatekeeper approvals.'
     },
     {
       title: '4. Organization & Multi-Admin Compliance',
@@ -25,7 +25,7 @@ export default function TermsPage() {
     },
     {
       title: '5. Prohibited Content',
-      content: 'Creators may not use Nexora Chai to host or distribute malicious software, fraudulent schemes, explicit/unauthorized media, or solicit funds for illegal activities.'
+      content: 'Creators may not use Talent Jar to host or distribute malicious software, fraudulent schemes, explicit/unauthorized media, or solicit funds for illegal activities.'
     }
   ];
 

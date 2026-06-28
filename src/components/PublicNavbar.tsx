@@ -12,9 +12,8 @@ export default function PublicNavbar() {
   return (
     <nav className="h-20 md:h-24 bg-white/80 backdrop-blur-xl border-b border-black/5 fixed top-0 left-0 w-full z-[100]">
       <div className="max-w-7xl mx-auto px-4 md:px-6 h-full flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 md:gap-3 text-[#0C0C0C]">
-          <Image src="/logo.png" alt="Nexora Chai" width={32} height={32} className="rounded-xl md:w-10 md:h-10" />
-          <span className="font-bold text-lg md:text-xl tracking-tight">Nexora Chai</span>
+        <Link href="/" className="flex items-center text-[#0C0C0C]">
+          <Image src="/logo.png" alt="Talent Jar Logo" width={120} height={40} className="object-contain h-10 w-auto" />
         </Link>
         
         {/* Desktop Links */}

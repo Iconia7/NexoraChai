@@ -8,9 +8,8 @@ export default function PublicFooter() {
         <footer className="border-t border-black/5 bg-white py-12 sm:py-16 md:py-20 px-4 sm:px-8">
             <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
                 <div className="col-span-2">
-                    <div className="flex items-center gap-3 mb-5 md:mb-8">
-                        <Image src="/logo.png" alt="Logo" width={28} height={28} className="md:w-8 md:h-8" />
-                        <span className="font-bold text-lg md:text-xl tracking-tight">Nexora Chai</span>
+                    <div className="flex items-center mb-5 md:mb-8">
+                        <Image src="/logo.png" alt="Talent Jar Logo" width={100} height={32} className="object-contain h-8 w-auto" />
                     </div>
                     <p className="text-brand-muted font-medium max-w-sm mb-5 md:mb-8 leading-relaxed text-sm">
                         The go-to monetization platform for African creators. Sell digital products, run memberships, manage commissions, and accept secure payments.
@@ -42,7 +41,7 @@ export default function PublicFooter() {
             </div>
             <div className="max-w-7xl mx-auto mt-10 md:mt-20 pt-6 md:pt-8 border-t border-black/[0.03] text-center">
                 <p className="text-[10px] font-bold uppercase tracking-widest text-brand-muted opacity-50">
-                    © 2026 Nexora Chai. Built for African Creators. Powered by Nexora Creative Solutions.
+                    © 2026 Talent Jar. Built for African Creators. Powered by Nexora Creative Solutions.
                 </p>
             </div>
         </footer>

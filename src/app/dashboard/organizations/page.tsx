@@ -891,7 +891,7 @@ export default function OrganizationsDashboard() {
                 <form onSubmit={handleInviteMember} className="py-6 space-y-4">
                   <div className="p-3 bg-amber-500/5 text-amber-800 border border-amber-500/10 rounded-xl text-[10px] font-semibold leading-relaxed flex items-start gap-2">
                     <AlertCircle size={14} className="shrink-0 mt-0.5" />
-                    <span>Members must already have a registered Nexora Chai account to be added. If they aren't registered, tell them to sign up first.</span>
+                    <span>Members must already have a registered Talent Jar account to be added. If they aren't registered, tell them to sign up first.</span>
                   </div>
                   <div>
                     <label className="block text-[10px] font-bold text-zinc-500 uppercase tracking-widest mb-1.5">User Email Address</label>

@@ -399,7 +399,7 @@ export default function CreatorPage() {
             <div className="max-w-md">
               <p className="text-brand-muted font-bold text-xs uppercase tracking-widest mb-2 md:mb-3">{creator.category || 'Creator'}</p>
               <p className="text-brand-muted font-medium text-sm sm:text-base md:text-lg leading-relaxed">
-                {creator.bio || `Supporting ${creator.displayName}'s creative journey on Nexora Chai.`}
+                {creator.bio || `Supporting ${creator.displayName}'s creative journey on Talent Jar.`}
               </p>
 
               {settings.pinnedMessage && (
@@ -433,7 +433,7 @@ export default function CreatorPage() {
                         href={`https://x.com/${socials.twitter.replace('@', '')}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-10 h-10 rounded-full bg-white dark:bg-zinc-800 shadow-md border border-black/5 dark:border-white/5 flex items-center justify-center text-brand-muted hover:text-blue-400 hover:scale-110 hover:shadow-lg transition-all"
+                        className="w-10 h-10 rounded-full bg-white dark:bg-zinc-800 shadow-md border border-black/5 dark:border-white/5 flex items-center justify-center text-zinc-500 dark:text-zinc-200 hover:text-blue-400 hover:scale-110 hover:shadow-lg transition-all"
                         title="Twitter / X"
                       >
                         <TwitterIcon size={18} />
@@ -444,7 +444,7 @@ export default function CreatorPage() {
                         href={`https://instagram.com/${socials.instagram.replace('@', '')}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-10 h-10 rounded-full bg-white dark:bg-zinc-800 shadow-md border border-black/5 dark:border-white/5 flex items-center justify-center text-brand-muted hover:text-pink-500 hover:scale-110 hover:shadow-lg transition-all"
+                        className="w-10 h-10 rounded-full bg-white dark:bg-zinc-800 shadow-md border border-black/5 dark:border-white/5 flex items-center justify-center text-zinc-500 dark:text-zinc-200 hover:text-pink-500 hover:scale-110 hover:shadow-lg transition-all"
                         title="Instagram"
                       >
                         <InstagramIcon size={18} />
@@ -455,7 +455,7 @@ export default function CreatorPage() {
                         href={socials.youtube.startsWith('http') ? socials.youtube : `https://youtube.com/${socials.youtube.startsWith('@') ? socials.youtube : '@' + socials.youtube}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-10 h-10 rounded-full bg-white dark:bg-zinc-800 shadow-md border border-black/5 dark:border-white/5 flex items-center justify-center text-brand-muted hover:text-red-500 hover:scale-110 hover:shadow-lg transition-all"
+                        className="w-10 h-10 rounded-full bg-white dark:bg-zinc-800 shadow-md border border-black/5 dark:border-white/5 flex items-center justify-center text-zinc-500 dark:text-zinc-200 hover:text-red-500 hover:scale-110 hover:shadow-lg transition-all"
                         title="YouTube"
                       >
                         <YoutubeIcon size={18} />
@@ -466,7 +466,7 @@ export default function CreatorPage() {
                         href={socials.website.startsWith('http') ? socials.website : `https://${socials.website}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-10 h-10 rounded-full bg-white dark:bg-zinc-800 shadow-md border border-black/5 dark:border-white/5 flex items-center justify-center text-brand-muted hover:text-brand-primary hover:scale-110 hover:shadow-lg transition-all"
+                        className="w-10 h-10 rounded-full bg-white dark:bg-zinc-800 shadow-md border border-black/5 dark:border-white/5 flex items-center justify-center text-zinc-500 dark:text-zinc-200 hover:text-brand-primary hover:scale-110 hover:shadow-lg transition-all"
                         title="Website"
                       >
                         <Globe size={18} />
@@ -612,7 +612,7 @@ export default function CreatorPage() {
 
                     <div className="mt-8 flex items-center justify-center gap-8 opacity-60 hover:opacity-100 transition-all dark:invert dark:brightness-200">
                       <Image src="/mpesa-logo.png" alt="M-Pesa" width={60} height={30} className="object-contain h-6 w-auto" />
-                      <Image src="/visa-mastercard.png" alt="Card" width={80} height={30} className="object-contain h-6 w-auto" />
+                      <Image src="/visa-mastercard.jpg" alt="Card" width={80} height={30} className="object-contain h-6 w-auto" />
                     </div>
                   </div>
                 </motion.div>
@@ -930,8 +930,8 @@ export default function CreatorPage() {
           </div>
 
           <div className="mt-12 text-center">
-            <p className="text-[10px] font-bold text-brand-muted uppercase tracking-[0.2em] mb-6">Secured by Nexora Cloud</p>
-            <div className="flex items-center justify-center gap-4 text-brand-muted">
+            <p className="text-[10px] font-bold text-brand-muted dark:text-zinc-400 uppercase tracking-[0.2em] mb-6">Secured by Talent Jar Cloud</p>
+            <div className="flex items-center justify-center gap-4 text-zinc-700 dark:text-zinc-200">
               <div className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-zinc-800 rounded-full text-[9px] font-bold uppercase tracking-widest card-shadow border border-black/5 dark:border-white/5">
                 <Globe size={12} className="text-blue-500" /> Global Payments
               </div>

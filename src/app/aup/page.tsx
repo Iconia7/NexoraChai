@@ -50,7 +50,7 @@ export default function AUPPage() {
           <p className="text-brand-muted font-bold mb-16 uppercase tracking-widest text-xs">Last Updated: June 2026</p>
 
           <p className="text-xl text-brand-muted font-medium mb-12 leading-relaxed">
-            As a SaaS creator platform facilitating direct financial transactions across Africa and globally, Nexora Chai enforces strict guidelines on what digital products can be sold, posts gated, or campaigns launched.
+            As a SaaS creator platform facilitating direct financial transactions across Africa and globally, Talent Jar enforces strict guidelines on what digital products can be sold, posts gated, or campaigns launched.
           </p>
 
           <div className="space-y-16">

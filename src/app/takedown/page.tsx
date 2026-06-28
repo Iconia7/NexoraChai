@@ -12,8 +12,8 @@ export default function TakedownPage() {
       content: 'Identify in detail the copyrighted work, proprietary code, or template that you believe has been infringed upon, including specific source URLs.'
     },
     {
-      title: '2. Location on Nexora Chai',
-      content: 'Provide the exact Nexora Chai profile username, post slug, or product checkout link where the allegedly infringing asset is hosted.'
+      title: '2. Location on Talent Jar',
+      content: 'Provide the exact Talent Jar profile username, post slug, or product checkout link where the allegedly infringing asset is hosted.'
     },
     {
       title: '3. Contact Details & Declaration',
@@ -34,7 +34,7 @@ export default function TakedownPage() {
           <p className="text-brand-muted font-bold mb-16 uppercase tracking-widest text-xs">Last Updated: June 2026</p>
 
           <p className="text-xl text-brand-muted font-medium mb-12 leading-relaxed">
-            Nexora Chai respects intellectual property rights and expects its creators to do the same. We respond expeditiously to legitimate notices of claimed copyright or trademark infringement.
+            Talent Jar respects intellectual property rights and expects its creators to do the same. We respond expeditiously to legitimate notices of claimed copyright or trademark infringement.
           </p>
 
           <div className="space-y-12 mb-16">

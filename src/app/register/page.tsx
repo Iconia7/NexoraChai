@@ -49,9 +49,8 @@ export default function Register() {
         </div>
 
         <div className="relative z-10">
-          <div className="flex items-center gap-3 mb-20 text-[#0C0C0C]">
-            <Image src="/logo.png" alt="Nexora Chai" width={40} height={40} className="rounded-xl shadow-lg" />
-            <span className="font-bold text-xl tracking-tight">Nexora Chai</span>
+          <div className="flex items-center mb-20 text-[#0C0C0C]">
+            <Image src="/logo.png" alt="Talent Jar Logo" width={140} height={45} className="object-contain h-12 w-auto" />
           </div>
 
           <div className="max-w-md">
@@ -59,7 +58,7 @@ export default function Register() {
               <CheckCircle2 size={48} strokeWidth={1.5} />
             </div>
             <h2 className="text-4xl font-bold mb-8 leading-tight tracking-tight text-[#0C0C0C]">
-              "Joining Nexora Chai is the smartest financial decision I made this year."
+              "Joining Talent Jar is the smartest financial decision I made this year."
             </h2>
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-lg">

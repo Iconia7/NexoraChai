@@ -152,7 +152,7 @@ function VerifyOTPContent() {
             <CheckCircle2 size={48} />
           </div>
           <h2 className="text-3xl font-bold mb-4 tracking-tight">Verified!</h2>
-          <p className="text-brand-muted font-medium mb-10 leading-relaxed">Your Nexora Chai account is now active. Redirecting you to login...</p>
+          <p className="text-brand-muted font-medium mb-10 leading-relaxed">Your Talent Jar account is now active. Redirecting you to login...</p>
           <div className="w-full h-1.5 bg-black/5 rounded-full overflow-hidden">
             <motion.div 
                 initial={{ width: 0 }}
@@ -177,9 +177,8 @@ export default function Verify() {
                 </div>
 
                 <div className="relative z-10">
-                    <div className="flex items-center gap-3 mb-20">
-                        <Image src="/logo.png" alt="Nexora Chai" width={32} height={32} />
-                        <span className="font-bold text-xl tracking-tight">Nexora Chai</span>
+                    <div className="flex items-center mb-20">
+                        <Image src="/logo.png" alt="Talent Jar Logo" width={140} height={45} className="object-contain h-12 w-auto" />
                     </div>
 
                     <div className="max-w-md">

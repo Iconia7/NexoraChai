@@ -8,7 +8,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Nexora Chai | The Premium Creator Income & SaaS Platform for Africa",
+  title: "Talent Jar | The Premium Creator Income & SaaS Platform for Africa",
   description: "The premium creator monetization platform for Africa. Accept tips, launch memberships, sell digital products, gate premium content, and manage custom bookings via M-Pesa and Card.",
   keywords: ["creator economy", "kenya", "m-pesa", "africa", "monetization", "support creators", "digital products storefront", "memberships", "commissions", "gated content", "nexora", "chai", "saas creator platform"],
   authors: [{ name: "Nexora Creatives" }],
@@ -19,16 +19,16 @@ export const metadata: Metadata = {
     apple: '/logo.png',
   },
   openGraph: {
-    title: "Nexora Chai | The Premium Creator Income Platform for Africa",
+    title: "Talent Jar | The Premium Creator Income Platform for Africa",
     description: "The premium SaaS monetization platform for African creators. Accept tips, sell digital products, run memberships, and manage bookings instantly via M-Pesa and Card.",
     url: 'https://chai.nexoracreatives.co.ke',
-    siteName: 'Nexora Chai',
+    siteName: 'Talent Jar',
     images: [
       {
         url: '/login-visual.png',
         width: 1200,
         height: 630,
-        alt: 'Nexora Chai - Premium Creator SaaS Platform',
+        alt: 'Talent Jar - Premium Creator SaaS Platform',
       },
     ],
     locale: 'en_KE',
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Nexora Chai | The Premium Creator Income Platform for Africa",
+    title: "Talent Jar | The Premium Creator Income Platform for Africa",
     description: "The premium SaaS monetization platform for African creators. Accept tips, sell digital products, run memberships, and manage bookings instantly via M-Pesa and Card.",
     images: ['/login-visual.png'],
   },

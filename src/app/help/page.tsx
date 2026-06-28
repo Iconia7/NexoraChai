@@ -12,7 +12,7 @@ export default function HelpPage() {
       category: 'General',
       icon: Coffee,
       questions: [
-        { q: 'What is Nexora Chai?', a: 'Nexora Chai is a premium payment platform built for African creators to receive support (like "buying a chai") directly from their audience via M-Pesa and Cards.' },
+        { q: 'What is Talent Jar?', a: 'Talent Jar is a premium payment platform built for African creators to receive support (like "buying a chai") directly from their audience via M-Pesa and Cards.' },
         { q: 'How do I get started?', a: 'Simply register for a creator account, set up your profile, and share your unique chai link with your audience.' }
       ]
     },
