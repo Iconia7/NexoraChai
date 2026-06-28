@@ -35,7 +35,7 @@ export default function ForgotPassword() {
       {/* Left Panel - Decorative Background */}
       <div className="hidden lg:flex lg:w-1/2 relative p-12 flex-col justify-between overflow-hidden">
         <Image
-          src="/login-visual.png"
+          src="/talent-jar-hero.png"
           alt="Talent Jar Hero"
           fill
           priority
