@@ -22,20 +22,23 @@ export default function FeesPage() {
           </p>
 
           <div className="space-y-12">
-            {/* Nexora Fee */}
+            {/* Talent Jar Fee */}
             <div className="bg-white p-10 rounded-[3rem] card-shadow border-l-8 border-brand-primary">
               <div className="flex justify-between items-start mb-6">
                 <div>
                   <h2 className="text-2xl font-bold mb-1 tracking-tight">Talent Jar Platform Fee</h2>
                   <p className="text-sm font-bold text-brand-muted uppercase tracking-widest">Our Service Cost</p>
                 </div>
-                <span className="text-4xl font-bold text-brand-primary">2.0%</span>
+                <div className="text-right">
+                  <span className="text-4xl font-bold text-brand-primary">2.0%</span>
+                  <span className="text-brand-muted text-sm font-bold block mt-1">To 5.0%</span>
+                </div>
               </div>
               <p className="text-lg text-brand-muted font-medium leading-relaxed mb-6">
-                This covers our infrastructure, artisanal design updates, security monitoring, and 24/7 creator support.
+                We charge a low **2.0% platform fee** on M-Pesa Tips. For digital product sales, memberships, commissions, and card transactions, a **5.0% platform fee** applies.
               </p>
               <div className="flex items-center gap-2 text-brand-primary text-xs font-bold uppercase tracking-widest">
-                <CheckCircle2 size={16} /> Included in all plans
+                <CheckCircle2 size={16} /> Industry-leading low rates
               </div>
             </div>
 
